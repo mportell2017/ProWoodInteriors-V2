@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Open_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import { ConvexClientProvider } from "@/components/ConvexClientProvider";
 import Footer from "@/components/Footer";
 
 const sans = Open_Sans({
@@ -44,10 +43,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sans.variable} ${display.variable} ${elegant.variable}`}>
       <body className={sans.className}>
-        <ConvexClientProvider>
-          <main>{children}</main>
-          <Footer />
-        </ConvexClientProvider>
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

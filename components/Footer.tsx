@@ -3,12 +3,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
 import { Container } from "./ui/Container";
 
+const SITE_SETTINGS = {
+  phone: "(314) 437-9988",
+  address: "St. Louis, Missouri",
+};
+
 export default function Footer() {
-  const settings = useQuery(api.queries.getSiteSettings);
   const [logoFailed, setLogoFailed] = useState(false);
 
   const quickLinks = [
@@ -61,16 +63,12 @@ export default function Footer() {
             <p className="text-sm text-primary-brown/80 mb-4">
               Your trusted custom cabinetry and built-ins for St. Louis, Missouri since 1985.
             </p>
-            {settings && (
-              <>
-                <p className="text-sm text-primary-brown/80 mb-2">{settings.address}</p>
-                <p className="text-sm text-primary-brown/80">
-                  <a href={`tel:${settings.phone.replace(/\D/g, "")}`} className="hover:text-primary-red">
-                    {settings.phone}
-                  </a>
-                </p>
-              </>
-            )}
+            <p className="text-sm text-primary-brown/80 mb-2">{SITE_SETTINGS.address}</p>
+            <p className="text-sm text-primary-brown/80">
+              <a href="tel:3144379988" className="hover:text-primary-red">
+                {SITE_SETTINGS.phone}
+              </a>
+            </p>
           </div>
 
           {/* Quick Links */}

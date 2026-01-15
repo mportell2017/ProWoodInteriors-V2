@@ -8,12 +8,9 @@
     "prebuild": "npm run generate:gallery",
     "start": "next start",
     "lint": "next lint",
-    "generate:gallery": "node scripts/generate-gallery-manifest.js",
-    "convex:dev": "convex dev",
-    "convex:deploy": "convex deploy"
+    "generate:gallery": "node scripts/generate-gallery-manifest.js"
   },
   "dependencies": {
-    "convex": "^1.11.0",
     "next": "^14.2.0",
     "nodemailer": "^6.9.8",
     "react": "^18.3.0",

@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node scripts/generate-gallery-manifest.js:*)"
+      "Bash(node scripts/generate-gallery-manifest.js:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)"
     ]
   }
 }

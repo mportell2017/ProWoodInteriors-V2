@@ -3,14 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 
+const PHONE = "(314) 437-9988";
+
 export default function Navigation() {
-  const settings = useQuery(api.queries.getSiteSettings);
   const [logoFailed, setLogoFailed] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -145,7 +144,7 @@ export default function Navigation() {
                 </svg>
               </span>
               <span className="font-sans text-base font-semibold tracking-normal">
-                {settings?.phone || "(314) 437-9988"}
+                {PHONE}
               </span>
             </a>
             
@@ -295,7 +294,7 @@ export default function Navigation() {
               <div className="p-6 border-t border-umber/20 space-y-4">
                 {/* Phone */}
                 <a
-                  href={`tel:${settings?.phone.replace(/\D/g, "") || "3144379988"}`}
+                  href="tel:3144379988"
                   className="flex items-center gap-3 p-3 rounded-lg hover:bg-umber/5 transition-colors"
                 >
                   <span className="flex items-center justify-center w-10 h-10 rounded-full bg-oxblood/10">
@@ -304,7 +303,7 @@ export default function Navigation() {
                     </svg>
                   </span>
                   <span className="font-sans font-semibold text-ink">
-                    {settings?.phone || "(314) 437-9988"}
+                    {PHONE}
                   </span>
                 </a>
 
