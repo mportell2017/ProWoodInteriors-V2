@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-parchment text-ink font-sans text-[14px] leading-relaxed antialiased;
+  }
+
+  p {
+    @apply font-sans text-[14px] leading-relaxed;
+  }
+
+  a {
+    @apply underline-offset-4;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-elegant tracking-tight text-ink;
+  }
+
+  ::selection {
+    background: rgba(181, 139, 75, 0.35);
+  }
+}
+
+@layer components {
+  .engraved-rule {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-umber/25 to-transparent;
+  }
+}
+
+/* Subtle hero background animation */
+@keyframes heroFloat {
+  0% {
+    transform: scale(1.05) translate(0%, 0%);
+  }
+  33% {
+    transform: scale(1.05) translate(-0.5%, 0.3%);
+  }
+  66% {
+    transform: scale(1.05) translate(0.3%, -0.5%);
+  }
+  100% {
+    transform: scale(1.05) translate(0%, 0%);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-animate {
+    animation: heroFloat 20s ease-in-out infinite;
+    will-change: transform;
+  }
+}

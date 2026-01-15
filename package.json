@@ -1,0 +1,35 @@
+{
+  "name": "professional-wood-interiors",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run generate:gallery && next dev",
+    "build": "next build",
+    "prebuild": "npm run generate:gallery",
+    "start": "next start",
+    "lint": "next lint",
+    "generate:gallery": "node scripts/generate-gallery-manifest.js",
+    "convex:dev": "convex dev",
+    "convex:deploy": "convex deploy"
+  },
+  "dependencies": {
+    "convex": "^1.11.0",
+    "next": "^14.2.0",
+    "nodemailer": "^6.9.8",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/nodemailer": "^6.4.14",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.3.0"
+  }
+}
