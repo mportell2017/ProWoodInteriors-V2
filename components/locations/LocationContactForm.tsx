@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { cn } from "@/lib/cn";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
 // Custom icons for each project type
 const KitchenIcon = ({ className }: { className?: string }) => (
@@ -123,6 +124,8 @@ export function LocationContactForm() {
   const [selectedProject, setSelectedProject] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
+  const turnstileRef = useRef<TurnstileInstance>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -147,6 +150,7 @@ export function LocationContactForm() {
           project_types: [selectedProject],
           timeline: formData.get('timeline'),
           message: formData.get('description'),
+          turnstileToken,
         }),
       });
 
@@ -155,9 +159,13 @@ export function LocationContactForm() {
       }
 
       setSubmitStatus("success");
+      turnstileRef.current?.reset();
+      setTurnstileToken("");
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus("error");
+      turnstileRef.current?.reset();
+      setTurnstileToken("");
     } finally {
       setIsSubmitting(false);
     }
@@ -417,15 +425,26 @@ export function LocationContactForm() {
         </div>
       </div>
 
+      {/* Turnstile CAPTCHA */}
+      <div className="flex justify-center">
+        <Turnstile
+          ref={turnstileRef}
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+          onSuccess={setTurnstileToken}
+          onError={() => setTurnstileToken("")}
+          onExpire={() => setTurnstileToken("")}
+        />
+      </div>
+
       {/* Submit Section */}
       <div className="flex flex-col items-stretch gap-4 pt-4 border-t border-umber/20">
         <button
           type="submit"
-          disabled={isSubmitting || !selectedProject}
+          disabled={isSubmitting || !selectedProject || !turnstileToken}
           className={cn(
             "w-full px-8 py-3.5 rounded-lg font-semibold text-base transition-all duration-300 shadow-lg",
             "focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2",
-            isSubmitting || !selectedProject
+            isSubmitting || !selectedProject || !turnstileToken
               ? "bg-umber/30 text-ink/40 cursor-not-allowed shadow-none"
               : "bg-oxblood text-white hover:bg-oxblood/90 hover:shadow-xl hover:scale-105 active:scale-100"
           )}

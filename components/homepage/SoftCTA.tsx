@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Section } from "@/components/ui/Section";
 import { Heading } from "@/components/ui/Heading";
 import { cn } from "@/lib/cn";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
 // Custom icons for each project type
 const KitchenIcon = ({ className }: { className?: string }) => (
@@ -125,6 +126,8 @@ export function SoftCTA() {
   const [selectedProject, setSelectedProject] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
+  const turnstileRef = useRef<TurnstileInstance>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -149,6 +152,7 @@ export function SoftCTA() {
           project_types: [selectedProject],
           timeline: formData.get('timeline'),
           message: formData.get('description'),
+          turnstileToken,
         }),
       });
 
@@ -157,9 +161,13 @@ export function SoftCTA() {
       }
 
       setSubmitStatus("success");
+      turnstileRef.current?.reset();
+      setTurnstileToken("");
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus("error");
+      turnstileRef.current?.reset();
+      setTurnstileToken("");
     } finally {
       setIsSubmitting(false);
     }
@@ -438,6 +446,17 @@ export function SoftCTA() {
               </div>
             </div>
 
+            {/* Turnstile CAPTCHA */}
+            <div className="flex justify-center">
+              <Turnstile
+                ref={turnstileRef}
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                onSuccess={setTurnstileToken}
+                onError={() => setTurnstileToken("")}
+                onExpire={() => setTurnstileToken("")}
+              />
+            </div>
+
             {/* Submit Section */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t-2 border-umber/20">
               <p className="text-ink/60 text-sm">
@@ -451,11 +470,11 @@ export function SoftCTA() {
               </p>
               <button
                 type="submit"
-                disabled={isSubmitting || !selectedProject}
+                disabled={isSubmitting || !selectedProject || !turnstileToken}
                 className={cn(
                   "px-12 py-4 rounded-lg font-semibold text-base transition-all duration-300 shadow-lg",
                   "focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2",
-                  isSubmitting || !selectedProject
+                  isSubmitting || !selectedProject || !turnstileToken
                     ? "bg-umber/30 text-ink/40 cursor-not-allowed shadow-none"
                     : "bg-oxblood text-white hover:bg-oxblood/90 hover:shadow-xl hover:scale-105 active:scale-100"
                 )}
