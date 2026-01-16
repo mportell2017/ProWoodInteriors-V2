@@ -129,10 +129,40 @@ export function SoftCTA() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // TODO: Connect to Convex mutation
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setSubmitStatus("success");
+    setSubmitStatus("idle");
+
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          phone: formData.get('phone'),
+          email: formData.get('email'),
+          street_address: formData.get('street'),
+          city: formData.get('city'),
+          zip: formData.get('zip'),
+          project_types: [selectedProject],
+          timeline: formData.get('timeline'),
+          message: formData.get('description'),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit');
+      }
+
+      setSubmitStatus("success");
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClassName = cn(
@@ -166,6 +196,35 @@ export function SoftCTA() {
             className="mt-8 text-brass hover:text-brass/80 font-semibold underline"
           >
             Send another message
+          </button>
+        </div>
+      </Section>
+    );
+  }
+
+  if (submitStatus === "error") {
+    return (
+      <Section>
+        <div className="mx-auto max-w-2xl text-center py-16">
+          <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-oxblood/20 flex items-center justify-center">
+            <svg className="w-10 h-10 text-oxblood" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </div>
+          <Heading eyebrow="Oops" accent="italic">
+            Something Went Wrong
+          </Heading>
+          <p className="mt-6 text-ink/70 text-lg leading-relaxed">
+            We couldn't send your message. Please try again, or call us directly at{" "}
+            <a href="tel:3144379988" className="text-brass hover:text-brass/80 font-semibold">
+              (314) 437-9988
+            </a>
+          </p>
+          <button
+            onClick={() => setSubmitStatus("idle")}
+            className="mt-8 text-brass hover:text-brass/80 font-semibold underline"
+          >
+            Try again
           </button>
         </div>
       </Section>
