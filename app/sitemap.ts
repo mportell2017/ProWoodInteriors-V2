@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { galleryManifest } from '@/lib/gallery-manifest';
 import { generateSlug } from '@/lib/gallery-utils';
+import { locations } from '@/lib/location-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://professionalwoodinteriors.com';
@@ -38,7 +39,57 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/services`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/services/custom-kitchen-cabinetry`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/services/cabinet-refacing`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/services/custom-bookcases`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/services/entertainment-centers`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      lastModified,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/terms-of-service`,
+      lastModified,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
   ];
+
+  // Location routes
+  const locationRoutes: MetadataRoute.Sitemap = locations.map((location) => ({
+    url: `${baseUrl}/locations/${location.slug}`,
+    lastModified,
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }));
 
   // Category routes
   const categoryRoutes: MetadataRoute.Sitemap = galleryManifest.categories.map(
@@ -72,5 +123,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
-  return [...staticRoutes, ...categoryRoutes, ...projectRoutes];
+  return [...staticRoutes, ...locationRoutes, ...categoryRoutes, ...projectRoutes];
 }
