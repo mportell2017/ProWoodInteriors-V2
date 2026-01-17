@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
 
 export function HomeHero() {
   return (
@@ -34,61 +33,49 @@ export function HomeHero() {
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-walnut/70 via-walnut/20 to-transparent" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-walnut/20 to-transparent" />
 
-        <Container className="relative h-full z-20">
-          <div className="flex h-full items-end pb-20 sm:pb-24 lg:pb-28 ml-4 sm:ml-6 lg:ml-8">
-            <div className="max-w-[780px]">
-              {/* Decorative top accent */}
-              <div className="flex items-center gap-4 mb-6">
-                <div className="h-px w-12 bg-gradient-to-r from-brass to-transparent" />
-                <span className="text-brass/90 text-sm tracking-[0.25em] uppercase font-medium">
-                  St. Louis Custom Woodwork
-                </span>
-                <div className="h-px w-12 bg-gradient-to-l from-brass to-transparent" />
-              </div>
+        <div className="relative h-full z-20 p-8 sm:p-12 lg:p-16 flex flex-col justify-end">
+          {/* Top left accent - aligned with content below */}
+          <div className="flex items-center gap-4 mb-6 sm:mb-8">
+            <div className="h-px w-12 bg-gradient-to-r from-brass to-transparent" />
+            <span className="text-white text-sm tracking-[0.25em] uppercase font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+              St. Louis Custom Woodwork
+            </span>
+            <div className="h-px w-12 bg-gradient-to-l from-brass to-transparent" />
+          </div>
 
+          {/* Main content */}
+          <div className="max-w-[780px]">
               <h1 className="font-elegant text-4xl sm:text-5xl lg:text-6xl leading-[1.12] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
                 Thoughtfully Designed.<br />
                 Carefully Built.<br />
                 <span className="italic font-light">Professionally Installed.</span>
               </h1>
 
-              {/* Elegant divider */}
-              <div className="flex items-center gap-3 mt-8 mb-6">
-                <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent via-brass/60 to-transparent" />
-                <svg className="w-4 h-4 text-brass/70" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-                </svg>
-                <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent via-brass/60 to-transparent" />
-              </div>
-
-              <p className="max-w-[560px] text-base sm:text-lg text-white/95 leading-relaxed font-sans font-medium">
-                At Professional Wood Interiors, we specialize in custom cabinetry and built-ins that are designed around your space — not pulled from a catalog.
-              </p>
-
-              <p className="mt-4 max-w-[560px] text-sm sm:text-base text-white/85 leading-relaxed font-sans">
-                Every project starts with a conversation. We listen to how you use your home, help guide design decisions, and then build everything in our shop before carefully installing it ourselves. No hand-offs. No sales teams. Just quality work done the right way.
-              </p>
-
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <div className="mt-8 sm:mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
                 <ButtonLink
-                  href="/our-story"
+                  href="/showroom"
                   size="md"
                   className="bg-oxblood hover:bg-oxblood/90 text-white font-semibold shadow-lg shadow-oxblood/30 border border-oxblood/50 hover:shadow-xl hover:shadow-oxblood/40 transition-all duration-300"
                 >
-                  Learn more about our approach →
+                  Our Showroom
                 </ButtonLink>
+                <a
+                  href="#services"
+                  className="inline-flex items-center justify-center px-6 py-3 text-white font-elegant text-lg border-2 border-white/30 hover:border-white/50 hover:bg-white/10 transition-all duration-300 rounded-sm"
+                >
+                  Our Services
+                </a>
               </div>
 
               {/* Bottom decorative element */}
-              <div className="mt-10 flex items-center gap-4">
+              <div className="mt-6 sm:mt-8 flex items-center gap-4">
                 <div className="h-px w-16 bg-gradient-to-r from-brass/50 to-transparent" />
                 <span className="text-white/60 text-xs tracking-[0.2em] uppercase">
                   Since 1985
                 </span>
               </div>
-            </div>
           </div>
-        </Container>
+        </div>
         </div>
       </div>
     </section>

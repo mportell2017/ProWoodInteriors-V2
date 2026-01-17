@@ -39,7 +39,7 @@ const services = [
 
 export function ServiceShowcase() {
   return (
-    <Section>
+    <Section id="services">
       <div className="text-center">
         <Heading
           eyebrow="Our Services"
@@ -48,9 +48,15 @@ export function ServiceShowcase() {
         >
           Custom Interior Woodworking for Every Part of Your Home
         </Heading>
-        <p className="mx-auto mt-5 max-w-3xl text-ink/80">
-          From kitchens to built-ins and everything in between, our work is always 
-          custom, always intentional, and always built to last.
+        <p className="mx-auto mt-5 max-w-2xl text-ink/80">
+          At Professional Wood Interiors, we specialize in custom cabinetry and built-ins
+          that are designed around your space — not pulled from a catalog.
+        </p>
+        <p className="mx-auto mt-4 max-w-2xl text-ink/70 text-sm leading-relaxed">
+          Every project starts with a conversation. We listen to how you use your home,
+          help guide design decisions, and then build everything in our shop before
+          carefully installing it ourselves. No hand-offs. No sales teams. Just quality
+          work done the right way.
         </p>
       </div>
 

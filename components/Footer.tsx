@@ -118,9 +118,15 @@ export default function Footer() {
           <p className="text-sm text-primary-brown/60">
             © {new Date().getFullYear()} Copyright Professional Wood Interiors
           </p>
-          <p className="text-xs text-primary-brown/60 mt-4 md:mt-0">
-            Developed by [Your Name]
-          </p>
+          <div className="flex items-center gap-4 mt-4 md:mt-0">
+            <Link href="/privacy-policy" className="text-xs text-primary-brown/60 hover:text-primary-red transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-primary-brown/40">|</span>
+            <Link href="/terms-of-service" className="text-xs text-primary-brown/60 hover:text-primary-red transition-colors">
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </Container>
     </footer>

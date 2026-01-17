@@ -124,7 +124,7 @@ export default function Navigation() {
               Reviews
             </Link>
             <Link href="/showroom" className={navLinkClassName}>
-              Show Room
+              Showroom
             </Link>
 
             {/* Decorative divider */}
@@ -278,7 +278,7 @@ export default function Navigation() {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-4 py-3 text-ink/90 hover:text-oxblood hover:bg-umber/5 rounded-lg transition-colors font-elegant font-semibold"
                   >
-                    Show Room
+                    Showroom
                   </Link>
                   <Link
                     href="/contact-us"
