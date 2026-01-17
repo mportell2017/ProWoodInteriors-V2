@@ -11,7 +11,7 @@ const services = [
     title: "Kitchens",
     description:
       "Custom kitchen cabinetry designed around how you cook, entertain, and live.",
-    href: "/services/custom-cabinetry",
+    href: "/services/custom-kitchen-cabinetry",
     image: "/images/gallery/kitchen remodel/Quartzite Remodel/white-luxury-kitchen-remodel-07.jpg",
   },
   {
@@ -25,7 +25,7 @@ const services = [
     title: "Bookcases & Built-Ins",
     description:
       "Functional built-ins that add character and storage to any room.",
-    href: "/services/bookcases",
+    href: "/services/custom-bookcases",
     image: "/images/gallery/Bookcases/white  bookcase remodel-02.jpg",
   },
   {

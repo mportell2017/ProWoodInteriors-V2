@@ -1,15 +1,16 @@
+import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 import { Heading } from "@/components/ui/Heading";
 import { ButtonLink } from "@/components/ui/Button";
 
 const communities = [
-  "St. Louis",
-  "Chesterfield",
-  "Clayton",
-  "Wildwood",
-  "St. Peters",
-  "St. Charles",
-  "Wentzville",
+  { name: "St. Louis", href: "/locations/st-louis" },
+  { name: "Chesterfield", href: "/locations/chesterfield" },
+  { name: "Clayton", href: "/locations/clayton" },
+  { name: "Wildwood", href: "/locations/wildwood" },
+  { name: "St. Peters", href: "/locations/st-peters" },
+  { name: "St. Charles", href: "/locations/st-charles" },
+  { name: "Wentzville", href: "/locations/wentzville" },
 ];
 
 export function ServiceAreaSection() {
@@ -38,15 +39,16 @@ export function ServiceAreaSection() {
           </h3>
           <div className="grid grid-cols-2 gap-3">
             {communities.map((community) => (
-              <div 
-                key={community}
-                className="flex items-center gap-2 text-ink/80"
+              <Link
+                key={community.name}
+                href={community.href}
+                className="flex items-center gap-2 text-ink/80 hover:text-oxblood transition-colors group"
               >
                 <svg className="w-4 h-4 text-oxblood flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                <span className="font-sans text-sm">{community}</span>
-              </div>
+                <span className="font-sans text-sm group-hover:underline">{community.name}</span>
+              </Link>
             ))}
             <div className="flex items-center gap-2 text-ink/80 col-span-2 mt-2">
               <svg className="w-4 h-4 text-brass flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">

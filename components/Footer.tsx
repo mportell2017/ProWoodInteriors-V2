@@ -22,9 +22,9 @@ export default function Footer() {
   ];
 
   const services = [
-    { href: "/services/custom-cabinetry", label: "Custom Cabinetry" },
+    { href: "/services/custom-kitchen-cabinetry", label: "Custom Cabinetry" },
     { href: "/services/cabinet-refacing", label: "Cabinet Refacing" },
-    { href: "/services/bookcases", label: "Bookcases" },
+    { href: "/services/custom-bookcases", label: "Bookcases" },
     { href: "/services/entertainment-centers", label: "Entertainment Centers" },
   ];
 
