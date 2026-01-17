@@ -24,8 +24,8 @@ const contactSchema = z.object({
 async function verifyTurnstileToken(token: string, ip: string | null): Promise<{ success: boolean; error?: string }> {
   const secretKey = process.env.TURNSTILE_SECRET_KEY
   if (!secretKey) {
-    console.warn('Turnstile secret key not configured, skipping verification')
-    return { success: true }
+    console.error('Turnstile secret key not configured - CAPTCHA verification is required')
+    return { success: false, error: 'CAPTCHA verification is not properly configured. Please contact support.' }
   }
 
   try {
@@ -53,13 +53,41 @@ async function verifyTurnstileToken(token: string, ip: string | null): Promise<{
 
 type ContactData = z.infer<typeof contactSchema>
 
+/**
+ * Escapes HTML special characters to prevent XSS attacks in email templates
+ */
+function escapeHtml(text: string | null | undefined): string {
+  if (!text) return ''
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+}
+
+/**
+ * Escapes HTML and converts newlines to <br> tags for message fields
+ */
+function escapeHtmlWithBreaks(text: string | null | undefined): string {
+  if (!text) return ''
+  return escapeHtml(text).replace(/\n/g, '<br>')
+}
+
 async function sendEmailNotification(data: ContactData, submissionId: string): Promise<{ success: boolean; error?: string }> {
   const apiKey = process.env.SMTP2GO_API_KEY
   if (!apiKey) {
     return { success: false, error: 'SMTP2GO API key not configured' }
   }
 
-  const location = [data.street_address, data.city, data.zip].filter(Boolean).join(', ')
+  // Escape all user inputs to prevent XSS attacks
+  const location = [data.street_address, data.city, data.zip].filter(Boolean).map(escapeHtml).join(', ')
+  const escapedName = escapeHtml(data.name)
+  const escapedEmail = escapeHtml(data.email)
+  const escapedPhone = escapeHtml(data.phone)
+  const escapedProjectTypes = data.project_types.map(escapeHtml).join(', ')
+  const escapedTimeline = escapeHtml(data.timeline)
+  const escapedMessage = escapeHtmlWithBreaks(data.message)
 
   const emailBody = `
 <!DOCTYPE html>
@@ -85,15 +113,15 @@ async function sendEmailNotification(data: ContactData, submissionId: string): P
     <div class="content">
       <div class="field">
         <div class="label">Name</div>
-        <div class="value">${data.name}</div>
+        <div class="value">${escapedName}</div>
       </div>
       <div class="field">
         <div class="label">Email</div>
-        <div class="value"><a href="mailto:${data.email}">${data.email}</a></div>
+        <div class="value"><a href="mailto:${escapedEmail}">${escapedEmail}</a></div>
       </div>
       <div class="field">
         <div class="label">Phone</div>
-        <div class="value"><a href="tel:${data.phone}">${data.phone}</a></div>
+        <div class="value"><a href="tel:${escapedPhone}">${escapedPhone}</a></div>
       </div>
       ${location ? `
       <div class="field">
@@ -103,18 +131,18 @@ async function sendEmailNotification(data: ContactData, submissionId: string): P
       ` : ''}
       <div class="field">
         <div class="label">Project Type</div>
-        <div class="value">${data.project_types.join(', ')}</div>
+        <div class="value">${escapedProjectTypes}</div>
       </div>
       ${data.timeline ? `
       <div class="field">
         <div class="label">Timeline</div>
-        <div class="value">${data.timeline}</div>
+        <div class="value">${escapedTimeline}</div>
       </div>
       ` : ''}
       ${data.message ? `
       <div class="field">
         <div class="label">Message</div>
-        <div class="message-box">${data.message.replace(/\n/g, '<br>')}</div>
+        <div class="message-box">${escapedMessage}</div>
       </div>
       ` : ''}
     </div>
@@ -200,13 +228,19 @@ export async function POST(request: Request) {
     const emailResult = await sendEmailNotification(validatedData, data.id)
 
     // Update the submission with email status
-    await supabase
+    const { error: updateError } = await supabase
       .from('contact_submissions')
       .update({
         email_sent: emailResult.success,
         email_error: emailResult.error || null,
       })
       .eq('id', data.id)
+
+    if (updateError) {
+      console.error('Failed to update email status in database:', updateError)
+      // Don't fail the request since submission was created successfully,
+      // but log the error for monitoring
+    }
 
     if (!emailResult.success) {
       console.error('Email send failed:', emailResult.error)
