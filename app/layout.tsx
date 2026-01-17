@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Open_Sans, Cormorant_Garamond } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Footer from "@/components/Footer";
 
@@ -42,6 +43,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${sans.variable} ${display.variable} ${elegant.variable}`}>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-YW8MCP3VZN"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-YW8MCP3VZN');
+          `}
+        </Script>
+      </head>
       <body className={sans.className}>
         <main>{children}</main>
         <Footer />
