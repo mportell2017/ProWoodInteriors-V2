@@ -34,9 +34,9 @@ export function HomeHero() {
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-walnut/70 via-walnut/20 to-transparent" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-walnut/20 to-transparent" />
 
-        <Container className="relative h-full z-20">
+        <Container className="relative h-full z-20 px-8 sm:px-10 lg:px-12">
           <div className="flex h-full items-end pb-20 sm:pb-24 lg:pb-28">
-            <div className="max-w-[720px]">
+            <div className="max-w-[780px]">
               {/* Decorative top accent */}
               <div className="flex items-center gap-4 mb-6">
                 <div className="h-px w-12 bg-gradient-to-r from-brass to-transparent" />
