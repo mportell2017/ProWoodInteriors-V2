@@ -2,10 +2,18 @@ import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
-// Create a Supabase client with the anon key for public API routes
+// Create a Supabase client with the service role key for server-side operations
+// This bypasses RLS and allows us to insert submissions and update email status
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+      detectSessionInUrl: false,
+    },
+  }
 )
 
 const contactSchema = z.object({
@@ -200,9 +208,7 @@ export async function POST(request: Request) {
     }
 
     // Insert the submission into Supabase
-    // Note: We don't use .select() because the anon role only has INSERT permission (not SELECT)
-    // This is intentional for security - anonymous users shouldn't be able to read submissions
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from('contact_submissions')
       .insert({
         name: validatedData.name,
@@ -215,6 +221,8 @@ export async function POST(request: Request) {
         timeline: validatedData.timeline || null,
         message: validatedData.message || null,
       })
+      .select()
+      .single()
 
     if (error) {
       console.error('Supabase error:', error)
@@ -225,20 +233,22 @@ export async function POST(request: Request) {
     }
 
     // Send email notification
-    // Note: We generate a simple ID for the email since we can't retrieve the DB-generated UUID
-    // The submission is still saved in the database and viewable in the admin dashboard
-    const submissionRef = `${Date.now()}-${Math.random().toString(36).substring(2, 8)}`
-    const emailResult = await sendEmailNotification(validatedData, submissionRef)
+    const emailResult = await sendEmailNotification(validatedData, data.id)
 
-    // Note: We can't update the email status in the database because anon role
-    // doesn't have UPDATE permission. The email status will show as null/false
-    // in the admin dashboard, but the submission is still saved.
-    // For production, consider using a service role key or an edge function for this.
+    // Update the submission with email status
+    await supabase
+      .from('contact_submissions')
+      .update({
+        email_sent: emailResult.success,
+        email_error: emailResult.error || null,
+      })
+      .eq('id', data.id)
+
     if (!emailResult.success) {
       console.error('Email send failed:', emailResult.error)
     }
 
-    return NextResponse.json({ success: true, emailSent: emailResult.success })
+    return NextResponse.json({ success: true, id: data.id, emailSent: emailResult.success })
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
