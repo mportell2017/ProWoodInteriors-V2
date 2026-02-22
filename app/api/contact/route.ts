@@ -150,7 +150,7 @@ async function sendEmailNotification(data: ContactData): Promise<{ success: bool
         api_key: apiKey,
         to: ['dave@prowoodinteriors.com', 'prowoodinteriors@gmail.com'],
         sender: 'ProWood Interiors <noreply@prowoodinteriors.com>',
-        subject: `New Contact Form Submission from ${data.name}`,
+        subject: `New Contact Form Submission from ${escapedName}`,
         html_body: emailBody,
       }),
     })
