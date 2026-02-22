@@ -160,8 +160,7 @@ async function sendEmailNotification(data: ContactData): Promise<{ success: bool
     if (result.data?.succeeded > 0) {
       return { success: true }
     } else {
-      console.error('SMTP2GO response:', JSON.stringify(result))
-      return { success: false, error: JSON.stringify(result) }
+      return { success: false, error: result.data?.failures?.[0]?.error || 'Email send failed' }
     }
   } catch (error) {
     return { success: false, error: error instanceof Error ? error.message : 'Unknown error' }
@@ -190,7 +189,7 @@ export async function POST(request: Request) {
     if (!emailResult.success) {
       console.error('Email send failed:', emailResult.error)
       return NextResponse.json(
-        { error: emailResult.error || 'Failed to send message.' },
+        { error: 'Failed to send message. Please try again or call us directly.' },
         { status: 500 }
       )
     }
