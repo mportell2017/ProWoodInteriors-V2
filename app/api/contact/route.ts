@@ -1,20 +1,5 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
-
-// Create a Supabase client with the service role key for server-side operations
-// This bypasses RLS and allows us to insert submissions and update email status
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  {
-    auth: {
-      persistSession: false,
-      autoRefreshToken: false,
-      detectSessionInUrl: false,
-    },
-  }
-)
 
 const contactSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -61,9 +46,6 @@ async function verifyTurnstileToken(token: string, ip: string | null): Promise<{
 
 type ContactData = z.infer<typeof contactSchema>
 
-/**
- * Escapes HTML special characters to prevent XSS attacks in email templates
- */
 function escapeHtml(text: string | null | undefined): string {
   if (!text) return ''
   return text
@@ -74,21 +56,17 @@ function escapeHtml(text: string | null | undefined): string {
     .replace(/'/g, '&#x27;')
 }
 
-/**
- * Escapes HTML and converts newlines to <br> tags for message fields
- */
 function escapeHtmlWithBreaks(text: string | null | undefined): string {
   if (!text) return ''
   return escapeHtml(text).replace(/\n/g, '<br>')
 }
 
-async function sendEmailNotification(data: ContactData, submissionId: string): Promise<{ success: boolean; error?: string }> {
+async function sendEmailNotification(data: ContactData): Promise<{ success: boolean; error?: string }> {
   const apiKey = process.env.SMTP2GO_API_KEY
   if (!apiKey) {
     return { success: false, error: 'SMTP2GO API key not configured' }
   }
 
-  // Escape all user inputs to prevent XSS attacks
   const location = [data.street_address, data.city, data.zip].filter(Boolean).map(escapeHtml).join(', ')
   const escapedName = escapeHtml(data.name)
   const escapedEmail = escapeHtml(data.email)
@@ -155,8 +133,7 @@ async function sendEmailNotification(data: ContactData, submissionId: string): P
       ` : ''}
     </div>
     <div class="footer">
-      <p>This submission has been saved to your admin dashboard.</p>
-      <p>Submission ID: ${submissionId}</p>
+      <p>Submitted via prowoodinteriors.com</p>
     </div>
   </div>
 </body>
@@ -183,7 +160,8 @@ async function sendEmailNotification(data: ContactData, submissionId: string): P
     if (result.data?.succeeded > 0) {
       return { success: true }
     } else {
-      return { success: false, error: result.data?.failures?.[0]?.error || 'Email send failed' }
+      console.error('SMTP2GO response:', JSON.stringify(result))
+      return { success: false, error: JSON.stringify(result) }
     }
   } catch (error) {
     return { success: false, error: error instanceof Error ? error.message : 'Unknown error' }
@@ -194,10 +172,9 @@ export async function POST(request: Request) {
   try {
     const body = await request.json()
 
-    // Validate the request body
     const validatedData = contactSchema.parse(body)
 
-    // Verify Turnstile token
+    // Verify Turnstile CAPTCHA
     const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || request.headers.get('x-real-ip')
     const turnstileResult = await verifyTurnstileToken(validatedData.turnstileToken, ip)
     if (!turnstileResult.success) {
@@ -207,48 +184,18 @@ export async function POST(request: Request) {
       )
     }
 
-    // Insert the submission into Supabase
-    const { data, error } = await supabase
-      .from('contact_submissions')
-      .insert({
-        name: validatedData.name,
-        phone: validatedData.phone,
-        email: validatedData.email,
-        street_address: validatedData.street_address || null,
-        city: validatedData.city || null,
-        zip: validatedData.zip || null,
-        project_types: validatedData.project_types,
-        timeline: validatedData.timeline || null,
-        message: validatedData.message || null,
-      })
-      .select()
-      .single()
+    // Send email notification
+    const emailResult = await sendEmailNotification(validatedData)
 
-    if (error) {
-      console.error('Supabase error:', error)
+    if (!emailResult.success) {
+      console.error('Email send failed:', emailResult.error)
       return NextResponse.json(
-        { error: 'Failed to submit contact form' },
+        { error: emailResult.error || 'Failed to send message.' },
         { status: 500 }
       )
     }
 
-    // Send email notification
-    const emailResult = await sendEmailNotification(validatedData, data.id)
-
-    // Update the submission with email status
-    await supabase
-      .from('contact_submissions')
-      .update({
-        email_sent: emailResult.success,
-        email_error: emailResult.error || null,
-      })
-      .eq('id', data.id)
-
-    if (!emailResult.success) {
-      console.error('Email send failed:', emailResult.error)
-    }
-
-    return NextResponse.json({ success: true, id: data.id, emailSent: emailResult.success })
+    return NextResponse.json({ success: true })
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(

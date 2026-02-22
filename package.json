@@ -12,8 +12,6 @@
   },
   "dependencies": {
     "@marsidev/react-turnstile": "^1.4.1",
-    "@supabase/ssr": "^0.8.0",
-    "@supabase/supabase-js": "^2.90.1",
     "next": "^14.2.0",
     "nodemailer": "^6.9.8",
     "react": "^18.3.0",

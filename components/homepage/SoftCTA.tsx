@@ -157,7 +157,9 @@ export function SoftCTA() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to submit');
+        const errorData = await response.json().catch(() => ({}));
+        console.error('Server response:', response.status, errorData);
+        throw new Error(errorData.error || 'Failed to submit');
       }
 
       setSubmitStatus("success");
