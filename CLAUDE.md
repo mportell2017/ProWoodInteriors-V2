@@ -1,15 +1,27 @@
 # ProWood Interiors Website - Development Documentation
 
 ## Overview
-This Next.js 14 application uses the App Router with TypeScript and Tailwind CSS. The site showcases custom cabinetry and woodworking services with a focus on elegant design and local SEO.
+This Next.js 16 application uses the App Router with TypeScript and Tailwind CSS. The site showcases custom cabinetry and woodworking services with a focus on elegant design and local SEO.
 
 ## Technology Stack
-- **Framework**: Next.js 14 (App Router)
+- **Framework**: Next.js 16 (App Router, Turbopack by default)
+- **React**: 19
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS with custom design system
-- **Backend**: Convex (database, contact forms)
-- **Email**: Nodemailer
+- **Contact form**: Next.js API route → SMTP2GO HTTP API (no database)
 - **Validation**: Zod
+- **Bot protection**: Cloudflare Turnstile (`@marsidev/react-turnstile`)
+
+### Next.js 16 breaking changes to be aware of
+- **`params` and `searchParams` are Promises** in dynamic routes. Await them:
+  ```typescript
+  export default async function Page(props: { params: Promise<{ slug: string }> }) {
+    const params = await props.params;
+    // use params.slug
+  }
+  ```
+- Same for `cookies()` and `headers()` — they're async now.
+- `next.config.js` no longer accepts an `eslint` block; run `next lint` via the CLI.
 
 ## Design System
 
@@ -34,20 +46,25 @@ colors: {
 
 ### Key Directories
 ```
-app/                          # Next.js App Router pages
-  services/[service-name]/    # Service pages (dynamic routes)
-  showroom/[category]/        # Gallery category pages
-  locations/[city]/           # City location pages (SEO)
+app/                                    # Next.js App Router pages
+  api/contact/                          # Contact form POST endpoint
+  services/[service-name]/              # Service pages (dynamic routes)
+  showroom/[category]/                  # Gallery category pages
+  showroom/[category]/[project]/        # Individual project pages
+  locations/[city]/                     # City SEO landing pages
+  locations/[city]/[service]/           # Per-service, per-city SEO pages
 components/
-  ui/                         # Reusable UI components
-  locations/                  # Location page components
-  showroom/                   # Gallery components
-  homepage/                   # Homepage-specific components
-lib/                          # Utilities and data
-  gallery-manifest.ts         # Auto-generated image catalog
-  location-data.ts            # City location configuration
-  structured-data.ts          # SEO schema generators
-public/images/gallery/        # Gallery images organized by category
+  ui/                                   # Reusable UI primitives
+  locations/                            # Location page components
+  showroom/                             # Gallery components
+  homepage/                             # Homepage-specific components
+lib/
+  gallery-manifest.ts                   # Auto-generated image catalog
+  gallery-utils.ts                      # Gallery lookup helpers
+  location-data.ts                      # City landing page data
+  service-location-data.ts              # Per-service, per-city data
+  structured-data.ts                    # SEO schema generators
+public/images/gallery/                  # Gallery images by category
 ```
 
 ### Core Components
@@ -68,8 +85,10 @@ public/images/gallery/        # Gallery images organized by category
 #### Forms
 - **SoftCTA.tsx**: Contact form with project type selection
   - 8 project types: Kitchen, Bathroom, Bookcases, Entertainment, Home Office, Refacing, Mudroom, Other
-  - Submits to Convex backend
+  - POSTs to `/api/contact`, which verifies Turnstile and hits the SMTP2GO HTTP API
+  - Email-only — no database, no queue
   - Success/error states built-in
+- **LocationContactForm.tsx**: Same backend flow; shorter layout for use inside location CTAs
 
 ## City Location Landing Pages
 
@@ -195,6 +214,36 @@ Located in `components/locations/`:
 
 Each city has unique, SEO-optimized content including local landmarks, neighborhood references, and city-specific FAQs.
 
+## Per-Service, Per-City SEO Landing Pages
+
+To rank for service-specific local intent (e.g. "cabinet refacing chesterfield mo"), we run dedicated `/locations/[city]/[service]` pages alongside the generic city pages. Each page targets a single head term with exact-phrase match in the title, H1, and first paragraph.
+
+**Route**: `app/locations/[city]/[service]/page.tsx`
+**Data**: [lib/service-location-data.ts](lib/service-location-data.ts)
+
+### Current service-location pages
+- `/locations/chesterfield/cabinet-refacing`
+- `/locations/chesterfield/kitchen-remodeling`
+- `/locations/wildwood/cabinet-refacing`
+- `/locations/wildwood/kitchen-remodeling`
+
+`generateStaticParams` only emits the combos listed in `serviceLocations` — it is **not** a cross-product of cities × services. Other cities won't get service pages until they're added to the data file.
+
+### Page anatomy (mirrors the implementation)
+Breadcrumbs → service-specific H1 → 3-paragraph intro → project gallery → "What's Included" card grid → WhyChooseUs → ProcessSection (service-specific steps) → Local Considerations + cross-link to the sibling service → LocationFAQs → LocationCTA.
+
+### Adding a new service-location combo
+1. Add an entry to `serviceLocations` in `lib/service-location-data.ts` with all required fields (intro, included, whyChooseUs, process, considerations, faqs, galleryProjects).
+2. Pick `galleryProjects` from names in the gallery manifest (e.g. "Kitchen Cabinet Refacing", "Vintage Kitchen"). Use non-overlapping `galleryImageRange` slices across cities so no two pages show identical galleries.
+3. The parent city page automatically renders a "Looking for a specific service?" callout linking to any service-locations defined for that city — no edits needed there.
+4. The sitemap picks up new entries automatically.
+5. `npm run build` to verify.
+
+**Content rules (important for SEO):**
+- Each page must be genuinely unique — no spun variants. Google penalizes templated local content.
+- Don't fabricate neighborhood or subdivision names. Stick to verifiable references (highways, parks, named landmarks, school districts) unless you have confirmed local names.
+- Respect existing pricing wording already on the site (Chesterfield refacing = 40–60% less; Wildwood refacing = 40–50% less).
+
 ## Development Workflow
 
 ### Building
@@ -245,10 +294,13 @@ npm run generate:gallery    # Regenerate gallery manifest from images
 
 ### Structured Data
 Located in `lib/structured-data.ts`:
-- `generateBreadcrumbs()`: Navigation breadcrumbs
-- `generateGallerySchema()`: Image galleries
-- `generateLocalBusinessSchema()`: Business info
-- `generateLocalServiceSchema()`: City service pages
+- `generateBreadcrumbSchema()`: BreadcrumbList for nav trails
+- `generateImageGallerySchema()`: ImageGallery for showroom pages
+- `generateLocalBusinessSchema()`: LocalBusiness for the hub
+- `generateProductSchema()`: Product for individual projects
+- `generateLocalServiceSchema()`: ProfessionalService for city landing pages
+- `generateServiceLocationSchema()`: Service schema for `/locations/[city]/[service]` pages
+- `generateFAQSchema()`: FAQPage (used on service-location pages for rich results)
 
 ### Performance
 - Use Next.js `Image` component for all images
@@ -265,10 +317,11 @@ For detailed implementation plans and architectural decisions, see:
 ## Contact Form Integration
 
 The contact form (SoftCTA component) is fully functional:
-- Submits to Convex backend
-- Sends email notifications via Nodemailer
+- POSTs to `app/api/contact/route.ts`
+- Route verifies the Turnstile token, then POSTs the submission to `https://api.smtp2go.com/v3/email/send`
+- Recipients are hardcoded in the route (`dave@prowoodinteriors.com`, `prowoodinteriors@gmail.com`); update there if they change
+- No database — email is the only record of a submission
 - Pre-configured with all project types
-- Can be dropped into any page
 
 **Usage**:
 ```typescript
@@ -278,6 +331,11 @@ import { SoftCTA } from '@/components/homepage/SoftCTA';
 <SoftCTA />
 ```
 
+**Required env vars** (`.env.local`):
+- `SMTP2GO_API_KEY` — SMTP2GO HTTP API key
+- `TURNSTILE_SECRET_KEY` — Cloudflare Turnstile server secret
+- `NEXT_PUBLIC_TURNSTILE_SITE_KEY` — Cloudflare Turnstile site key (exposed to client)
+
 ## Notes for Future Development
 
 ### Planned Enhancements
@@ -286,6 +344,12 @@ import { SoftCTA } from '@/components/homepage/SoftCTA';
 - Cities index page at `/locations`
 - Location-specific project galleries
 - Blog posts about local projects
+- Expand `/locations/[city]/[service]` coverage to more cities (Clayton, St. Peters, etc.) as local SEO priorities evolve
+
+### Known Issues / Cleanup Candidates
+- Pre-existing TypeScript errors in `components/homepage/CustomerReviews.tsx`, `components/homepage/FinalCTA.tsx`, `components/Navigation.tsx`, and `components/showroom/GalleryGrid.tsx`. Build passes because `next.config.js` sets `typescript.ignoreBuildErrors: true` — fix these before removing that flag.
+- Page `<title>` tags duplicate "Professional Wood Interiors" on service-location pages (appears once in the per-page metaTitle and again as a site-wide suffix). Cosmetic; one-line fix in either the page metadata or the root layout.
+- `nodemailer` is still in `package.json` but no longer used — the contact route calls SMTP2GO's HTTP API directly. Safe to remove.
 
 ### Best Practices
 - Always read existing files before modifying
@@ -297,5 +361,5 @@ import { SoftCTA } from '@/components/homepage/SoftCTA';
 
 ---
 
-**Last Updated**: 2026-01-14
+**Last Updated**: 2026-04-20
 **Maintained by**: Claude Code
