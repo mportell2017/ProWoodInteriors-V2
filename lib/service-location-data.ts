@@ -62,6 +62,14 @@ export interface ServiceLocationData {
   // FAQs — must be service + city specific
   faqs: Array<{ question: string; answer: string }>;
 
+  // Editorial client testimonial — drawn from real Google reviews so each
+  // page gets a unique quote for SEO and trust.
+  testimonial: {
+    quote: string;
+    author: string;
+    location?: string;
+  };
+
   // Gallery: which project(s) to pull images from
   galleryProjects: string[];
   galleryImageRange?: { start: number; count: number };
@@ -84,12 +92,12 @@ export const serviceLocations: ServiceLocationData[] = [
     metaTitle:
       "Cabinet Refacing in Chesterfield, MO | Professional Wood Interiors",
     metaDescription:
-      "Cabinet refacing in Chesterfield, MO. Save 40–60% vs. replacement with handcrafted solid wood doors, custom finishes, and installation in about a week. Free consultation: (314) 437-9988.",
+      "Cabinet refacing in Chesterfield, MO by a family-owned St. Louis shop. Handcrafted solid wood doors, drawer fronts, and custom finishes — tailored to your kitchen. Free consultation: (314) 437-9988.",
 
     heroEyebrow: "Serving Chesterfield, MO",
     heroTitle: "Cabinet Refacing in Chesterfield, Missouri",
     heroSubtitle:
-      "Keep the cabinet boxes you already have. Get new doors, drawer fronts, and finishes — for 40–60% less than replacement, installed in about a week.",
+      "Keep the cabinet boxes you already have. Get handcrafted new doors, drawer fronts, and custom finishes — a complete kitchen transformation without the full-remodel disruption.",
 
     intro: [
       "Many Chesterfield homes were built with cabinet boxes that are still perfectly sound — solid plywood or hardwood frames, properly mounted, with layouts that work for the room. What's usually dated is the face: tired oak doors, chipped paint, worn hinges, or a finish that hasn't aged gracefully. That's exactly what cabinet refacing solves.",
@@ -230,6 +238,12 @@ export const serviceLocations: ServiceLocationData[] = [
           "Yes. We regularly match stains, paint colors, and molding profiles to tie the refaced kitchen into the rest of your home's woodwork and trim. Bring photos or samples to the consultation and we'll show you how we approach matching.",
       },
     ],
+
+    testimonial: {
+      quote:
+        "Dave is a true professional. He shows up on time, makes recommendations, cleans up, and honors his bids. It is refreshing to call your contractor and they PICK UP THE PHONE! I would recommend Dave to anyone seeking custom cabinets or refacing done.",
+      author: "Jerry M.",
+    },
 
     galleryProjects: ["Kitchen Cabinet Refacing"],
     galleryImageRange: { start: 0, count: 8 },
@@ -398,6 +412,12 @@ export const serviceLocations: ServiceLocationData[] = [
       },
     ],
 
+    testimonial: {
+      quote:
+        "The transformation of the cabinets was night and day, and Dave was very patient with all of our decisions. He made a dull kitchen into our dream kitchen. His team is a fantastic group of guys who worked hard, always took care with their craft, and cleaned up behind themselves every time. This is craftsmanship at its best.",
+      author: "Kelly Cook",
+    },
+
     galleryProjects: [
       "Quartzite Luxury Kitchen",
       "Blue Island",
@@ -422,12 +442,12 @@ export const serviceLocations: ServiceLocationData[] = [
     metaTitle:
       "Cabinet Refacing in Wildwood, MO | Professional Wood Interiors",
     metaDescription:
-      "Cabinet refacing for Wildwood, MO homes. Keep your quality cabinet boxes, get new handcrafted wood doors, drawer fronts, and finishes. Installed in about a week. Call (314) 437-9988.",
+      "Cabinet refacing for Wildwood, MO homes. Keep your quality cabinet boxes; get handcrafted new doors, drawer fronts, and custom finishes from a family-owned St. Louis shop. Call (314) 437-9988.",
 
     heroEyebrow: "Serving Wildwood, MO",
     heroTitle: "Cabinet Refacing in Wildwood, Missouri",
     heroSubtitle:
-      "A full kitchen update without the full-kitchen timeline. New doors, drawer fronts, and finishes — handcrafted locally, installed in about a week.",
+      "A full kitchen update without the full-remodel disruption. Handcrafted new doors, drawer fronts, and custom finishes — built in our St. Louis shop, tailored to your home.",
 
     intro: [
       "Wildwood homes — especially those built in the late 1990s and early 2000s along Highway 100 and the wooded lots near Babler State Park — were often built with surprisingly good cabinet boxes. What's usually dated is what you actually see: oak doors that haven't aged well, brass hardware from a different era, or a finish that's been through two kids and a dog.",
@@ -563,6 +583,12 @@ export const serviceLocations: ServiceLocationData[] = [
           "Yes. Our refacing work comes with a written warranty on the doors, finishes, and hardware. We've been a local business since 1985, so if you ever need us back, we're not hard to find.",
       },
     ],
+
+    testimonial: {
+      quote:
+        "Very happy I found this company. They went above and beyond. They gave good advice and got the job done. I am a very satisfied customer — I wish I had found this company years ago.",
+      author: "Beth C.",
+    },
 
     galleryProjects: ["Kitchen Cabinet Refacing"],
     galleryImageRange: { start: 9, count: 9 },
@@ -730,6 +756,13 @@ export const serviceLocations: ServiceLocationData[] = [
           "Yes. You work with the same person from the first consultation through the final walkthrough. Every question, change, and update flows through one relationship — not a rotating cast of project managers.",
       },
     ],
+
+    testimonial: {
+      quote:
+        "Outstanding customer service and craftsmanship. Dave and team provided excellent communications and superb craftsmanship. Absolutely the best team we have worked with for home renovations in three states over the past 20 years.",
+      author: "David Ferguson",
+      location: "Wildwood, MO",
+    },
 
     galleryProjects: [
       "Vintage Kitchen",
