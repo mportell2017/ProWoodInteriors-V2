@@ -18,7 +18,7 @@ import {
 import { generateImageGallerySchema } from '@/lib/structured-data';
 
 type Props = {
-  params: { category: string };
+  params: Promise<{ category: string }>;
 };
 
 export async function generateStaticParams() {
@@ -27,7 +27,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const categoryName = getCategoryFromSlug(params.category);
   if (!categoryName) return { title: 'Category Not Found' };
 
@@ -66,7 +67,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function CategoryPage({ params }: Props) {
+export default async function CategoryPage(props: Props) {
+  const params = await props.params;
   const categoryName = getCategoryFromSlug(params.category);
 
   if (!categoryName) {

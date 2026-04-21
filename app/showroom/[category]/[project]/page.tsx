@@ -20,7 +20,7 @@ import {
 } from '@/lib/structured-data';
 
 type Props = {
-  params: { category: string; project: string };
+  params: Promise<{ category: string; project: string }>;
 };
 
 export async function generateStaticParams() {
@@ -46,7 +46,8 @@ export async function generateStaticParams() {
   return params;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const categoryName = getCategoryFromSlug(params.category);
   const projectName = getProjectFromSlug(params.project);
 
@@ -89,7 +90,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function ProjectPage({ params }: Props) {
+export default async function ProjectPage(props: Props) {
+  const params = await props.params;
   const categoryName = getCategoryFromSlug(params.category);
   const projectName = getProjectFromSlug(params.project);
 

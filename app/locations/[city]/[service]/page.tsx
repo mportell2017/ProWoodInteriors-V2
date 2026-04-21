@@ -26,11 +26,12 @@ export async function generateStaticParams() {
   return getAllServiceLocationParams();
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { city: string; service: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ city: string; service: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const entry = getServiceLocation(params.city, params.service);
   if (!entry) return { title: "Page Not Found" };
 
@@ -63,11 +64,12 @@ function selectGalleryImages(entry: ServiceLocationData): GalleryImage[] {
   return pool.slice(start, start + count);
 }
 
-export default function ServiceLocationPage({
-  params,
-}: {
-  params: { city: string; service: string };
-}) {
+export default async function ServiceLocationPage(
+  props: {
+    params: Promise<{ city: string; service: string }>;
+  }
+) {
+  const params = await props.params;
   const entry = getServiceLocation(params.city, params.service);
   if (!entry) notFound();
 
