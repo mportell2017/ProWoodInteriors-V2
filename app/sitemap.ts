@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import { galleryManifest } from '@/lib/gallery-manifest';
 import { generateSlug } from '@/lib/gallery-utils';
 import { locations } from '@/lib/location-data';
+import { serviceLocations } from '@/lib/service-location-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://professionalwoodinteriors.com';
@@ -91,6 +92,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // Service + Location routes (higher priority — primary local SEO targets)
+  const serviceLocationRoutes: MetadataRoute.Sitemap = serviceLocations.map(
+    (entry) => ({
+      url: `${baseUrl}/locations/${entry.citySlug}/${entry.serviceSlug}`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    })
+  );
+
   // Category routes
   const categoryRoutes: MetadataRoute.Sitemap = galleryManifest.categories.map(
     (category) => ({
@@ -123,5 +134,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
-  return [...staticRoutes, ...locationRoutes, ...categoryRoutes, ...projectRoutes];
+  return [
+    ...staticRoutes,
+    ...locationRoutes,
+    ...serviceLocationRoutes,
+    ...categoryRoutes,
+    ...projectRoutes,
+  ];
 }

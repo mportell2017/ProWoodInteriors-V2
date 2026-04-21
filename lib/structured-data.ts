@@ -115,6 +115,86 @@ export function generateProductSchema(
 }
 
 /**
+ * Generate FAQPage schema from a list of Q&A pairs.
+ * Helps eligible FAQs surface as rich results on search.
+ */
+export function generateFAQSchema(
+  faqs: Array<{ question: string; answer: string }>
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer
+      }
+    }))
+  };
+}
+
+/**
+ * Generate Service schema for per-service, per-city landing pages.
+ * This is the key schema for local service-intent queries like
+ * "cabinet refacing chesterfield mo".
+ */
+export function generateServiceLocationSchema(entry: {
+  city: string;
+  stateAbbr: string;
+  service: string;
+  citySlug: string;
+  serviceSlug: string;
+  metaDescription: string;
+  coordinates: { latitude: string; longitude: string };
+}) {
+  const url = `${SITE_URL}/locations/${entry.citySlug}/${entry.serviceSlug}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': url,
+    serviceType: entry.service,
+    name: `${entry.service} in ${entry.city}, ${entry.stateAbbr}`,
+    description: entry.metaDescription,
+    url,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'Professional Wood Interiors',
+      telephone: '(314) 437-9988',
+      image: `${SITE_URL}/images/pro-wood-interiors-logo.webp`,
+      priceRange: '$$$$',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'St. Louis',
+        addressRegion: 'MO',
+        addressCountry: 'US'
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5',
+        reviewCount: '7'
+      }
+    },
+    areaServed: {
+      '@type': 'City',
+      name: entry.city,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: entry.city,
+        addressRegion: entry.stateAbbr,
+        addressCountry: 'US'
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: entry.coordinates.latitude,
+        longitude: entry.coordinates.longitude
+      }
+    }
+  };
+}
+
+/**
  * Generate local service schema for city location pages
  * Used for local SEO and rich snippets in search results
  */

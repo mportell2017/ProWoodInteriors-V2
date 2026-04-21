@@ -16,6 +16,8 @@ import { ProcessSection } from '@/components/locations/ProcessSection';
 import { LocationFAQs } from '@/components/locations/LocationFAQs';
 import { LocationCTA } from '@/components/locations/LocationCTA';
 import { generateLocalServiceSchema } from '@/lib/structured-data';
+import { getServiceLocationsByCity } from '@/lib/service-location-data';
+import Link from 'next/link';
 
 // Enable static generation for all cities
 export async function generateStaticParams() {
@@ -86,6 +88,9 @@ export default function LocationPage({ params }: { params: { city: string } }) {
 
   // Generate structured data for local SEO
   const structuredData = generateLocalServiceSchema(location);
+
+  // Service-specific landing pages for this city (Chesterfield + Wildwood)
+  const serviceLinks = getServiceLocationsByCity(location.slug);
 
   return (
     <>
@@ -163,6 +168,60 @@ export default function LocationPage({ params }: { params: { city: string } }) {
           steps={location.process.steps}
           city={location.city}
         />
+      )}
+
+      {/* Service-specific landing pages (Chesterfield + Wildwood) */}
+      {serviceLinks.length > 0 && (
+        <Section tone="clear" className="py-14">
+          <Container>
+            <div className="max-w-4xl mx-auto text-center">
+              <p className="text-[11px] tracking-[0.32em] uppercase text-umber/70 mb-3">
+                Looking for a Specific Service?
+              </p>
+              <h2 className="font-display text-2xl sm:text-3xl text-ink mb-8 leading-tight">
+                Learn more about what we do in {location.city}
+              </h2>
+              <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                {serviceLinks.map((link) => (
+                  <Link
+                    key={link.serviceSlug}
+                    href={`/locations/${link.citySlug}/${link.serviceSlug}`}
+                    className="group relative bg-parchment/60 border border-umber/20 hover:border-brass/60 p-6 text-left transition-colors duration-300"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="absolute top-0 left-0 h-px w-0 bg-brass transition-all duration-500 ease-out group-hover:w-full"
+                    />
+                    <p className="font-display text-lg text-ink leading-tight">
+                      {link.service} in {location.city}
+                    </p>
+                    <p className="mt-2 text-sm text-ink/65 font-elegant leading-relaxed">
+                      {link.serviceSlug === "cabinet-refacing"
+                        ? `Update your kitchen without the full-remodel timeline — handcrafted doors, drawer fronts, and finishes installed in about a week.`
+                        : `Full-scope custom kitchens designed for ${location.city} homes — cabinets, islands, and pantries built by hand in our local shop.`}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-xs tracking-[0.18em] uppercase text-oxblood group-hover:gap-2.5 transition-all">
+                      Learn More
+                      <svg
+                        className="w-3.5 h-3.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
+                      </svg>
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </Container>
+        </Section>
       )}
 
       {/* FAQs Section */}
