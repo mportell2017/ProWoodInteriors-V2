@@ -3,6 +3,8 @@ import { Heading } from "@/components/ui/Heading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 
+const GOOGLE_REVIEW_URL = "https://g.page/r/CRk_Kg6UJCBGEAI/review";
+
 const reviews = [
   {
     quote: "Led by Dave Portell, ProWood Interiors is absolutely the best, most professional, and expert group of wood craftspersons around. Our experience with them was outstanding, from start to finish. Design and installation of our massive set of bookcases—double-sided, 9 feet high by 9 feet long—went very smoothly, the finished product was gorgeous, and we could not be happier with the outcome. Dave and his group are wood artists, and they were exacting in their manufacture and installation.",
@@ -106,7 +108,7 @@ export function CustomerReviews() {
         <div className="text-center">
           <div className="inline-flex flex-col sm:flex-row items-center gap-4">
             <ButtonLink
-              href="https://share.google/RBU2XmuVW6UzTBFrR"
+              href={GOOGLE_REVIEW_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-oxblood text-white hover:bg-oxblood/90 shadow-lg hover:shadow-xl"
@@ -124,7 +126,7 @@ export function CustomerReviews() {
               </span>
             </ButtonLink>
             <a
-              href="https://share.google/RBU2XmuVW6UzTBFrR"
+              href={GOOGLE_REVIEW_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-ink/70 hover:text-oxblood text-sm font-medium transition-colors underline decoration-umber/30 hover:decoration-oxblood underline-offset-4"

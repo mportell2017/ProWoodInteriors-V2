@@ -37,7 +37,7 @@ const reviews = [
   },
 ];
 
-const GOOGLE_REVIEW_URL = "https://share.google/RBU2XmuVW6UzTBFrR";
+const GOOGLE_REVIEW_URL = "https://g.page/r/CRk_Kg6UJCBGEAI/review";
 
 function GoogleLogo({ className = "w-6 h-6" }: { className?: string }) {
   return (
