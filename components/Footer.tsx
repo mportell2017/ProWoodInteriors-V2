@@ -4,11 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { Container } from "./ui/Container";
-
-const SITE_SETTINGS = {
-  phone: "(314) 437-9988",
-  address: "St. Louis, Missouri",
-};
+import {
+  ADDRESS,
+  FOUNDED_YEAR,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+} from "@/lib/business";
 
 export default function Footer() {
   const [logoFailed, setLogoFailed] = useState(false);
@@ -61,12 +62,16 @@ export default function Footer() {
               )}
             </Link>
             <p className="text-sm text-primary-brown/80 mb-4">
-              Your trusted custom cabinetry and built-ins for St. Louis, Missouri since 1985.
+              Your trusted custom cabinetry and built-ins for the St. Louis area since {FOUNDED_YEAR}.
             </p>
-            <p className="text-sm text-primary-brown/80 mb-2">{SITE_SETTINGS.address}</p>
+            <address className="not-italic text-sm text-primary-brown/80 mb-2">
+              {ADDRESS.streetAddress}
+              <br />
+              {ADDRESS.addressLocality}, {ADDRESS.addressRegion} {ADDRESS.postalCode}
+            </address>
             <p className="text-sm text-primary-brown/80">
-              <a href="tel:3144379988" className="hover:text-primary-red">
-                {SITE_SETTINGS.phone}
+              <a href={`tel:${PHONE_TEL}`} className="hover:text-primary-red">
+                {PHONE_DISPLAY}
               </a>
             </p>
           </div>

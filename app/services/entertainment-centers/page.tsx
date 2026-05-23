@@ -1,20 +1,24 @@
 import { Metadata } from 'next';
-import Navigation from '@/components/Navigation';
 import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Heading';
 import { Container } from '@/components/ui/Container';
 import { ButtonLink } from '@/components/ui/Button';
 import Image from 'next/image';
 import Link from 'next/link';
+import { generateServiceSchema, generateFAQSchema } from '@/lib/structured-data';
+import { entertainmentCentersFAQs } from '@/lib/service-faqs';
+import { LocationFAQs } from '@/components/locations/LocationFAQs';
+import { ServiceAreaLinks } from '@/components/services/ServiceAreaLinks';
 
 export const metadata: Metadata = {
   title: 'Entertainment Centers | Professional Wood Interiors',
   description:
-    'Custom entertainment centers in St. Louis. Built-in media centers with wire management, ventilation, adjustable shelving. Solid wood construction. Since 1980.',
+    'Custom entertainment centers in the St. Louis area. Built-in media centers with wire management, ventilation, adjustable shelving. Solid wood construction. Since 1985.',
+  alternates: { canonical: '/services/entertainment-centers' },
   openGraph: {
     title: 'Entertainment Centers | Professional Wood Interiors',
     description:
-      'Custom entertainment centers in St. Louis. Built-in media centers with wire management, ventilation, adjustable shelving.',
+      'Custom entertainment centers in the St. Louis area. Built-in media centers with wire management, ventilation, adjustable shelving.',
     type: 'website',
     siteName: 'Professional Wood Interiors',
   },
@@ -22,9 +26,18 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Entertainment Centers | Professional Wood Interiors',
     description:
-      'Custom entertainment centers in St. Louis. Built-in media centers with wire management, ventilation, adjustable shelving.',
+      'Custom entertainment centers in the St. Louis area. Built-in media centers with wire management, ventilation, adjustable shelving.',
   },
 };
+
+const serviceSchema = generateServiceSchema({
+  name: 'Entertainment Centers',
+  slug: 'entertainment-centers',
+  description:
+    'Handcrafted entertainment centers and media built-ins for St. Louis area homes. Custom sizing, integrated cable management, ventilation, and lighting.',
+});
+
+const faqSchema = generateFAQSchema(entertainmentCentersFAQs);
 
 export default function EntertainmentCentersPage() {
   // Use specific entertainment center images
@@ -126,7 +139,14 @@ export default function EntertainmentCentersPage() {
 
   return (
     <>
-      <Navigation />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       {/* Hero Section */}
       <Section className="pt-24 pb-16">
@@ -250,6 +270,10 @@ export default function EntertainmentCentersPage() {
           </div>
         </Container>
       </Section>
+
+      <ServiceAreaLinks />
+
+      <LocationFAQs faqs={entertainmentCentersFAQs} />
 
       {/* CTA Section */}
       <Section tone="walnut" className="py-16">

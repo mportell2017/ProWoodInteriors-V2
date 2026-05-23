@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Open_Sans, Cormorant_Garamond } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
 const sans = Open_Sans({
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
     template: "%s | Professional Wood Interiors",
   },
   description: "Custom cabinetry and built-in interiors designed and built for your home. Serving St. Louis, Missouri since 1985.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://professionalwoodinteriors.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.professionalwoodinteriors.com"),
 };
 
 export default function RootLayout({
@@ -58,6 +59,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={sans.className}>
+        <Navigation />
         <main>{children}</main>
         <Footer />
       </body>

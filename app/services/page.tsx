@@ -1,15 +1,16 @@
 import { Metadata } from 'next';
-import Navigation from '@/components/Navigation';
 import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Heading';
 import { Container } from '@/components/ui/Container';
 import { ButtonLink } from '@/components/ui/Button';
 import Image from 'next/image';
 import Link from 'next/link';
+import { generateLocalBusinessSchema } from '@/lib/structured-data';
 
 export const metadata: Metadata = {
   title: 'Our Services | Professional Wood Interiors',
   description: 'Custom cabinetry services including kitchen cabinets, entertainment centers, bookcases, built-ins, and cabinet refacing. Handcrafted in St. Louis since 1985.',
+  alternates: { canonical: '/services' },
   openGraph: {
     title: 'Our Services | Professional Wood Interiors',
     description: 'Custom cabinetry services including kitchen cabinets, entertainment centers, bookcases, built-ins, and cabinet refacing. Handcrafted in St. Louis since 1985.',
@@ -17,6 +18,8 @@ export const metadata: Metadata = {
     siteName: 'Professional Wood Interiors',
   },
 };
+
+const businessSchema = generateLocalBusinessSchema();
 
 const services = [
   {
@@ -52,7 +55,10 @@ const services = [
 export default function ServicesPage() {
   return (
     <>
-      <Navigation />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
+      />
 
       {/* Hero Section */}
       <Section className="pt-24 pb-16">

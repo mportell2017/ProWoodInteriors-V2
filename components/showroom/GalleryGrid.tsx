@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from 'react';
+import { useCallback, type Dispatch, type SetStateAction } from 'react';
 import { Section } from '@/components/ui/Section';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
@@ -14,7 +14,7 @@ interface GalleryGridProps {
   hasMore: boolean;
   onLoadMore: () => void;
   lightboxIndex: number | null;
-  onLightboxChange: (index: number | null) => void;
+  onLightboxChange: Dispatch<SetStateAction<number | null>>;
   activeCategory: string;
 }
 

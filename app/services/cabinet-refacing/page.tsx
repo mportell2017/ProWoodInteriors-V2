@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Navigation from '@/components/Navigation';
 import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Heading';
 import { Container } from '@/components/ui/Container';
@@ -7,15 +6,20 @@ import { ButtonLink } from '@/components/ui/Button';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getImagesByCategory } from '@/lib/gallery-utils';
+import { generateServiceSchema, generateFAQSchema } from '@/lib/structured-data';
+import { cabinetRefacingFAQs } from '@/lib/service-faqs';
+import { LocationFAQs } from '@/components/locations/LocationFAQs';
+import { ServiceAreaLinks } from '@/components/services/ServiceAreaLinks';
 
 export const metadata: Metadata = {
   title: 'Cabinet Refacing | Professional Wood Interiors',
   description:
-    'Cost-effective cabinet refacing in St. Louis. Save 40-50% vs. replacement. Custom doors, minimal disruption, eco-friendly. Transform your kitchen in days. Since 1980.',
+    'Cost-effective cabinet refacing in the St. Louis area. Save 40-50% vs. replacement. Custom doors, minimal disruption, eco-friendly. Transform your kitchen in days. Since 1985.',
+  alternates: { canonical: '/services/cabinet-refacing' },
   openGraph: {
     title: 'Cabinet Refacing | Professional Wood Interiors',
     description:
-      'Cost-effective cabinet refacing in St. Louis. Save 40-50% vs. replacement. Custom doors, minimal disruption, eco-friendly.',
+      'Cost-effective cabinet refacing in the St. Louis area. Save 40-50% vs. replacement. Custom doors, minimal disruption, eco-friendly.',
     type: 'website',
     siteName: 'Professional Wood Interiors',
   },
@@ -23,9 +27,18 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Cabinet Refacing | Professional Wood Interiors',
     description:
-      'Cost-effective cabinet refacing in St. Louis. Save 40-50% vs. replacement. Custom doors, minimal disruption, eco-friendly.',
+      'Cost-effective cabinet refacing in the St. Louis area. Save 40-50% vs. replacement. Custom doors, minimal disruption, eco-friendly.',
   },
 };
+
+const serviceSchema = generateServiceSchema({
+  name: 'Cabinet Refacing',
+  slug: 'cabinet-refacing',
+  description:
+    'Cabinet refacing for St. Louis area homeowners. Keep your quality cabinet boxes; get handcrafted new doors, drawer fronts, and custom finishes from a family-owned local shop.',
+});
+
+const faqSchema = generateFAQSchema(cabinetRefacingFAQs);
 
 export default function CabinetRefacingPage() {
   // Use specific cabinet refacing images
@@ -103,7 +116,14 @@ export default function CabinetRefacingPage() {
 
   return (
     <>
-      <Navigation />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       {/* Hero Section */}
       <Section className="pt-24 pb-16">
@@ -232,6 +252,10 @@ export default function CabinetRefacingPage() {
           </div>
         </Container>
       </Section>
+
+      <ServiceAreaLinks serviceLocationSlug="cabinet-refacing" />
+
+      <LocationFAQs faqs={cabinetRefacingFAQs} />
 
       {/* CTA Section */}
       <Section tone="walnut" className="py-16">

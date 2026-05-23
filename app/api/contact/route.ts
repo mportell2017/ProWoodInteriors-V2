@@ -8,7 +8,7 @@ const contactSchema = z.object({
   street_address: z.string().optional().nullable(),
   city: z.string().optional().nullable(),
   zip: z.string().optional().nullable(),
-  project_types: z.array(z.string()).min(1, 'Please select at least one project type'),
+  project_types: z.array(z.string().min(1)).min(1, 'Please select at least one project type'),
   timeline: z.string().optional().nullable(),
   message: z.string().optional().nullable(),
   turnstileToken: z.string().min(1, 'CAPTCHA verification required'),

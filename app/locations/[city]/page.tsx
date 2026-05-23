@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Navigation from '@/components/Navigation';
 import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Heading';
 import { Container } from '@/components/ui/Container';
@@ -99,11 +98,7 @@ export default async function LocationPage(props: { params: Promise<{ city: stri
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-
-      <Navigation />
-
-      {/* Hero Section */}
+      />      {/* Hero Section */}
       <LocationHero
         city={location.city}
         state={location.state}

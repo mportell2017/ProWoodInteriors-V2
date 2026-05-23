@@ -1,14 +1,41 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Section } from "@/components/ui/Section";
 import { Heading } from "@/components/ui/Heading";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
-import Navigation from "@/components/Navigation";
+import { generateLocalBusinessSchema } from "@/lib/structured-data";
+
+export const metadata: Metadata = {
+  title: "Our Story — 40+ Years of Custom Cabinetry in St. Louis",
+  description:
+    "Family-owned custom cabinetry in the St. Louis area since 1985. Meet Professional Wood Interiors — built by hand in our local shop for Chesterfield, Wildwood, Clayton, and surrounding homeowners.",
+  alternates: {
+    canonical: "/our-story",
+  },
+  openGraph: {
+    title: "Our Story — 40+ Years of Custom Cabinetry in St. Louis",
+    description:
+      "Family-owned custom cabinetry in the St. Louis area since 1985. Built by hand in our local shop.",
+    type: "website",
+    siteName: "Professional Wood Interiors",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Story — Professional Wood Interiors",
+    description:
+      "Family-owned custom cabinetry in the St. Louis area since 1985.",
+  },
+};
 
 export default function OurStoryPage() {
+  const businessSchema = generateLocalBusinessSchema();
   return (
     <>
-      <Navigation />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
+      />
 
       {/* Hero Section */}
       <Section className="pt-24 pb-16">
@@ -17,7 +44,7 @@ export default function OurStoryPage() {
             About Professional Wood Interiors
           </Heading>
           <p className="mt-8 text-xl text-ink/70 leading-relaxed font-elegant">
-            Building trust through craftsmanship since 1980
+            Building trust through craftsmanship since 1985
           </p>
         </div>
       </Section>
@@ -28,8 +55,8 @@ export default function OurStoryPage() {
           {/* Opening Paragraph */}
           <div className="prose prose-lg max-w-none">
             <p className="text-lg text-ink/80 leading-relaxed mb-8">
-              Professional Wood Interiors has been a trusted name in St. Louis custom cabinetry since 1980.
-              For more than four decades, we've been designing and building handcrafted cabinetry and interior
+              Professional Wood Interiors has been a trusted name in St. Louis custom cabinetry since 1985.
+              For four decades, we've been designing and building handcrafted cabinetry and interior
               woodwork for homeowners throughout the greater St. Louis area.
             </p>
 

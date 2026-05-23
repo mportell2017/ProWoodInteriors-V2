@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Navigation from '@/components/Navigation';
 import { Section } from '@/components/ui/Section';
 import { Container } from '@/components/ui/Container';
 import { ButtonLink } from '@/components/ui/Button';
@@ -127,11 +126,7 @@ export default async function ProjectPage(props: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-      />
-
-      <Navigation />
-
-      {/* Hero Section */}
+      />      {/* Hero Section */}
       <Section className="pt-24 pb-12">
         <Container>
           <BreadcrumbNav

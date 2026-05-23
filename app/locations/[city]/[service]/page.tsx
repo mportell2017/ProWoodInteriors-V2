@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Navigation from "@/components/Navigation";
 import { Section } from "@/components/ui/Section";
 import { Heading } from "@/components/ui/Heading";
 import { Container } from "@/components/ui/Container";
@@ -110,11 +109,7 @@ export default async function ServiceLocationPage(
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-
-      <Navigation />
-
-      {/* Breadcrumbs */}
+      />      {/* Breadcrumbs */}
       <Section tone="clear" className="pt-24 pb-2 sm:pt-28 sm:pb-2">
         <Container>
           <nav

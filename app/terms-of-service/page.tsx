@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Navigation from '@/components/Navigation';
 import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Heading';
 import { Container } from '@/components/ui/Container';
@@ -11,10 +10,7 @@ export const metadata: Metadata = {
 
 export default function TermsOfServicePage() {
   return (
-    <>
-      <Navigation />
-
-      <Section className="pt-24 pb-16">
+    <>      <Section className="pt-24 pb-16">
         <Container>
           <div className="max-w-3xl mx-auto">
             <Heading as="h1" accent="italic">

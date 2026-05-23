@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Navigation from '@/components/Navigation';
 import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Heading';
 import { Container } from '@/components/ui/Container';
@@ -8,22 +7,36 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { galleryManifest } from '@/lib/gallery-manifest';
 import { getImagesByCategory } from '@/lib/gallery-utils';
+import { generateServiceSchema, generateFAQSchema } from '@/lib/structured-data';
+import { kitchenCabinetryFAQs } from '@/lib/service-faqs';
+import { LocationFAQs } from '@/components/locations/LocationFAQs';
+import { ServiceAreaLinks } from '@/components/services/ServiceAreaLinks';
 
 export const metadata: Metadata = {
   title: 'Custom Kitchen Cabinetry | Professional Wood Interiors',
-  description: 'Handcrafted custom kitchen cabinets built in our St. Louis shop. Solid wood construction, dovetail drawers, and perfect fit for your exact space. Serving St. Louis since 1980.',
+  description: 'Handcrafted custom kitchen cabinets built in our St. Louis area shop. Solid wood construction, dovetail drawers, and perfect fit for your exact space. Serving St. Louis since 1985.',
+  alternates: { canonical: '/services/custom-kitchen-cabinetry' },
   openGraph: {
     title: 'Custom Kitchen Cabinetry | Professional Wood Interiors',
-    description: 'Handcrafted custom kitchen cabinets built in our St. Louis shop. Solid wood construction, dovetail drawers, and perfect fit for your exact space.',
+    description: 'Handcrafted custom kitchen cabinets built in our St. Louis area shop. Solid wood construction, dovetail drawers, and perfect fit for your exact space.',
     type: 'website',
     siteName: 'Professional Wood Interiors',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Custom Kitchen Cabinetry | Professional Wood Interiors',
-    description: 'Handcrafted custom kitchen cabinets built in our St. Louis shop. Solid wood construction, dovetail drawers, and perfect fit for your exact space.',
+    description: 'Handcrafted custom kitchen cabinets built in our St. Louis area shop. Solid wood construction, dovetail drawers, and perfect fit for your exact space.',
   },
 };
+
+const serviceSchema = generateServiceSchema({
+  name: 'Custom Kitchen Cabinetry',
+  slug: 'custom-kitchen-cabinetry',
+  description:
+    'Handcrafted custom kitchen cabinets built to your exact specifications. Solid wood construction, dovetail drawers, soft-close hardware, and perfect fit for St. Louis area homes.',
+});
+
+const faqSchema = generateFAQSchema(kitchenCabinetryFAQs);
 
 export default function CustomKitchenCabinetryPage() {
   // Get kitchen images for the gallery
@@ -92,7 +105,14 @@ export default function CustomKitchenCabinetryPage() {
 
   return (
     <>
-      <Navigation />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       {/* Hero Section */}
       <Section className="pt-24 pb-16">
@@ -212,6 +232,10 @@ export default function CustomKitchenCabinetryPage() {
           </div>
         </Container>
       </Section>
+
+      <ServiceAreaLinks serviceLocationSlug="kitchen-remodeling" />
+
+      <LocationFAQs faqs={kitchenCabinetryFAQs} />
 
       {/* CTA Section */}
       <Section tone="walnut" className="py-16">

@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Navigation from '@/components/Navigation';
 import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Heading';
 import { Container } from '@/components/ui/Container';
@@ -90,11 +89,7 @@ export default async function CategoryPage(props: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(gallerySchema) }}
-      />
-
-      <Navigation />
-
-      {/* Hero Section */}
+      />      {/* Hero Section */}
       <Section className="pt-24 pb-12">
         <Container>
           <BreadcrumbNav

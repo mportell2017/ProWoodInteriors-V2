@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Navigation from '@/components/Navigation';
 import { Section } from '@/components/ui/Section';
 import { Container } from '@/components/ui/Container';
 import { Heading } from '@/components/ui/Heading';
@@ -7,9 +6,7 @@ import { ButtonLink } from '@/components/ui/Button';
 
 export default function CategoryNotFound() {
   return (
-    <>
-      <Navigation />
-      <Section className="pt-24 pb-12 min-h-[60vh] flex items-center">
+    <>      <Section className="pt-24 pb-12 min-h-[60vh] flex items-center">
         <Container>
           <div className="max-w-2xl mx-auto text-center">
             <Heading eyebrow="404" as="h1">

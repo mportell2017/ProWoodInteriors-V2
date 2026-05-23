@@ -1,14 +1,18 @@
 import { Metadata } from 'next';
-import Navigation from '@/components/Navigation';
 import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Heading';
 import { Container } from '@/components/ui/Container';
 import { SoftCTA } from '@/components/homepage/SoftCTA';
+import { ADDRESS, PHONE_DISPLAY, PHONE_TEL } from '@/lib/business';
+import { generateLocalBusinessSchema } from '@/lib/structured-data';
 
 export const metadata: Metadata = {
   title: 'Contact Us | Professional Wood Interiors',
   description:
-    'Get in touch with Professional Wood Interiors. Call (314) 437-9988, schedule a showroom visit, or send us a message. Serving St. Louis since 1980.',
+    'Get in touch with Professional Wood Interiors. Call (314) 437-9988, schedule a showroom visit, or send us a message. Serving Chesterfield, Wildwood, Clayton & the St. Louis area since 1985.',
+  alternates: {
+    canonical: '/contact-us',
+  },
   openGraph: {
     title: 'Contact Us | Professional Wood Interiors',
     description:
@@ -25,6 +29,7 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  const businessSchema = generateLocalBusinessSchema();
   const contactMethods = [
     {
       icon: (
@@ -38,9 +43,9 @@ export default function ContactPage() {
         </svg>
       ),
       title: 'Call Us',
-      description: '(314) 437-9988',
+      description: PHONE_DISPLAY,
       actionLabel: 'Call Now',
-      actionHref: 'tel:3144379988',
+      actionHref: `tel:${PHONE_TEL}`,
     },
     {
       icon: (
@@ -76,7 +81,7 @@ export default function ContactPage() {
         </svg>
       ),
       title: 'Visit Our Showroom',
-      description: 'St. Louis, Missouri',
+      description: `${ADDRESS.streetAddress}, ${ADDRESS.addressLocality}, ${ADDRESS.addressRegion}`,
       actionLabel: 'Schedule a Visit',
       actionHref: '#contact-form',
     },
@@ -84,7 +89,10 @@ export default function ContactPage() {
 
   return (
     <>
-      <Navigation />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
+      />
 
       {/* Hero Section */}
       <Section className="pt-24 pb-16">
@@ -152,12 +160,13 @@ export default function ContactPage() {
             </Heading>
             <p className="mt-6 text-lg text-ink/80 leading-relaxed font-sans">
               See our craftsmanship firsthand and discuss your project in person. We&apos;ll show
-              you wood samples, door styles, finish options, and examples of our work. Our showroom
-              is located in St. Louis and visits are by appointment.
+              you wood samples, door styles, finish options, and examples of our work. Our shop is
+              located at {ADDRESS.streetAddress}, {ADDRESS.addressLocality}, {ADDRESS.addressRegion},
+              minutes from Chesterfield, Wildwood, and Clayton. Visits are by appointment.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="tel:3144379988"
+                href={`tel:${PHONE_TEL}`}
                 className="inline-flex items-center gap-3 px-8 py-4 text-lg font-semibold text-walnut bg-brass hover:bg-brass/90 rounded-sm shadow-xl transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -168,7 +177,7 @@ export default function ContactPage() {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                (314) 437-9988
+                {PHONE_DISPLAY}
               </a>
               <a
                 href="#contact-form"

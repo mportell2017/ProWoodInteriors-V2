@@ -48,22 +48,37 @@ colors: {
 ```
 app/                                    # Next.js App Router pages
   api/contact/                          # Contact form POST endpoint
-  services/[service-name]/              # Service pages (dynamic routes)
+  services/[service-name]/              # Service pages (4 services)
   showroom/[category]/                  # Gallery category pages
   showroom/[category]/[project]/        # Individual project pages
   locations/[city]/                     # City SEO landing pages
+    opengraph-image.tsx                 # Per-city dynamic OG image
   locations/[city]/[service]/           # Per-service, per-city SEO pages
+    opengraph-image.tsx                 # Per-combo dynamic OG image
+  opengraph-image.tsx                   # Root-level dynamic OG image
+  robots.ts                             # Robots policy (allows everything except /api, /admin)
+  not-found.tsx                         # Site-wide 404 page
+  error.tsx                             # Route error boundary
+  global-error.tsx                      # Root error boundary (very rare cases)
 components/
-  ui/                                   # Reusable UI primitives
+  ui/                                   # Reusable UI primitives (Button, Card, Container, Heading, Section)
+  forms/                                # Shared form code
+    ContactForm.tsx                     # Single canonical contact form (variant: spacious | compact)
+    contact-form-icons.tsx              # Project-type icons + projectTypes + timelineOptions arrays
+  services/                             # Service-page components
+    ServiceAreaLinks.tsx                # Internal-linking block (services → locations)
   locations/                            # Location page components
   showroom/                             # Gallery components
-  homepage/                             # Homepage-specific components
+  homepage/                             # Homepage-specific components (HomeHero, SoftCTA, etc.)
 lib/
+  business.ts                           # NAP, founded year, primary service area (single source of truth)
+  reviews-data.ts                       # Customer testimonials
+  service-faqs.ts                       # Per-service FAQ content
   gallery-manifest.ts                   # Auto-generated image catalog
   gallery-utils.ts                      # Gallery lookup helpers
   location-data.ts                      # City landing page data
   service-location-data.ts              # Per-service, per-city data
-  structured-data.ts                    # SEO schema generators
+  structured-data.ts                    # SEO schema generators (LocalBusiness, Service, FAQPage, Review, etc.)
 public/images/gallery/                  # Gallery images by category
 ```
 
@@ -83,12 +98,14 @@ public/images/gallery/                  # Gallery images by category
 - **Components**: GalleryGrid, GalleryImageCard, ShowroomLightbox
 
 #### Forms
-- **SoftCTA.tsx**: Contact form with project type selection
-  - 8 project types: Kitchen, Bathroom, Bookcases, Entertainment, Home Office, Refacing, Mudroom, Other
+- **`components/forms/ContactForm.tsx`** is the single source of truth for the contact form.
+  - `variant="spacious"` — used on homepage and `/contact-us` (wrapped by `SoftCTA.tsx`)
+  - `variant="compact"` — used inside location CTAs (wrapped by `LocationContactForm.tsx`)
+  - 8 project types (icons + arrays live in `contact-form-icons.tsx`)
   - POSTs to `/api/contact`, which verifies Turnstile and hits the SMTP2GO HTTP API
   - Email-only — no database, no queue
   - Success/error states built-in
-- **LocationContactForm.tsx**: Same backend flow; shorter layout for use inside location CTAs
+- **Anytime you need to add/change form behavior (conversion tracking, validation, field order), edit `ContactForm.tsx` only — `SoftCTA` and `LocationContactForm` are now thin wrappers.**
 
 ## City Location Landing Pages
 
@@ -293,14 +310,17 @@ npm run generate:gallery    # Regenerate gallery manifest from images
 - No skipped levels
 
 ### Structured Data
-Located in `lib/structured-data.ts`:
-- `generateBreadcrumbSchema()`: BreadcrumbList for nav trails
-- `generateImageGallerySchema()`: ImageGallery for showroom pages
-- `generateLocalBusinessSchema()`: LocalBusiness for the hub
-- `generateProductSchema()`: Product for individual projects
-- `generateLocalServiceSchema()`: ProfessionalService for city landing pages
-- `generateServiceLocationSchema()`: Service schema for `/locations/[city]/[service]` pages
-- `generateFAQSchema()`: FAQPage (used on service-location pages for rich results)
+Located in `lib/structured-data.ts`. All schemas pull NAP from `lib/business.ts` — never hardcode address/phone here.
+
+- `generateBreadcrumbSchema()` — BreadcrumbList for nav trails
+- `generateImageGallerySchema()` — ImageGallery for showroom pages
+- `generateLocalBusinessSchema()` — LocalBusiness with real address (12031 Wesford Dr, Maryland Heights, MO 63043), `areaServed` = Chesterfield/Wildwood/Clayton. Used on homepage, /our-story, /contact-us, /services, /reviews.
+- `generateServiceSchema()` — Service for the 4 service pages
+- `generateProductSchema()` — Product for individual showroom projects
+- `generateLocalServiceSchema()` — ProfessionalService for city landing pages
+- `generateServiceLocationSchema()` — Service schema for `/locations/[city]/[service]` pages
+- `generateFAQSchema()` — FAQPage for rich results (used on each service page AND service-location pages)
+- `generateReviewListSchema()` — LocalBusiness + embedded Review[] for `/reviews` page
 
 ### Performance
 - Use Next.js `Image` component for all images
@@ -347,9 +367,20 @@ import { SoftCTA } from '@/components/homepage/SoftCTA';
 - Expand `/locations/[city]/[service]` coverage to more cities (Clayton, St. Peters, etc.) as local SEO priorities evolve
 
 ### Known Issues / Cleanup Candidates
-- Pre-existing TypeScript errors in `components/homepage/CustomerReviews.tsx`, `components/homepage/FinalCTA.tsx`, `components/Navigation.tsx`, and `components/showroom/GalleryGrid.tsx`. Build passes because `next.config.js` sets `typescript.ignoreBuildErrors: true` — fix these before removing that flag.
-- Page `<title>` tags duplicate "Professional Wood Interiors" on service-location pages (appears once in the per-page metaTitle and again as a site-wide suffix). Cosmetic; one-line fix in either the page metadata or the root layout.
-- `nodemailer` is still in `package.json` but no longer used — the contact route calls SMTP2GO's HTTP API directly. Safe to remove.
+- Page `<title>` tags duplicate "Professional Wood Interiors" on service-location pages (appears once in the per-page metaTitle and again as a site-wide template suffix). Cosmetic; one-line fix in either the page metadata or the root layout.
+- 25 components still use `interface X` declarations where the project convention prefers `type X = …`. Maintain-mode observation — modernize during the next pass over each file.
+
+### Recent foundational changes (2026-05-22)
+Track for context if you're picking this up cold:
+- `lib/business.ts` was created as the single source of truth for NAP, founded year (1985), and primary service area. All schemas and most UI surfaces now import from here.
+- The two near-duplicate contact-form components were merged into `components/forms/ContactForm.tsx` (~900 → ~430 lines net reduction). `SoftCTA.tsx` and `LocationContactForm.tsx` are now thin wrappers.
+- Navigation lives in `app/layout.tsx` (root), not per-page.
+- TypeScript `ignoreBuildErrors` flag removed — strict typecheck is now part of every build.
+- `nodemailer` removed from dependencies (contact route uses SMTP2GO HTTP API).
+- Root `app/not-found.tsx`, `app/error.tsx`, `app/global-error.tsx`, `app/robots.ts`, `app/opengraph-image.tsx` all added.
+- Dynamic OG images at `app/locations/[city]/opengraph-image.tsx` and `app/locations/[city]/[service]/opengraph-image.tsx`.
+- FAQ schema now emitted on all 4 service pages (FAQ content lives in `lib/service-faqs.ts`).
+- `ServiceAreaLinks` component cross-links service pages → city + service-location pages.
 
 ### Best Practices
 - Always read existing files before modifying
@@ -361,5 +392,5 @@ import { SoftCTA } from '@/components/homepage/SoftCTA';
 
 ---
 
-**Last Updated**: 2026-04-20
+**Last Updated**: 2026-05-22
 **Maintained by**: Claude Code

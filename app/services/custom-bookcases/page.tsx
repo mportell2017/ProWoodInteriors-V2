@@ -1,20 +1,24 @@
 import { Metadata } from 'next';
-import Navigation from '@/components/Navigation';
 import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Heading';
 import { Container } from '@/components/ui/Container';
 import { ButtonLink } from '@/components/ui/Button';
 import Image from 'next/image';
 import Link from 'next/link';
+import { generateServiceSchema, generateFAQSchema } from '@/lib/structured-data';
+import { customBookcasesFAQs } from '@/lib/service-faqs';
+import { LocationFAQs } from '@/components/locations/LocationFAQs';
+import { ServiceAreaLinks } from '@/components/services/ServiceAreaLinks';
 
 export const metadata: Metadata = {
   title: 'Custom Bookcases | Professional Wood Interiors',
   description:
-    'Custom built-in bookcases in St. Louis. Solid wood construction, architectural design, seamless integration. Floor-to-ceiling, with cabinets, window seats. Since 1980.',
+    'Custom built-in bookcases in the St. Louis area. Solid wood construction, architectural design, seamless integration. Floor-to-ceiling, with cabinets, window seats. Since 1985.',
+  alternates: { canonical: '/services/custom-bookcases' },
   openGraph: {
     title: 'Custom Bookcases | Professional Wood Interiors',
     description:
-      'Custom built-in bookcases in St. Louis. Solid wood construction, architectural design, seamless integration.',
+      'Custom built-in bookcases in the St. Louis area. Solid wood construction, architectural design, seamless integration.',
     type: 'website',
     siteName: 'Professional Wood Interiors',
   },
@@ -22,9 +26,18 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Custom Bookcases | Professional Wood Interiors',
     description:
-      'Custom built-in bookcases in St. Louis. Solid wood construction, architectural design, seamless integration.',
+      'Custom built-in bookcases in the St. Louis area. Solid wood construction, architectural design, seamless integration.',
   },
 };
+
+const serviceSchema = generateServiceSchema({
+  name: 'Custom Bookcases & Built-Ins',
+  slug: 'custom-bookcases',
+  description:
+    'Custom-built bookcases and built-ins for St. Louis area homes. Floor-to-ceiling shelving, integrated cabinets, and seamless architectural fit by a family-owned shop.',
+});
+
+const faqSchema = generateFAQSchema(customBookcasesFAQs);
 
 export default function CustomBookcasesPage() {
   // Use specific bookcase images
@@ -99,7 +112,14 @@ export default function CustomBookcasesPage() {
 
   return (
     <>
-      <Navigation />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       {/* Hero Section */}
       <Section className="pt-24 pb-16">
@@ -227,6 +247,10 @@ export default function CustomBookcasesPage() {
           </div>
         </Container>
       </Section>
+
+      <ServiceAreaLinks />
+
+      <LocationFAQs faqs={customBookcasesFAQs} />
 
       {/* CTA Section */}
       <Section tone="walnut" className="py-16">

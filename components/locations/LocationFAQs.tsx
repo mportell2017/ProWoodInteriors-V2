@@ -13,10 +13,10 @@ interface FAQ {
 
 interface LocationFAQsProps {
   faqs: FAQ[];
-  city: string;
+  city?: string;
 }
 
-export function LocationFAQs({ faqs, city }: LocationFAQsProps) {
+export function LocationFAQs({ faqs }: LocationFAQsProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {

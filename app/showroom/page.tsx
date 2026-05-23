@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { galleryManifest } from '@/lib/gallery-manifest';
 import { generateSlug } from '@/lib/gallery-utils';
-import Navigation from '@/components/Navigation';
 import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Heading';
 import { Container } from '@/components/ui/Container';
@@ -22,10 +21,7 @@ export const metadata: Metadata = {
 
 export default function ShowroomPage() {
   return (
-    <>
-      <Navigation />
-
-      {/* Hero Section */}
+    <>      {/* Hero Section */}
       <Section className="pt-24 pb-12">
         <Container>
           <div className="max-w-4xl mx-auto text-center">

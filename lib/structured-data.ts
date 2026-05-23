@@ -1,14 +1,71 @@
 /**
  * Structured Data (JSON-LD) Generators for SEO
- * Generates schema.org markup for enhanced search engine visibility
+ * Generates schema.org markup for enhanced search engine visibility.
+ *
+ * All NAP fields come from `lib/business.ts` — never hardcode address/phone here.
  */
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://professionalwoodinteriors.com';
+import {
+  ADDRESS,
+  BUSINESS_HOURS,
+  BUSINESS_NAME,
+  COORDINATES,
+  FOUNDED_YEAR,
+  PHONE_DISPLAY,
+  PRICE_RANGE,
+  PRIMARY_SERVICE_AREA,
+  RATING,
+} from './business';
 
-interface BreadcrumbItem {
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.professionalwoodinteriors.com';
+
+const LOGO_URL = `${SITE_URL}/images/pro-wood-interiors-logo.webp`;
+
+type BreadcrumbItem = {
   name: string;
   url: string;
-}
+};
+
+const postalAddress = {
+  '@type': 'PostalAddress' as const,
+  streetAddress: ADDRESS.streetAddress,
+  addressLocality: ADDRESS.addressLocality,
+  addressRegion: ADDRESS.addressRegion,
+  postalCode: ADDRESS.postalCode,
+  addressCountry: ADDRESS.addressCountry,
+};
+
+const geoCoordinates = {
+  '@type': 'GeoCoordinates' as const,
+  latitude: COORDINATES.latitude,
+  longitude: COORDINATES.longitude,
+};
+
+const openingHours = {
+  '@type': 'OpeningHoursSpecification' as const,
+  dayOfWeek: BUSINESS_HOURS.dayOfWeek,
+  opens: BUSINESS_HOURS.opens,
+  closes: BUSINESS_HOURS.closes,
+};
+
+const aggregateRating = {
+  '@type': 'AggregateRating' as const,
+  ratingValue: RATING.ratingValue,
+  reviewCount: RATING.reviewCount,
+};
+
+/** Cities advertised as primary service area in LocalBusiness `areaServed`. */
+const primaryAreaServed = PRIMARY_SERVICE_AREA.map((city) => ({
+  '@type': 'City' as const,
+  name: city,
+  address: {
+    '@type': 'PostalAddress' as const,
+    addressLocality: city,
+    addressRegion: ADDRESS.addressRegion,
+    addressCountry: ADDRESS.addressCountry,
+  },
+}));
 
 /**
  * Generate breadcrumb navigation schema
@@ -22,8 +79,8 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: `${SITE_URL}${item.url}`
-    }))
+      item: `${SITE_URL}${item.url}`,
+    })),
   };
 }
 
@@ -41,49 +98,100 @@ export function generateImageGallerySchema(
     '@type': 'ImageGallery',
     name,
     description,
-    image: images.map(img => ({
+    image: images.map((img) => ({
       '@type': 'ImageObject',
       contentUrl: `${SITE_URL}${img.src}`,
-      description: img.alt
-    }))
+      description: img.alt,
+    })),
   };
 }
 
 /**
- * Generate local business schema
- * Used on the main showroom hub page
+ * Generate LocalBusiness schema for the site root / homepage / contact page.
+ * Uses the actual physical address from business.ts (Maryland Heights) and
+ * lists the primary target cities as `areaServed`.
  */
 export function generateLocalBusinessSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': SITE_URL,
-    name: 'Professional Wood Interiors',
-    image: `${SITE_URL}/images/pro-wood-interiors-logo.webp`,
-    telephone: '(314) 437-9988',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'St. Louis',
-      addressRegion: 'MO',
-      addressCountry: 'US'
+    '@id': `${SITE_URL}#business`,
+    name: BUSINESS_NAME,
+    url: SITE_URL,
+    image: LOGO_URL,
+    logo: LOGO_URL,
+    telephone: PHONE_DISPLAY,
+    foundingDate: String(FOUNDED_YEAR),
+    address: postalAddress,
+    geo: geoCoordinates,
+    openingHoursSpecification: openingHours,
+    priceRange: PRICE_RANGE,
+    areaServed: primaryAreaServed,
+    aggregateRating,
+  };
+}
+
+/**
+ * Generate a Service entity for a single service offering (kitchen cabinetry,
+ * cabinet refacing, bookcases, entertainment centers). Used on service pages.
+ */
+export function generateServiceSchema(service: {
+  name: string;
+  slug: string;
+  description: string;
+}) {
+  const url = `${SITE_URL}/services/${service.slug}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': url,
+    name: service.name,
+    serviceType: service.name,
+    description: service.description,
+    url,
+    provider: {
+      '@type': 'LocalBusiness',
+      '@id': `${SITE_URL}#business`,
+      name: BUSINESS_NAME,
+      telephone: PHONE_DISPLAY,
+      image: LOGO_URL,
+      priceRange: PRICE_RANGE,
+      address: postalAddress,
+      aggregateRating,
     },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: '38.6270',
-      longitude: '-90.1994'
-    },
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '08:00',
-      closes: '17:00'
-    },
-    priceRange: '$$$$',
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5',
-      reviewCount: '7'
-    }
+    areaServed: primaryAreaServed,
+  };
+}
+
+/**
+ * Generate Review schema for a list of testimonials. Eligible for
+ * rich-result star treatment when paired with a parent entity.
+ */
+export function generateReviewListSchema(
+  reviews: Array<{ author: string; quote: string }>
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `${SITE_URL}#business`,
+    name: BUSINESS_NAME,
+    image: LOGO_URL,
+    telephone: PHONE_DISPLAY,
+    address: postalAddress,
+    aggregateRating,
+    review: reviews.map((r) => ({
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5',
+      },
+      author: {
+        '@type': 'Person',
+        name: r.author,
+      },
+      reviewBody: r.quote,
+    })),
   };
 }
 
@@ -100,17 +208,17 @@ export function generateProductSchema(
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: projectName,
-    description: `Custom ${category.toLowerCase()} project by Professional Wood Interiors`,
-    image: images.map(src => `${SITE_URL}${src}`),
+    description: `Custom ${category.toLowerCase()} project by ${BUSINESS_NAME}`,
+    image: images.map((src) => `${SITE_URL}${src}`),
     brand: {
       '@type': 'Brand',
-      name: 'Professional Wood Interiors'
+      name: BUSINESS_NAME,
     },
     offers: {
       '@type': 'Offer',
       availability: 'https://schema.org/InStock',
-      priceCurrency: 'USD'
-    }
+      priceCurrency: 'USD',
+    },
   };
 }
 
@@ -129,9 +237,9 @@ export function generateFAQSchema(
       name: faq.question,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: faq.answer
-      }
-    }))
+        text: faq.answer,
+      },
+    })),
   };
 }
 
@@ -160,21 +268,13 @@ export function generateServiceLocationSchema(entry: {
     url,
     provider: {
       '@type': 'LocalBusiness',
-      name: 'Professional Wood Interiors',
-      telephone: '(314) 437-9988',
-      image: `${SITE_URL}/images/pro-wood-interiors-logo.webp`,
-      priceRange: '$$$$',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'St. Louis',
-        addressRegion: 'MO',
-        addressCountry: 'US'
-      },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '5',
-        reviewCount: '7'
-      }
+      '@id': `${SITE_URL}#business`,
+      name: BUSINESS_NAME,
+      telephone: PHONE_DISPLAY,
+      image: LOGO_URL,
+      priceRange: PRICE_RANGE,
+      address: postalAddress,
+      aggregateRating,
     },
     areaServed: {
       '@type': 'City',
@@ -183,20 +283,20 @@ export function generateServiceLocationSchema(entry: {
         '@type': 'PostalAddress',
         addressLocality: entry.city,
         addressRegion: entry.stateAbbr,
-        addressCountry: 'US'
+        addressCountry: ADDRESS.addressCountry,
       },
       geo: {
         '@type': 'GeoCoordinates',
         latitude: entry.coordinates.latitude,
-        longitude: entry.coordinates.longitude
-      }
-    }
+        longitude: entry.coordinates.longitude,
+      },
+    },
   };
 }
 
 /**
- * Generate local service schema for city location pages
- * Used for local SEO and rich snippets in search results
+ * Generate ProfessionalService schema for city location pages.
+ * Used for local SEO and rich snippets in search results.
  */
 export function generateLocalServiceSchema(location: {
   city: string;
@@ -215,32 +315,34 @@ export function generateLocalServiceSchema(location: {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     '@id': `${SITE_URL}/locations/${location.slug}`,
-    name: `Professional Wood Interiors - ${location.city}`,
-    image: `${SITE_URL}/images/pro-wood-interiors-logo.webp`,
+    name: `${BUSINESS_NAME} - ${location.city}`,
+    image: LOGO_URL,
     description: location.description,
-    telephone: '(314) 437-9988',
-    priceRange: '$$$$',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: location.city,
-      addressRegion: location.stateAbbr,
-      addressCountry: 'US'
-    },
-    geo: location.coordinates ? {
-      '@type': 'GeoCoordinates',
-      latitude: location.coordinates.latitude,
-      longitude: location.coordinates.longitude
-    } : undefined,
+    telephone: PHONE_DISPLAY,
+    priceRange: PRICE_RANGE,
+    address: postalAddress,
+    geo: location.coordinates
+      ? {
+          '@type': 'GeoCoordinates',
+          latitude: location.coordinates.latitude,
+          longitude: location.coordinates.longitude,
+        }
+      : undefined,
     areaServed: [
       {
         '@type': 'City',
         name: location.city,
-        '@id': `https://en.wikipedia.org/wiki/${location.city},_${location.state.replace(' ', '_')}`
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: location.city,
+          addressRegion: location.stateAbbr,
+          addressCountry: ADDRESS.addressCountry,
+        },
       },
-      ...location.serviceArea.map(area => ({
+      ...location.serviceArea.map((area) => ({
         '@type': 'City',
-        name: area
-      }))
+        name: area,
+      })),
     ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -251,61 +353,44 @@ export function generateLocalServiceSchema(location: {
           itemOffered: {
             '@type': 'Service',
             name: 'Custom Kitchen Cabinetry',
-            description: 'Handcrafted custom kitchen cabinets built to your exact specifications',
-            provider: {
-              '@type': 'LocalBusiness',
-              name: 'Professional Wood Interiors'
-            }
-          }
+            description:
+              'Handcrafted custom kitchen cabinets built to your exact specifications',
+            provider: { '@type': 'LocalBusiness', name: BUSINESS_NAME },
+          },
         },
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
             name: 'Cabinet Refacing',
-            description: 'Cost-effective cabinet door and drawer replacement with new finishes',
-            provider: {
-              '@type': 'LocalBusiness',
-              name: 'Professional Wood Interiors'
-            }
-          }
+            description:
+              'Cost-effective cabinet door and drawer replacement with new finishes',
+            provider: { '@type': 'LocalBusiness', name: BUSINESS_NAME },
+          },
         },
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
             name: 'Custom Built-In Bookcases',
-            description: 'Floor-to-ceiling custom bookcases and built-in shelving',
-            provider: {
-              '@type': 'LocalBusiness',
-              name: 'Professional Wood Interiors'
-            }
-          }
+            description:
+              'Floor-to-ceiling custom bookcases and built-in shelving',
+            provider: { '@type': 'LocalBusiness', name: BUSINESS_NAME },
+          },
         },
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
             name: 'Entertainment Centers',
-            description: 'Custom media centers and entertainment built-ins with cable management',
-            provider: {
-              '@type': 'LocalBusiness',
-              name: 'Professional Wood Interiors'
-            }
-          }
-        }
-      ]
+            description:
+              'Custom media centers and entertainment built-ins with cable management',
+            provider: { '@type': 'LocalBusiness', name: BUSINESS_NAME },
+          },
+        },
+      ],
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5',
-      reviewCount: '7'
-    },
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '08:00',
-      closes: '17:00'
-    }
+    aggregateRating,
+    openingHoursSpecification: openingHours,
   };
 }
