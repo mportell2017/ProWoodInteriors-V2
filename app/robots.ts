@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.professionalwoodinteriors.com';
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.prowoodinteriors.com';
 
 export default function robots(): MetadataRoute.Robots {
   return {

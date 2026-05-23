@@ -88,7 +88,7 @@ export default async function Image() {
               textTransform: 'uppercase',
             }}
           >
-            www.professionalwoodinteriors.com
+            www.prowoodinteriors.com
           </div>
           <div
             style={{

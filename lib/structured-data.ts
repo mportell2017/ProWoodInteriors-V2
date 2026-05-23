@@ -18,7 +18,7 @@ import {
 } from './business';
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.professionalwoodinteriors.com';
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.prowoodinteriors.com';
 
 const LOGO_URL = `${SITE_URL}/images/pro-wood-interiors-logo.webp`;
 
@@ -355,7 +355,13 @@ export function generateLocalServiceSchema(location: {
             name: 'Custom Kitchen Cabinetry',
             description:
               'Handcrafted custom kitchen cabinets built to your exact specifications',
-            provider: { '@type': 'LocalBusiness', name: BUSINESS_NAME },
+            provider: {
+              '@type': 'LocalBusiness',
+              '@id': `${SITE_URL}#business`,
+              name: BUSINESS_NAME,
+              telephone: PHONE_DISPLAY,
+              address: postalAddress,
+            },
           },
         },
         {
@@ -365,7 +371,13 @@ export function generateLocalServiceSchema(location: {
             name: 'Cabinet Refacing',
             description:
               'Cost-effective cabinet door and drawer replacement with new finishes',
-            provider: { '@type': 'LocalBusiness', name: BUSINESS_NAME },
+            provider: {
+              '@type': 'LocalBusiness',
+              '@id': `${SITE_URL}#business`,
+              name: BUSINESS_NAME,
+              telephone: PHONE_DISPLAY,
+              address: postalAddress,
+            },
           },
         },
         {
@@ -375,7 +387,13 @@ export function generateLocalServiceSchema(location: {
             name: 'Custom Built-In Bookcases',
             description:
               'Floor-to-ceiling custom bookcases and built-in shelving',
-            provider: { '@type': 'LocalBusiness', name: BUSINESS_NAME },
+            provider: {
+              '@type': 'LocalBusiness',
+              '@id': `${SITE_URL}#business`,
+              name: BUSINESS_NAME,
+              telephone: PHONE_DISPLAY,
+              address: postalAddress,
+            },
           },
         },
         {
@@ -385,7 +403,13 @@ export function generateLocalServiceSchema(location: {
             name: 'Entertainment Centers',
             description:
               'Custom media centers and entertainment built-ins with cable management',
-            provider: { '@type': 'LocalBusiness', name: BUSINESS_NAME },
+            provider: {
+              '@type': 'LocalBusiness',
+              '@id': `${SITE_URL}#business`,
+              name: BUSINESS_NAME,
+              telephone: PHONE_DISPLAY,
+              address: postalAddress,
+            },
           },
         },
       ],

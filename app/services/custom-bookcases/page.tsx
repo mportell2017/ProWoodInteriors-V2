@@ -11,7 +11,7 @@ import { LocationFAQs } from '@/components/locations/LocationFAQs';
 import { ServiceAreaLinks } from '@/components/services/ServiceAreaLinks';
 
 export const metadata: Metadata = {
-  title: 'Custom Bookcases | Professional Wood Interiors',
+  title: 'Custom Bookcases',
   description:
     'Custom built-in bookcases in the St. Louis area. Solid wood construction, architectural design, seamless integration. Floor-to-ceiling, with cabinets, window seats. Since 1985.',
   alternates: { canonical: '/services/custom-bookcases' },

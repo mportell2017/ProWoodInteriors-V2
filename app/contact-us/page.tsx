@@ -7,7 +7,7 @@ import { ADDRESS, PHONE_DISPLAY, PHONE_TEL } from '@/lib/business';
 import { generateLocalBusinessSchema } from '@/lib/structured-data';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Professional Wood Interiors',
+  title: 'Contact Us',
   description:
     'Get in touch with Professional Wood Interiors. Call (314) 437-9988, schedule a showroom visit, or send us a message. Serving Chesterfield, Wildwood, Clayton & the St. Louis area since 1985.',
   alternates: {

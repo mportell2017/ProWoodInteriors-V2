@@ -33,6 +33,21 @@ export const kitchenCabinetryFAQs: FAQ[] = [
     answer:
       'Because we build everything in our own shop, we stand behind both the construction and the finish. If anything fails due to materials or workmanship we make it right. Most clients find the cabinets outlast the kitchen around them.',
   },
+  {
+    question: 'How much does a full kitchen remodel cost in St. Louis?',
+    answer:
+      "Full-scope kitchen remodels for St. Louis-area homes vary widely based on cabinet count, wood species, door style, and the scope of any structural or layout changes. Countertops, appliances, and other trades are priced separately from the cabinetry. We provide a detailed written quote after the in-home consultation — a real number, not a moving estimate. If a full remodel is more than your kitchen needs, we'll be honest about that and steer you toward refacing if it fits better.",
+  },
+  {
+    question: "Do I need a permit for a kitchen remodel?",
+    answer:
+      "It depends on scope. Like-for-like cabinet replacement usually doesn't require a permit. Moving walls, plumbing, electrical, or structural elements does. We identify permit requirements during design and either pull them ourselves or coordinate with the trades that will. Building codes vary slightly by municipality across the St. Louis metro — we know the local requirements in Clayton, Chesterfield, Wildwood, and the rest of our service area.",
+  },
+  {
+    question: 'Do you coordinate with countertop, plumbing, and electrical trades?',
+    answer:
+      "Yes. We manage the cabinetry build and installation, and coordinate with trade partners we've worked with for years on countertops, plumbing, electrical, flooring, and demo. You get one point of contact for the cabinetry and a coordinated handoff between trades — not five separate contractors you have to chase.",
+  },
 ];
 
 export const cabinetRefacingFAQs: FAQ[] = [
@@ -60,6 +75,31 @@ export const cabinetRefacingFAQs: FAQ[] = [
     question: 'How does refacing pricing compare to new cabinets?',
     answer:
       'Cabinet refacing typically runs 40–50% less than fully replacing the cabinets with comparable custom work — sometimes more when the existing boxes are in good shape. We give a fixed quote after the in-home consultation, with no surprise add-ons.',
+  },
+  {
+    question: 'Should I reface my cabinets or replace them entirely?',
+    answer:
+      "Refacing is the right choice when your cabinet boxes are structurally sound, your layout works for how you cook, and you mainly want the kitchen to look new. Replace when you want to change the layout, the boxes are damaged or made from low-quality materials, or you're combining the kitchen with adjacent rooms. We give an honest recommendation after seeing your kitchen — sometimes we tell people refacing isn't the right call for their situation.",
+  },
+  {
+    question: 'How long do refaced cabinets last?',
+    answer:
+      'Solid-wood refacing done properly outlasts the rest of the kitchen — typically 20+ years on the doors, drawer fronts, and finish. The lifespan ultimately depends on the underlying cabinet boxes (which we evaluate first) and the materials used. Our refacing work uses the same hardwoods, hardware, and finishes as our new-build kitchens, so the durability is the same.',
+  },
+  {
+    question: 'Can you reface laminate or particleboard cabinets?',
+    answer:
+      "In most cases, yes — as long as the boxes are structurally intact. We can apply real wood veneer over laminate or particleboard exteriors, and the new solid-wood doors and drawer fronts attach the same way they would to plywood boxes. We assess each box during the consultation; if a particular cabinet is too far gone, we can replace just that box rather than the whole run.",
+  },
+  {
+    question: 'What door styles and wood species do you offer for refacing?',
+    answer:
+      'You can choose from traditional raised panel, clean shaker, contemporary slab, or beadboard styles, in your choice of maple, oak, cherry, walnut, hickory, or painted-grade maple. We bring physical samples to the consultation so you can see grain, color, and finish in your kitchen lighting before committing.',
+  },
+  {
+    question: 'Does cabinet refacing increase home resale value?',
+    answer:
+      'Kitchens are consistently one of the highest-ROI rooms to update. Refacing typically delivers most of the visual benefit of a full kitchen remodel at a fraction of the cost — which is why agents in Clayton, Chesterfield, and Wildwood often recommend refacing when prepping a home for sale. The ROI depends on the local market, but refacing rarely fails to pay back at least most of its cost in resale value, and it dramatically improves how a kitchen photographs and shows.',
   },
 ];
 

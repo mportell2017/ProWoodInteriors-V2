@@ -104,7 +104,7 @@ export default async function Image(props: {
               textTransform: 'uppercase',
             }}
           >
-            www.professionalwoodinteriors.com
+            www.prowoodinteriors.com
           </div>
           <div
             style={{

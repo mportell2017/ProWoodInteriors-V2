@@ -4,7 +4,7 @@ import { Heading } from '@/components/ui/Heading';
 import { Container } from '@/components/ui/Container';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Professional Wood Interiors',
+  title: 'Privacy Policy',
   description: 'Privacy Policy for Professional Wood Interiors. Learn how we collect, use, and protect your personal information.',
 };
 

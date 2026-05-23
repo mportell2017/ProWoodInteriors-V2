@@ -6,7 +6,7 @@ import { serviceLocations } from '@/lib/service-location-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://www.professionalwoodinteriors.com';
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://www.prowoodinteriors.com';
   const lastModified = new Date();
 
   // Static routes

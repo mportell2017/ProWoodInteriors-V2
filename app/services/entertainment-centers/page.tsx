@@ -11,7 +11,7 @@ import { LocationFAQs } from '@/components/locations/LocationFAQs';
 import { ServiceAreaLinks } from '@/components/services/ServiceAreaLinks';
 
 export const metadata: Metadata = {
-  title: 'Entertainment Centers | Professional Wood Interiors',
+  title: 'Entertainment Centers',
   description:
     'Custom entertainment centers in the St. Louis area. Built-in media centers with wire management, ventilation, adjustable shelving. Solid wood construction. Since 1985.',
   alternates: { canonical: '/services/entertainment-centers' },

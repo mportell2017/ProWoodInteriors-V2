@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: "%s | Professional Wood Interiors",
   },
   description: "Custom cabinetry and built-in interiors designed and built for your home. Serving St. Louis, Missouri since 1985.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.professionalwoodinteriors.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.prowoodinteriors.com"),
 };
 
 export default function RootLayout({

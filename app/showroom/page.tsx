@@ -10,7 +10,7 @@ import { ButtonLink } from '@/components/ui/Button';
 import { cn } from '@/lib/cn';
 
 export const metadata: Metadata = {
-  title: 'Our Showroom & Gallery | Professional Wood Interiors',
+  title: 'Our Showroom & Gallery',
   description: 'Explore our collection of custom cabinetry across 4 categories: Kitchens, Bedrooms, Entertainment Centers, and Bookcases. 86+ projects from Professional Wood Interiors serving St. Louis, Missouri.',
   openGraph: {
     title: 'Our Showroom & Gallery | Professional Wood Interiors',

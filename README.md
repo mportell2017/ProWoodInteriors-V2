@@ -46,7 +46,7 @@ Next.js website for Professional Wood Interiors - Custom Cabinetry & Built-Ins i
    CONTACT_EMAIL=info@professionalwoodinteriors.com
    
    # Optional: Site URL for metadata
-   NEXT_PUBLIC_SITE_URL=https://www.professionalwoodinteriors.com
+   NEXT_PUBLIC_SITE_URL=https://www.prowoodinteriors.com
    ```
 
 4. **Seed initial data:**

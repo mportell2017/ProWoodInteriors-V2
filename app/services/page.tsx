@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { generateLocalBusinessSchema } from '@/lib/structured-data';
 
 export const metadata: Metadata = {
-  title: 'Our Services | Professional Wood Interiors',
+  title: 'Our Services',
   description: 'Custom cabinetry services including kitchen cabinets, entertainment centers, bookcases, built-ins, and cabinet refacing. Handcrafted in St. Louis since 1985.',
   alternates: { canonical: '/services' },
   openGraph: {

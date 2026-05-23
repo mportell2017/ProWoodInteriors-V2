@@ -10,7 +10,7 @@
  */
 
 export type ServiceSlug = "cabinet-refacing" | "kitchen-remodeling";
-export type CitySlug = "chesterfield" | "wildwood";
+export type CitySlug = "chesterfield" | "wildwood" | "clayton";
 
 export interface ServiceLocationData {
   // Identity
@@ -90,7 +90,7 @@ export const serviceLocations: ServiceLocationData[] = [
     coordinates: { latitude: "38.6631", longitude: "-90.5771" },
 
     metaTitle:
-      "Cabinet Refacing in Chesterfield, MO | Professional Wood Interiors",
+      "Cabinet Refacing in Chesterfield, MO",
     metaDescription:
       "Cabinet refacing in Chesterfield, MO by a family-owned St. Louis shop. Handcrafted solid wood doors, drawer fronts, and custom finishes — tailored to your kitchen. Free consultation: (314) 437-9988.",
 
@@ -440,7 +440,7 @@ export const serviceLocations: ServiceLocationData[] = [
     coordinates: { latitude: "38.5806", longitude: "-90.6630" },
 
     metaTitle:
-      "Cabinet Refacing in Wildwood, MO | Professional Wood Interiors",
+      "Cabinet Refacing in Wildwood, MO",
     metaDescription:
       "Cabinet refacing for Wildwood, MO homes. Keep your quality cabinet boxes; get handcrafted new doors, drawer fronts, and custom finishes from a family-owned St. Louis shop. Call (314) 437-9988.",
 
@@ -768,6 +768,356 @@ export const serviceLocations: ServiceLocationData[] = [
       "Vintage Kitchen",
       "Dual-Color Kitchen",
       "White Cabinet Kitchen",
+    ],
+    galleryImageRange: { start: 0, count: 8 },
+  },
+
+  // ---------------------------------------------------------------
+  // CLAYTON — CABINET REFACING
+  // ---------------------------------------------------------------
+  {
+    city: "Clayton",
+    citySlug: "clayton",
+    service: "Cabinet Refacing",
+    serviceSlug: "cabinet-refacing",
+    state: "Missouri",
+    stateAbbr: "MO",
+    county: "St. Louis County",
+    coordinates: { latitude: "38.6425", longitude: "-90.3235" },
+
+    metaTitle:
+      "Cabinet Refacing in Clayton, MO",
+    metaDescription:
+      "Cabinet refacing for Clayton, MO homes. Handcrafted solid-wood doors, drawer fronts, and finishes — designed to match the character of Clayton's Tudor, Colonial, and mid-century homes. Family-owned since 1985. Free consultation: (314) 437-9988.",
+
+    heroEyebrow: "Serving Clayton, MO",
+    heroTitle: "Cabinet Refacing in Clayton, Missouri",
+    heroSubtitle:
+      "A kitchen update that respects your home's architecture — handcrafted new doors, drawer fronts, and custom finishes, installed in about a week. 40–50% less than full replacement.",
+
+    intro: [
+      "Clayton homes have character. Whether you live in a 1920s Tudor near Wydown, a Colonial off Forsyth, a mid-century ranch closer to Brentwood, or a more recent build in University Heights, the architecture matters — and the kitchen needs to belong to the rest of the house. Refacing is often the best way to update an older Clayton kitchen because it preserves the existing layout (which is usually intentional in these homes) while giving you a chance to choose door styles and finishes that genuinely fit your home's era.",
+      "We've refaced kitchens in Clayton homes spanning nearly a century of architectural styles. The common thread is matching what's already there — replicating trim profiles, stain colors, and door details so the refaced kitchen reads as original rather than retrofit. For Clayton's older homes especially, that detail work is what separates a refacing project that looks great from one that looks generic.",
+      "Cabinet boxes in established Clayton homes tend to be well-built — solid plywood or hardwood frames designed to last. What's usually dated is the visible surface: oak doors from a 1980s update, painted cabinetry that's chipping, or brass hardware from an era that's cycled out. Refacing replaces all of that while keeping the structural work you already have.",
+    ],
+
+    included: {
+      heading: "What a Clayton Refacing Project Includes",
+      items: [
+        {
+          title: "Solid Wood Doors in Your Style",
+          description:
+            "Every door is built in our shop from real hardwood — maple, oak, cherry, walnut, hickory, or painted-grade maple — in the profile that fits your home's era. Raised panel for Tudor and Colonial; shaker for transitional; slab for mid-century or contemporary.",
+        },
+        {
+          title: "Matching Drawer Fronts and Optional Boxes",
+          description:
+            "Drawer fronts match the new doors. If the original drawer boxes are tired, we can replace them with dovetailed hardwood boxes and soft-close glides during the same visit — a common upgrade in older Clayton kitchens where the original drawers have seen a few decades of use.",
+        },
+        {
+          title: "Veneered Cabinet Surfaces",
+          description:
+            "End panels, face frames, and exposed cabinet sides are covered in a wood veneer matched to your new doors. The finished kitchen reads as fully new on every visible surface.",
+        },
+        {
+          title: "Period-Appropriate Hardware Options",
+          description:
+            "Soft-close concealed hinges come standard. For visible hardware — pulls and knobs — we help you select finishes and styles that complement your home's era: unlacquered brass for traditional homes, brushed nickel for transitional, matte black for contemporary.",
+        },
+        {
+          title: "Trim and Profile Matching",
+          description:
+            "Where your existing crown molding, base trim, or other millwork matters, we match it. This is especially important in older Clayton homes where the cabinetry needs to read as part of the architectural fabric, not separate from it.",
+        },
+        {
+          title: "Shop-Applied Finish",
+          description:
+            "All staining and painting happens in our climate-controlled shop, not in your home. Clayton homes — especially condos and historic properties with shared walls or HOA considerations — don't deal with on-site fumes, dust, or finishing-day disruption.",
+        },
+      ],
+    },
+
+    whyChooseUs: {
+      heading: "Why Clayton Homeowners Reface with Us",
+      reasons: [
+        {
+          title: "Comfortable with Older Home Construction",
+          description:
+            "We've worked on Clayton kitchens in homes from the 1920s through current builds. We know how older cabinet boxes are built, where they tend to have quirks, and how to match the architectural detailing that makes Clayton homes feel like Clayton homes.",
+        },
+        {
+          title: "About One Week On-Site",
+          description:
+            "Most Clayton refacing projects install in 5–7 business days. For homeowners juggling commutes downtown, kids in Clayton schools, or remote work, that short timeline matters.",
+        },
+        {
+          title: "Local Shop, Hand-Built",
+          description:
+            "Every door, veneer, and drawer front is built in our St. Louis-area workshop. No catalog ordering, no offshore manufacturing — which means we can match the specific stain, profile, or hardware your home actually needs rather than the closest stock option.",
+        },
+        {
+          title: "Honest About Scope",
+          description:
+            "If your cabinet boxes aren't a good candidate for refacing — water damage, structural issues, poor original construction — we'll tell you and recommend a full remodel instead. We'd rather lose the project than do work that doesn't deserve the boxes underneath.",
+        },
+        {
+          title: "Family-Owned Since 1985",
+          description:
+            "Four decades in St. Louis means we've watched Clayton kitchens age — what holds up, what doesn't, what looks dated in ten years vs. what stays current. That perspective shapes the recommendations we make.",
+        },
+      ],
+    },
+
+    process: {
+      heading: "The Clayton Refacing Process",
+      steps: [
+        {
+          title: "In-Home Assessment",
+          description:
+            "We come to your Clayton home, measure every cabinet, evaluate the structural condition of the boxes, and talk through what you want changed. We bring physical samples — door styles, wood species, stain and paint chips, hardware — so you can see them in your kitchen lighting before committing.",
+        },
+        {
+          title: "Design and Detailed Quote",
+          description:
+            "Within a few days you receive a written quote with every door style, dimension, finish, hardware choice, and add-on specified. The total is a fixed number; we don't do ballparks that grow on the final invoice.",
+        },
+        {
+          title: "Shop Build",
+          description:
+            "Your doors, drawer fronts, veneers, and any added pieces are built and finished in our climate-controlled shop. Each piece is labeled by cabinet and staged for installation day. Build typically runs 2–4 weeks depending on scope.",
+        },
+        {
+          title: "Installation in Clayton",
+          description:
+            "Our installers arrive with everything pre-built. Old doors come off, veneers go onto box exteriors, new doors and drawer fronts mount, hardware installs. We work cleanly — important in Clayton's older homes and condos — and the kitchen is wrapped in 5–7 business days.",
+        },
+      ],
+    },
+
+    considerations: {
+      heading: "Refacing for Clayton's Architectural Mix",
+      content: [
+        "Clayton's housing stock spans roughly a century of architectural styles, and the refacing approach changes depending on the home. For Tudor and Colonial homes (often near Wydown, Hi-Pointe, and DeMun), we typically recommend traditional raised-panel doors in stained hardwood with brass or unlacquered hardware — the look that ties back to the home's era. For mid-century ranches and contemporary builds, slab or shaker doors in painted finishes or walnut work better. For Clayton's many transitional builds and condos, shaker in painted maple is the most common choice.",
+        "The other consideration in Clayton is that many homes have substantial existing millwork — wide casing, picture rails, period trim. The refaced kitchen should feel like part of that detailing, not a contrasting island. We pay particular attention to trim matching, crown molding, and stain colors in Clayton projects, because the homes themselves demand that level of integration.",
+      ],
+    },
+
+    faqs: [
+      {
+        question: "How much does cabinet refacing cost in Clayton?",
+        answer:
+          "Refacing is priced specifically to each kitchen, but generally runs 40–50% less than fully replacing the same cabinets with comparable custom work. For a typical Clayton kitchen (20–30 cabinets), most projects fall between roughly $9,000 and $25,000 depending on door style, wood species, hardware, and any add-ons. We provide a fixed written quote after the in-home consultation — no ballparks, no surprise add-ons.",
+      },
+      {
+        question: "Can refacing work in a Clayton home built in the 1920s or earlier?",
+        answer:
+          "In most cases, yes. Older Clayton homes tend to have well-built cabinet boxes — solid hardwood frames designed to last. We check each box during the assessment; if the structural integrity is intact (which is usually the case in homes from this era), refacing is often the ideal update. The challenge in older homes is usually matching the surrounding architectural details, which is something we specifically pay attention to in Clayton projects.",
+      },
+      {
+        question: "Can you match the existing trim and millwork in my Clayton home?",
+        answer:
+          "Yes — this is one of the things we focus on most in Clayton specifically. We match crown molding profiles, casing details, stain colors, and door styling so the refaced kitchen reads as part of the home rather than a retrofit. Bring photos or physical samples of trim in adjacent rooms to the consultation and we'll show you how we approach matching.",
+      },
+      {
+        question: "I live in a Clayton condo — does refacing still make sense?",
+        answer:
+          "Often yes. Condo kitchens typically have smaller cabinet counts (which keeps the cost lower), and the constrained on-site timeline of refacing — 5–7 business days vs. 2–3 weeks for full replacement — works well in condos with HOA considerations, shared elevators, and neighbor proximity. We've done refacing projects in several Clayton condos and understand the building-management coordination they require.",
+      },
+      {
+        question: "Will refacing increase my home's value in Clayton?",
+        answer:
+          "Kitchens are consistently one of the highest-ROI rooms to update, and Clayton's strong housing market amplifies that. Industry data suggests midrange kitchen updates recoup 60–80% of cost at resale, with stronger returns in higher-end markets. Beyond ROI, an updated kitchen helps a Clayton home photograph and show dramatically better — which often matters as much as the precise recouped dollar figure when listing.",
+      },
+      {
+        question: "How long does the entire process take from first call to finished kitchen?",
+        answer:
+          "Most Clayton refacing projects run 4–6 weeks total: 1–2 weeks from initial consultation to approved design, 2–4 weeks for shop build, and 5–7 business days on-site for installation. Your kitchen is fully usable for most of that time — only the on-site installation week affects daily routine, and even then we install in sections so you typically keep access to your sink and at least some storage.",
+      },
+    ],
+
+    testimonial: {
+      quote:
+        "Pro Wood Interiors are fantastic to work with. The level of expertise and professionalism is second to none. I would highly recommend David and his staff to anyone looking to do renovations to their home. Looking forward to working with David on our next project.",
+      author: "Doug Uthoff",
+    },
+
+    galleryProjects: ["Kitchen Cabinet Refacing"],
+    galleryImageRange: { start: 4, count: 8 },
+  },
+
+  // ---------------------------------------------------------------
+  // CLAYTON — KITCHEN REMODELING
+  // ---------------------------------------------------------------
+  {
+    city: "Clayton",
+    citySlug: "clayton",
+    service: "Kitchen Remodeling",
+    serviceSlug: "kitchen-remodeling",
+    state: "Missouri",
+    stateAbbr: "MO",
+    county: "St. Louis County",
+    coordinates: { latitude: "38.6425", longitude: "-90.3235" },
+
+    metaTitle:
+      "Kitchen Remodeling in Clayton, MO | Custom Design & Cabinetry",
+    metaDescription:
+      "Full-scope kitchen remodeling in Clayton, MO. Custom cabinets and design that honor the character of Clayton's Tudor, Colonial, and mid-century homes. Family-owned since 1985. Free consultation: (314) 437-9988.",
+
+    heroEyebrow: "Serving Clayton, MO",
+    heroTitle: "Kitchen Remodeling in Clayton, Missouri",
+    heroSubtitle:
+      "Custom kitchens designed for Clayton's homes — from 1920s Tudors and Colonials to mid-century ranches and contemporary builds. Handcrafted by a local shop that's been here since 1985.",
+
+    intro: [
+      "Clayton kitchens come with constraints — and opportunities — that other parts of the St. Louis metro don't share. Many of these homes were built before the open-concept era; kitchens are often smaller, more enclosed, and connected to the rest of the home through formal architectural transitions. A successful Clayton kitchen remodel honors that character rather than fighting it, while solving the storage, workflow, and entertaining problems modern families actually have.",
+      "We design full-scope kitchens for Clayton homes spanning every era. For Tudor and Colonial homes, we lean into traditional detailing — raised panel cabinets, period-appropriate hardware, generous trim work. For mid-century ranches, we work with the home's existing horizontal lines and lean into walnut, cherry, or painted slab styles. For more recent transitional builds and condos, we design clean shaker kitchens that work for both daily life and entertaining.",
+      "A full remodel is the right call when your existing layout fights you, when the cabinet boxes themselves are failing, or when you want to open the kitchen into adjacent rooms — something that's especially common in Clayton's older homes where the original kitchen was sized for a different era of cooking and entertaining. If you're not sure whether your kitchen needs a full remodel or whether refacing would do, we'll walk through both options during the consultation and give you an honest read.",
+    ],
+
+    included: {
+      heading: "What a Full Clayton Kitchen Remodel Includes",
+      items: [
+        {
+          title: "Layout and Design",
+          description:
+            "We design the kitchen for how you actually use it — which often means reconfiguring the layout, removing a wall to connect to an adjacent room, repositioning the island, or rebuilding the pantry. In older Clayton homes, this is frequently the most impactful part of the project.",
+        },
+        {
+          title: "Custom Cabinetry, Built to Match Your Home",
+          description:
+            "Every cabinet is built to your exact dimensions in our shop, in a door style and wood species that fits your home's character. Drawer interiors, roll-outs, appliance panels, and storage configurations are all designed around what you actually need.",
+        },
+        {
+          title: "Islands, Pantries, and Workflow Design",
+          description:
+            "Even when Clayton kitchens are smaller, the elements still matter — a thoughtfully sized island for seating and prep, a pantry that handles a serious grocery run, a coffee or beverage station that keeps guests out of the cooking flow.",
+        },
+        {
+          title: "Architectural Integration",
+          description:
+            "Clayton homes typically have substantial existing millwork — wide casing, picture rails, period trim. The kitchen's cabinetry needs to belong to that detailing, not contrast with it. We match crown profiles, base trim, and stain colors so the new kitchen reads as part of the home.",
+        },
+        {
+          title: "Appliance Integration",
+          description:
+            "Panel-ready refrigerators, custom hood surrounds, built-in microwaves and ovens — all detailed to look intentional rather than bolted on after the fact. For period-appropriate kitchens, we work hard to make modern appliances feel quiet within traditional cabinetry.",
+        },
+        {
+          title: "Trade Coordination",
+          description:
+            "We manage the cabinetry scope and coordinate the electricians, plumbers, countertop fabricators, and any structural trades. In Clayton's tighter urban footprint — especially condos — that coordination is critical to keeping the project on schedule.",
+        },
+      ],
+    },
+
+    whyChooseUs: {
+      heading: "Why Clayton Families Choose Us for Kitchen Remodels",
+      reasons: [
+        {
+          title: "Designed for Clayton Architecture",
+          description:
+            "We don't import generic kitchen designs into Clayton homes. The kitchens we build for Clayton homeowners honor the era and architecture of each house — Tudor, Colonial, mid-century, contemporary — rather than imposing a single template.",
+        },
+        {
+          title: "Built by Hand, Locally",
+          description:
+            "Every cabinet, island, pantry, and built-in is designed and built in our St. Louis workshop. No catalog cabinets, no imported components. The fit, finish, and detailing match the level of work Clayton homes deserve.",
+        },
+        {
+          title: "One Point of Contact",
+          description:
+            "You work with the same person from the first consultation through the final walkthrough. Every question, change, and update flows through one relationship — not a rotating cast of project managers.",
+        },
+        {
+          title: "Trade Coordination in Tight Spaces",
+          description:
+            "Clayton homes — especially condos and older houses on smaller lots — often present logistical challenges around demo, deliveries, and trade staging. We've handled enough Clayton projects to know how to manage the building, the trades, and the neighbors.",
+        },
+        {
+          title: "Designs That Hold Up",
+          description:
+            "We've built kitchens since 1985 and watched how four decades of designs have aged. Our recommendations favor choices that stay current: neutral painted cabinetry with wood accents, clean hardware lines, period-appropriate detailing in older homes, and solid wood construction throughout.",
+        },
+      ],
+    },
+
+    process: {
+      heading: "Our Kitchen Remodel Process in Clayton",
+      steps: [
+        {
+          title: "Consultation and Home Visit",
+          description:
+            "We visit your Clayton home, measure the existing kitchen, and spend time understanding how your family uses the space. For older homes especially, this includes assessing structural realities — load-bearing walls, plumbing routes, electrical capacity — that will shape what the remodel can and can't change.",
+        },
+        {
+          title: "Design and Selections",
+          description:
+            "We develop detailed layout plans (often including structural changes), specify every door style, wood species, finish, hardware choice, and cabinet configuration. We walk through it all with you, and nothing moves forward until you're confident in the plan.",
+        },
+        {
+          title: "Shop Build (6–8 Weeks)",
+          description:
+            "Your cabinetry is built by hand in our St. Louis shop. You're welcome to visit and watch the work in progress — for many Clayton clients, that's one of the most satisfying parts of the project.",
+        },
+        {
+          title: "Installation and Trade Coordination (2–3 Weeks)",
+          description:
+            "Installation typically runs 2–3 weeks on-site and includes coordinating with countertop fabricators, appliance delivery, plumbing, electrical, and any structural trades. In Clayton condos and tight urban lots, we manage the building-side logistics — elevator scheduling, debris hauling, neighbor courtesy — that those projects require.",
+        },
+      ],
+    },
+
+    considerations: {
+      heading: "What Makes a Clayton Kitchen Remodel Different",
+      content: [
+        "Clayton's housing market is one of the strongest in the St. Louis region, and kitchen remodels here disproportionately influence both how the home shows and how it appraises. We design with both in mind: timeless choices that will look current in fifteen years, materials that hold up to daily use, and finish work that an inspector or buyer's agent will notice on a walkthrough.",
+        "The other reality of Clayton remodels is that the homes themselves often dictate the design vocabulary. A 1925 Tudor in Wydown demands different cabinetry than a 1960s ranch off Topton Way, which is different again from a contemporary condo near downtown Clayton. We don't push a house style toward our preferences — we design the kitchen the house wants, then make it work brilliantly for how your family lives.",
+      ],
+    },
+
+    faqs: [
+      {
+        question: "What does a full kitchen remodel cost in Clayton?",
+        answer:
+          "Full-scope kitchen remodels for Clayton homes vary widely based on cabinet count, wood species, door style, and the scope of any structural or layout changes. Countertops, appliances, and other trades are priced separately. We provide a detailed written quote after the in-home consultation — a real number, not a ballpark that grows. If a full remodel is more than your kitchen actually needs, we'll be honest about that and steer you toward refacing if it fits better.",
+      },
+      {
+        question: "How long does a Clayton kitchen remodel take?",
+        answer:
+          "Most projects run 10–14 weeks from design approval to final walkthrough: 2–3 weeks for design finalization, 6–8 weeks for cabinet build in our shop, and 2–3 weeks for on-site installation and trade coordination. Older Clayton homes occasionally take slightly longer when unexpected structural or mechanical issues surface during demo.",
+      },
+      {
+        question: "Can you work in Clayton homes with historic preservation considerations?",
+        answer:
+          "Yes — we have experience working in older Clayton homes where preserving architectural character is part of the brief. We can replicate period detailing, match existing millwork, and design kitchens that respect the home's era while incorporating modern functionality. If your home is in a designated historic district, we'll coordinate any required reviews during the design phase.",
+      },
+      {
+        question: "Do you handle Clayton condo kitchen remodels?",
+        answer:
+          "We do. Condo remodels in Clayton come with their own coordination requirements — HOA approvals, elevator scheduling, debris management, neighbor courtesy — and we've handled enough of them to know what each building expects. Bring your HOA's remodel guidelines to the consultation and we'll walk through what they'll require from the project.",
+      },
+      {
+        question: "Will I need permits for a Clayton kitchen remodel?",
+        answer:
+          "It depends on scope. Like-for-like cabinet replacement usually doesn't require a permit. Moving walls, changing plumbing routes, altering electrical loads, or making structural changes does. Clayton's permitting process is straightforward; we identify the requirements during design and either pull permits ourselves or coordinate with the trades responsible.",
+      },
+      {
+        question: "Can I stay in my Clayton home during the remodel?",
+        answer:
+          "Most clients do. We set up a temporary kitchen workspace (often in a dining room, basement, or finished room), and the on-site work is concentrated into a 2–3 week window. Expect to use grills, microwaves, and restaurants more than usual during that stretch — Clayton makes that easy — but the home stays livable throughout.",
+      },
+    ],
+
+    testimonial: {
+      quote:
+        "Led by Dave Portell, ProWood Interiors is absolutely the best, most professional, and expert group of wood craftspersons around. Our experience with them was outstanding, from start to finish. Dave and his group are wood artists, and they were exacting in their manufacture and installation.",
+      author: "Rich & Kathy Bucholz",
+    },
+
+    galleryProjects: [
+      "Quartzite Luxury Kitchen",
+      "White Cabinet Kitchen",
+      "Blue Island",
     ],
     galleryImageRange: { start: 0, count: 8 },
   },
