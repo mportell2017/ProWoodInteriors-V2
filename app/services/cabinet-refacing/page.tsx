@@ -46,65 +46,25 @@ export default function CabinetRefacingPage() {
     category: 'Kitchens',
     project: 'Kitchen Cabinet Refacing',
   }));
-  const showcaseImages = refacingImages.slice(0, 8);
+  const showcaseImages = refacingImages.slice(1, 9);
 
   const benefits = [
     {
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      ),
       title: 'Cost Effective',
       description:
         'Save 40–50% compared to full cabinet replacement while still getting a dramatic transformation. The cabinet boxes you already own stay; everything visible gets rebuilt.',
     },
     {
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      ),
       title: 'About a Week On-Site',
       description:
         'Most refacing projects install in 5–7 business days. The build happens off-site in our shop, so your daily routine barely changes.',
     },
     {
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      ),
       title: 'Less Waste',
       description:
         'Functional cabinet boxes stay out of the landfill. The new doors and drawer fronts are solid hardwood — built to last as long as the originals.',
     },
     {
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-          />
-        </svg>
-      ),
       title: 'Custom-Built Results',
       description:
         'Every door is built in our shop to fit your existing cabinet openings exactly. No catalog sizes, no fillers, no compromise on style.',
@@ -143,37 +103,74 @@ export default function CabinetRefacingPage() {
       title: 'Shaker',
       description:
         'Clean recessed-panel construction. The most popular style we build — works in transitional, contemporary, and modern-traditional kitchens.',
+      image: refacingImages[1],
     },
     {
       title: 'Raised Panel',
       description:
         'Classic traditional profile with a contoured center panel. The right choice for formal kitchens and homes with substantial architectural detailing.',
+      image: refacingImages[5],
     },
     {
       title: 'Slab',
       description:
         'Flat-front contemporary door with no profile. Often paired with horizontal grain orientation for a modern European look.',
+      image: refacingImages[9],
     },
     {
       title: 'Beadboard',
       description:
         'Vertical groove pattern — a great fit for farmhouse, cottage, and traditional kitchen styles.',
+      image: refacingImages[13],
     },
   ];
 
   const woodSpecies = [
-    { name: 'Maple', detail: 'Smooth grain, takes paint beautifully' },
-    { name: 'Oak', detail: 'Pronounced grain, classic stained look' },
-    { name: 'Cherry', detail: 'Warm tones that deepen with age' },
-    { name: 'Walnut', detail: 'Rich, dark, contemporary' },
-    { name: 'Hickory', detail: 'Strong character and color variation' },
-    { name: 'Painted-grade Maple', detail: 'Tight grain for the cleanest painted finish' },
+    {
+      name: 'Maple',
+      detail: 'Smooth grain, takes paint beautifully',
+      gradient: 'linear-gradient(175deg, #F0DEC0 0%, #E5D1B0 50%, #DEC8A5 100%)',
+    },
+    {
+      name: 'Oak',
+      detail: 'Pronounced grain, classic stained look',
+      gradient: 'linear-gradient(175deg, #D4B084 0%, #C39A6A 50%, #B5895A 100%)',
+    },
+    {
+      name: 'Cherry',
+      detail: 'Warm tones that deepen with age',
+      gradient: 'linear-gradient(175deg, #A66348 0%, #8B4F3F 50%, #74402F 100%)',
+    },
+    {
+      name: 'Walnut',
+      detail: 'Rich, dark, contemporary',
+      gradient: 'linear-gradient(175deg, #5C3A26 0%, #45291A 50%, #311C11 100%)',
+    },
+    {
+      name: 'Hickory',
+      detail: 'Strong character and color variation',
+      gradient: 'linear-gradient(175deg, #C49066 0%, #855936 60%, #A06F44 100%)',
+    },
+    {
+      name: 'Painted-grade Maple',
+      detail: 'Tight grain for the cleanest painted finish',
+      gradient: 'linear-gradient(175deg, #F8F0E0 0%, #F2EAD8 50%, #ECE2CD 100%)',
+    },
   ];
 
   const cities = [
     { name: 'Clayton', slug: 'clayton' },
     { name: 'Chesterfield', slug: 'chesterfield' },
     { name: 'Wildwood', slug: 'wildwood' },
+  ];
+
+  const priceVariables = [
+    { title: 'Cabinet count', detail: 'More cabinets means more doors and drawer fronts to build by hand.' },
+    { title: 'Wood species', detail: 'Painted-grade maple is typically less than walnut or cherry.' },
+    { title: 'Door style', detail: 'Slab and shaker are simpler builds; raised panel adds shop time.' },
+    { title: 'Hardware', detail: 'Soft-close hinges and pulls vary by finish, brand, and quantity.' },
+    { title: 'Drawer boxes', detail: 'Replacing them in addition to fronts adds material and labor.' },
+    { title: 'Add-ons', detail: 'Pull-out shelves, crown molding, under-cabinet lighting.' },
   ];
 
   return (
@@ -187,466 +184,723 @@ export default function CabinetRefacingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* Hero Section */}
-      <Section className="pt-24 pb-16">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-brass uppercase tracking-widest text-sm font-sans mb-4">
-              Serving the St. Louis Metro Since 1985
-            </p>
-            <Heading accent="italic" as="h1">
-              Cabinet Refacing in St. Louis, Missouri
-            </Heading>
-            <p className="mt-6 text-xl text-ink/70 leading-relaxed font-elegant">
-              Handcrafted new doors, drawer fronts, and custom finishes — installed in about a
-              week, at 40–50% less than full cabinet replacement.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="tel:3144379988"
-                className="inline-flex items-center gap-3 px-8 py-4 text-lg font-semibold text-parchment bg-oxblood hover:bg-oxblood/90 rounded-sm shadow-md transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-oxblood focus-visible:ring-offset-2"
-              >
-                Call (314) 437-9988
-              </a>
-              <ButtonLink href="/contact-us" variant="outline">
-                Get a Free Estimate
-              </ButtonLink>
+      {/* ============================================================
+          HERO — Split editorial layout
+          ============================================================ */}
+      <section className="relative isolate overflow-hidden bg-parchment">
+        <Container className="pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-20 lg:pb-20">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            {/* Left: copy */}
+            <div className="lg:col-span-6 xl:col-span-5">
+              <div className="flex items-center gap-3 mb-7">
+                <div className="h-px w-12 bg-gradient-to-r from-transparent via-brass/70 to-brass" />
+                <span className="text-[11px] tracking-[0.22em] uppercase font-medium text-umber">
+                  Serving St. Louis Since 1985
+                </span>
+              </div>
+
+              <h1 className="font-display tracking-tight text-ink text-[44px] sm:text-6xl lg:text-[68px] leading-[1.02]">
+                Cabinet
+                <span className="block italic font-light text-umber">Refacing,</span>
+                <span className="block">handcrafted</span>
+                <span className="block">in St. Louis.</span>
+              </h1>
+
+              <p className="mt-8 text-base sm:text-lg leading-relaxed text-ink/80 font-sans max-w-md">
+                Handcrafted new doors, drawer fronts, and custom finishes — installed in about a
+                week, at 40–50% less than full cabinet replacement.
+              </p>
+
+              <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <a
+                  href="tel:3144379988"
+                  className="inline-flex items-center justify-center gap-3 px-7 py-4 text-base font-semibold tracking-wide text-parchment bg-oxblood hover:bg-oxblood/90 rounded-sm shadow-[0_10px_24px_rgba(122,29,29,0.22)] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-oxblood focus-visible:ring-offset-2"
+                >
+                  Call (314) 437-9988
+                </a>
+                <ButtonLink href="/contact-us" variant="outline">
+                  Get a Free Estimate
+                </ButtonLink>
+              </div>
+
+              <div className="mt-12 hidden lg:flex items-center gap-5">
+                <span className="font-display italic text-5xl text-brass/60 font-light leading-none">
+                  40
+                </span>
+                <div className="text-[11px] tracking-[0.22em] uppercase text-umber/70 font-medium leading-relaxed">
+                  Years of <br />
+                  Local Craft
+                </div>
+              </div>
+            </div>
+
+            {/* Right: framed image */}
+            <div className="lg:col-span-6 xl:col-span-7">
+              <div className="relative aspect-[5/6] sm:aspect-[4/5] lg:aspect-[4/5] overflow-hidden">
+                <Image
+                  src={refacingImages[16].src}
+                  alt="Finished cabinet refacing in a St. Louis kitchen: handcrafted solid-wood doors and crown molding by Professional Wood Interiors."
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                />
+                {/* Editorial frame */}
+                <div className="absolute inset-0 z-10 pointer-events-none">
+                  <div className="absolute inset-3 sm:inset-4 border border-parchment/40" />
+                  <div className="absolute inset-4 sm:inset-5 border border-brass/30" />
+                  {/* Corner ticks */}
+                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4 w-6 h-6 border-t-2 border-l-2 border-brass/60" />
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-6 h-6 border-t-2 border-r-2 border-brass/60" />
+                  <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 w-6 h-6 border-b-2 border-l-2 border-brass/60" />
+                  <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 w-6 h-6 border-b-2 border-r-2 border-brass/60" />
+                </div>
+                {/* Subtle warmth */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-ink/10 to-transparent pointer-events-none" />
+              </div>
             </div>
           </div>
         </Container>
-      </Section>
 
-      {/* Intro Section */}
-      <Section className="py-12">
-        <Container>
-          <div className="max-w-4xl mx-auto">
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg text-ink/80 leading-relaxed font-sans mb-6">
-                Many St. Louis homes — particularly in established neighborhoods around Clayton,
-                Chesterfield, and Wildwood — were built with cabinet boxes that are still
-                structurally sound. Solid plywood or hardwood frames, properly mounted, with layouts
-                that still work for the room. What&apos;s usually dated is the face: tired oak
-                doors, chipped paint, brass hardware from a different era, or a finish that
-                hasn&apos;t aged gracefully. That&apos;s exactly what cabinet refacing solves.
+        {/* Closing rule */}
+        <div className="flex items-center justify-center gap-3 pb-2">
+          <div className="h-px w-16 bg-gradient-to-r from-transparent via-umber/25 to-transparent" />
+          <svg className="w-3 h-3 text-umber/40" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L13.09 5.26L16 6L13.09 6.74L12 10L10.91 6.74L8 6L10.91 5.26L12 2Z" />
+          </svg>
+          <div className="h-px w-16 bg-gradient-to-l from-transparent via-umber/25 to-transparent" />
+        </div>
+      </section>
+
+      {/* ============================================================
+          INTRO — Two-column editorial with drop-cap
+          ============================================================ */}
+      <Section className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-12 gap-x-12 gap-y-8">
+            <div className="lg:col-span-12">
+              <p className="font-display text-2xl sm:text-[28px] leading-[1.35] text-ink first-letter:font-display first-letter:text-[5.5rem] first-letter:font-medium first-letter:text-brass first-letter:float-left first-letter:leading-[0.85] first-letter:mr-3 first-letter:mt-1">
+                Many St. Louis homes — particularly in Clayton, Chesterfield, and Wildwood — were
+                built with cabinet boxes that are still structurally sound.
               </p>
-              <p className="text-lg text-ink/80 leading-relaxed font-sans mb-6">
-                Cabinet refacing replaces everything visible while keeping the structural boxes
-                you already own. New solid-wood doors. Matching drawer fronts. Veneer over the
-                exposed cabinet exteriors. Soft-close hinges. Hardware in the finish you choose.
-                The result is a kitchen that looks brand-new — typically for 40–50% less than a
-                full custom-cabinet replacement, in about a quarter of the time on-site.
+            </div>
+
+            <div className="lg:col-span-6 space-y-5">
+              <p className="text-[15px] sm:text-base text-ink/80 leading-[1.7] font-sans">
+                What&apos;s usually dated is the face: tired oak doors, chipped paint, brass
+                hardware from a different era, or a finish that hasn&apos;t aged gracefully.
+                That&apos;s exactly what cabinet refacing solves.
               </p>
-              <p className="text-lg text-ink/80 leading-relaxed font-sans">
+              <p className="text-[15px] sm:text-base text-ink/80 leading-[1.7] font-sans">
+                Refacing replaces everything visible while keeping the structural boxes you
+                already own. New solid-wood doors. Matching drawer fronts. Veneer over the exposed
+                exteriors. Soft-close hinges. Hardware in the finish you choose.
+              </p>
+            </div>
+            <div className="lg:col-span-6 space-y-5">
+              <p className="text-[15px] sm:text-base text-ink/80 leading-[1.7] font-sans">
+                The result is a kitchen that looks brand-new — typically for 40–50% less than full
+                custom-cabinet replacement, in about a quarter of the time on-site.
+              </p>
+              <p className="text-[15px] sm:text-base text-ink/80 leading-[1.7] font-sans">
                 We&apos;ve been refacing kitchens for St. Louis families since 1985. Everything is
                 built by hand in our local shop, installed by the same people who built it, and
                 backed by a written warranty. No catalog ordering, no offshore manufacturing, no
-                handing the install off to subcontractors. One team, start to finish.
+                handing the install off to subcontractors.
               </p>
             </div>
           </div>
-        </Container>
+        </div>
       </Section>
 
-      {/* What Is Cabinet Refacing Section */}
-      <Section tone="parchment" className="py-16">
+      {/* ============================================================
+          STAYS / CHANGES — Visual diptych
+          ============================================================ */}
+      <Section tone="parchment" className="py-16 sm:py-20 border-t border-ink/5">
+        <div className="max-w-5xl mx-auto">
+          <Heading as="h2" eyebrow="The Basics" className="text-center">
+            What Stays. What Changes.
+          </Heading>
+
+          <p className="mt-8 text-base text-ink/80 leading-[1.7] font-sans max-w-2xl mx-auto text-center">
+            Cabinet refacing keeps your existing cabinet boxes in place and replaces every visible
+            surface. Unless someone opens a cabinet and inspects the interior, a refaced kitchen
+            is visually indistinguishable from a brand-new one.
+          </p>
+
+          <div className="mt-14 grid md:grid-cols-2 gap-px bg-ink/10 border border-ink/10">
+            {/* Stays */}
+            <div className="bg-parchment p-8 sm:p-10">
+              <div className="flex items-baseline gap-3 mb-7">
+                <span className="font-display italic text-3xl text-umber/60 leading-none">i.</span>
+                <h3 className="font-display text-2xl text-ink">What stays</h3>
+              </div>
+              <ul className="space-y-4">
+                {[
+                  'The structural cabinet boxes',
+                  'Your existing kitchen layout',
+                  'Interior shelving and dividers',
+                  'Plumbing and electrical',
+                ].map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-4 text-[15px] text-ink/80 font-sans leading-relaxed"
+                  >
+                    <span className="mt-[0.6rem] inline-block h-px w-4 bg-umber/40 flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Changes */}
+            <div className="bg-parchment p-8 sm:p-10">
+              <div className="flex items-baseline gap-3 mb-7">
+                <span className="font-display italic text-3xl text-brass leading-none">ii.</span>
+                <h3 className="font-display text-2xl text-ink">What changes</h3>
+              </div>
+              <ul className="space-y-4">
+                {[
+                  'Every cabinet door, custom-built to fit your openings',
+                  'Every drawer front, in matching wood and finish',
+                  'Veneer across visible exteriors and end panels',
+                  'All hinges, hardware, and soft-close mechanisms',
+                  'Optional: drawer boxes, pull-outs, crown molding, lighting',
+                ].map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-4 text-[15px] text-ink/80 font-sans leading-relaxed"
+                  >
+                    <span className="mt-[0.6rem] inline-block h-px w-4 bg-brass flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* ============================================================
+          STAT MOMENT — 40–50% Less
+          ============================================================ */}
+      <section className="relative isolate overflow-hidden bg-walnut text-parchment py-20 sm:py-24 lg:py-28">
+        {/* Subtle radial atmosphere */}
+        <div
+          className="absolute inset-0 opacity-50 pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(ellipse at center, rgba(181,139,75,0.10) 0%, rgba(44,24,16,0) 60%)',
+          }}
+        />
         <Container>
-          <div className="max-w-4xl mx-auto">
-            <Heading as="h2" eyebrow="The Basics" className="text-center">
-              What Is Cabinet Refacing?
+          <div className="max-w-4xl mx-auto text-center relative">
+            <p className="text-[11px] tracking-[0.24em] uppercase text-brass mb-8 font-medium">
+              The Investment
+            </p>
+
+            <p className="font-display leading-[0.95] text-parchment">
+              <span className="block text-[88px] sm:text-[140px] lg:text-[180px] italic font-light tracking-tight">
+                40–50%
+              </span>
+            </p>
+
+            <div className="mt-6 flex items-center justify-center gap-4">
+              <div className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent to-brass/60" />
+              <span className="font-elegant italic text-lg sm:text-2xl text-brass">
+                less than full replacement
+              </span>
+              <div className="h-px w-12 sm:w-20 bg-gradient-to-l from-transparent to-brass/60" />
+            </div>
+
+            <p className="mt-10 max-w-2xl mx-auto text-base sm:text-[17px] text-parchment/75 leading-[1.7] font-sans">
+              Every refacing project is priced specifically to the kitchen. As a general
+              framework, custom refacing typically runs 40–50% less than fully replacing your
+              cabinets with comparable custom work — sometimes more when the existing boxes are in
+              particularly good shape.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* ============================================================
+          BENEFITS — Numbered editorial
+          ============================================================ */}
+      <Section className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-14">
+            <Heading as="h2" eyebrow="Why Refacing">
+              Why St. Louis Homeowners Choose Refacing
             </Heading>
-            <div className="prose prose-lg max-w-none mt-10">
-              <p className="text-lg text-ink/80 leading-relaxed font-sans mb-6">
-                Cabinet refacing is a kitchen update that keeps your existing cabinet boxes in
-                place and replaces the surfaces you see — the doors, drawer fronts, and visible
-                exterior panels. It&apos;s sometimes called cabinet resurfacing or cabinet
-                redooring; the work is the same.
-              </p>
-              <p className="text-lg text-ink/80 leading-relaxed font-sans mb-6">
-                In a typical refacing project, every cabinet door and drawer front is custom-built
-                in our shop to fit your existing openings. The visible end panels, face frames, and
-                filler strips are covered with a matching wood veneer. All hinges and hardware are
-                replaced. Optionally, we can also rebuild drawer boxes, add pull-out shelves,
-                install under-cabinet lighting, or change crown molding profiles during the same
-                visit.
-              </p>
-              <p className="text-lg text-ink/80 leading-relaxed font-sans">
-                Unless someone opens a cabinet and inspects the interior, a refaced kitchen is
-                visually indistinguishable from a brand-new one. The cabinet boxes — the part you
-                can&apos;t see — stay. Everything else is new.
-              </p>
-            </div>
           </div>
-        </Container>
-      </Section>
 
-      {/* Benefits Section */}
-      <Section className="py-16">
-        <Container>
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <Heading as="h2" eyebrow="Why Refacing">
-                Why St. Louis Homeowners Choose Refacing
-              </Heading>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {benefits.map((benefit, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center text-center p-8 bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="flex-shrink-0 w-16 h-16 mb-6 text-brass flex items-center justify-center">
-                    {benefit.icon}
-                  </div>
-                  <h3 className="text-2xl font-elegant font-semibold text-ink mb-3">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-lg text-ink/70 leading-relaxed">{benefit.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Refacing vs Painting vs Replacing Comparison */}
-      <Section tone="parchment" className="py-16">
-        <Container>
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <Heading as="h2" eyebrow="The Comparison">
-                Refacing vs. Painting vs. Replacing
-              </Heading>
-              <p className="mt-4 text-lg text-ink/70 font-elegant max-w-2xl mx-auto">
-                The three most common ways to update kitchen cabinets — and how to decide which one
-                fits your situation.
-              </p>
-            </div>
-
-            <div className="overflow-x-auto">
-              <table className="w-full text-left bg-white shadow-sm rounded-sm">
-                <thead>
-                  <tr className="bg-walnut text-parchment">
-                    <th className="px-6 py-4 font-elegant text-lg">&nbsp;</th>
-                    <th className="px-6 py-4 font-elegant text-lg text-center">Cabinet Painting</th>
-                    <th className="px-6 py-4 font-elegant text-lg text-center bg-brass/30">
-                      Cabinet Refacing
-                    </th>
-                    <th className="px-6 py-4 font-elegant text-lg text-center">
-                      Full Replacement
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-ink/10">
-                  <tr>
-                    <td className="px-6 py-4 font-sans font-semibold text-ink">Visual Change</td>
-                    <td className="px-6 py-4 text-center text-ink/70">New color only</td>
-                    <td className="px-6 py-4 text-center text-ink/70 bg-brass/5">
-                      New doors, fronts, finish, hardware
-                    </td>
-                    <td className="px-6 py-4 text-center text-ink/70">
-                      Complete new cabinetry
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 font-sans font-semibold text-ink">Door Style</td>
-                    <td className="px-6 py-4 text-center text-ink/70">Stays the same</td>
-                    <td className="px-6 py-4 text-center text-ink/70 bg-brass/5">
-                      Any style you want
-                    </td>
-                    <td className="px-6 py-4 text-center text-ink/70">Any style you want</td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 font-sans font-semibold text-ink">Layout Changes</td>
-                    <td className="px-6 py-4 text-center text-ink/70">No</td>
-                    <td className="px-6 py-4 text-center text-ink/70 bg-brass/5">Minor only</td>
-                    <td className="px-6 py-4 text-center text-ink/70">Yes</td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 font-sans font-semibold text-ink">Durability</td>
-                    <td className="px-6 py-4 text-center text-ink/70">5–10 years typical</td>
-                    <td className="px-6 py-4 text-center text-ink/70 bg-brass/5">
-                      20+ years (solid wood)
-                    </td>
-                    <td className="px-6 py-4 text-center text-ink/70">
-                      20+ years (solid wood)
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 font-sans font-semibold text-ink">On-Site Time</td>
-                    <td className="px-6 py-4 text-center text-ink/70">3–5 days</td>
-                    <td className="px-6 py-4 text-center text-ink/70 bg-brass/5">
-                      5–7 business days
-                    </td>
-                    <td className="px-6 py-4 text-center text-ink/70">2–3 weeks</td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 font-sans font-semibold text-ink">Relative Cost</td>
-                    <td className="px-6 py-4 text-center text-ink/70">$</td>
-                    <td className="px-6 py-4 text-center text-ink/70 bg-brass/5">$$</td>
-                    <td className="px-6 py-4 text-center text-ink/70">$$$$</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 bg-white rounded-sm shadow-sm">
-                <h3 className="font-elegant text-xl text-ink mb-2">Choose Painting When</h3>
-                <p className="text-ink/70 leading-relaxed">
-                  Your door style still works for you, you want the lowest cost option, and you
-                  accept the finish will need redoing in 5–10 years.
-                </p>
-              </div>
-              <div className="p-6 bg-white rounded-sm shadow-sm border-2 border-brass">
-                <h3 className="font-elegant text-xl text-ink mb-2">Choose Refacing When</h3>
-                <p className="text-ink/70 leading-relaxed">
-                  Your cabinet boxes are sound, your layout works, and you want a transformed
-                  kitchen with new doors, hardware, and finishes — without remodel-level cost or
-                  disruption.
-                </p>
-              </div>
-              <div className="p-6 bg-white rounded-sm shadow-sm">
-                <h3 className="font-elegant text-xl text-ink mb-2">Choose Replacement When</h3>
-                <p className="text-ink/70 leading-relaxed">
-                  You want to change the layout, the existing boxes are damaged or low-quality, or
-                  you&apos;re combining the kitchen with adjacent rooms.
-                </p>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Cost Overview */}
-      <Section className="py-16">
-        <Container>
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-10">
-              <Heading as="h2" eyebrow="Investment">
-                What Cabinet Refacing Costs
-              </Heading>
-            </div>
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg text-ink/80 leading-relaxed font-sans mb-6">
-                Every refacing project is priced specifically to the kitchen, so a real number
-                requires seeing the cabinets in person. As a general framework, custom cabinet
-                refacing typically runs <strong>40–50% less than fully replacing your cabinets
-                with comparable custom work</strong> — sometimes more when the existing boxes are
-                in particularly good shape.
-              </p>
-              <p className="text-lg text-ink/80 leading-relaxed font-sans mb-6">
-                The major variables that move the price: cabinet count, door style and wood species
-                (painted maple is typically less than walnut), hardware selection, whether drawer
-                boxes are replaced, and any added features like pull-out shelves, crown molding, or
-                under-cabinet lighting.
-              </p>
-              <p className="text-lg text-ink/80 leading-relaxed font-sans mb-8">
-                We provide a fixed written quote after the in-home consultation. There are no
-                surprise add-ons on the final invoice, and we don&apos;t do bait-and-switch upgrades
-                during installation. What you approve is what you pay.
-              </p>
-              <div className="not-prose text-center">
-                <ButtonLink href="/cabinet-refacing-cost" variant="outline">
-                  Read the Full St. Louis Cabinet Refacing Cost Guide
-                </ButtonLink>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Process Section */}
-      <Section tone="parchment" className="py-16">
-        <Container>
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <Heading as="h2" eyebrow="How It Works">
-                Our Cabinet Refacing Process
-              </Heading>
-              <p className="mt-4 text-lg text-ink/70 font-elegant max-w-2xl mx-auto">
-                Four steps from first phone call to finished kitchen. Same crew throughout.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {processSteps.map((step) => (
-                <div
-                  key={step.number}
-                  className="flex flex-col md:flex-row gap-6 p-8 bg-white rounded-sm shadow-sm"
-                >
-                  <div className="flex-shrink-0">
-                    <div className="font-elegant text-5xl text-brass font-light">{step.number}</div>
-                  </div>
+          <div className="grid md:grid-cols-2 gap-x-14 gap-y-12">
+            {benefits.map((benefit, idx) => (
+              <article key={benefit.title}>
+                <div className="flex items-baseline gap-5 sm:gap-6">
+                  <span className="font-display italic text-5xl sm:text-6xl text-brass/70 font-light leading-none flex-shrink-0">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-elegant font-semibold text-ink mb-3">
-                      {step.title}
+                    <h3 className="font-display text-xl sm:text-2xl text-ink mb-3">
+                      {benefit.title}
                     </h3>
-                    <p className="text-lg text-ink/70 leading-relaxed">{step.description}</p>
+                    <p className="text-[15px] sm:text-base text-ink/80 leading-[1.7] font-sans">
+                      {benefit.description}
+                    </p>
                   </div>
                 </div>
-              ))}
-            </div>
+                <div className="mt-7 ml-[4.25rem] sm:ml-[5rem] h-px bg-gradient-to-r from-umber/20 to-transparent" />
+              </article>
+            ))}
           </div>
-        </Container>
+        </div>
       </Section>
 
-      {/* Materials & Door Styles */}
-      <Section className="py-16">
-        <Container>
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <Heading as="h2" eyebrow="Materials">
-                Door Styles and Wood Species
-              </Heading>
-              <p className="mt-4 text-lg text-ink/70 font-elegant max-w-2xl mx-auto">
-                Every door is built in our shop. We bring physical samples to your consultation
-                so you can see grain, color, and finish in your kitchen lighting.
-              </p>
-            </div>
+      {/* ============================================================
+          COMPARISON TABLE — Refined
+          ============================================================ */}
+      <Section tone="parchment" className="py-16 sm:py-20 border-t border-ink/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <Heading as="h2" eyebrow="The Comparison">
+              Refacing vs. Painting vs. Replacing
+            </Heading>
+            <p className="mt-5 text-base text-ink/75 max-w-2xl mx-auto font-sans leading-relaxed">
+              The three most common ways to update kitchen cabinets — and how to decide which one
+              fits your situation.
+            </p>
+          </div>
 
-            <div className="mb-12">
-              <h3 className="font-elegant text-2xl text-ink mb-6 text-center">
-                Door Styles We Build
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {doorStyles.map((style) => (
-                  <div
-                    key={style.title}
-                    className="p-6 bg-parchment rounded-sm border border-ink/10"
-                  >
-                    <h4 className="font-elegant text-xl text-ink mb-2">{style.title}</h4>
-                    <p className="text-ink/70 leading-relaxed text-base">{style.description}</p>
-                  </div>
+          <div className="overflow-x-auto -mx-4 sm:mx-0">
+            <table className="w-full text-left min-w-[640px] sm:min-w-0">
+              <thead>
+                <tr className="border-y border-ink/15">
+                  <th className="px-4 sm:px-6 py-5 font-display text-sm tracking-wide uppercase text-umber/70">
+                    &nbsp;
+                  </th>
+                  <th className="px-4 sm:px-6 py-5 font-display text-base sm:text-lg text-ink/80 text-center">
+                    Painting
+                  </th>
+                  <th className="relative px-4 sm:px-6 py-5 font-display text-base sm:text-lg text-ink text-center">
+                    <span className="absolute top-0 left-1 right-1 h-[3px] bg-brass" />
+                    Refacing
+                  </th>
+                  <th className="px-4 sm:px-6 py-5 font-display text-base sm:text-lg text-ink/80 text-center">
+                    Replacement
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-ink/8">
+                {[
+                  {
+                    label: 'Visual change',
+                    a: 'New color only',
+                    b: 'New doors, fronts, finish, hardware',
+                    c: 'Complete new cabinetry',
+                  },
+                  { label: 'Door style', a: 'Stays the same', b: 'Any style you want', c: 'Any style you want' },
+                  { label: 'Layout changes', a: 'No', b: 'Minor only', c: 'Yes' },
+                  { label: 'Durability', a: '5–10 years typical', b: '20+ years (solid wood)', c: '20+ years (solid wood)' },
+                  { label: 'On-site time', a: '3–5 days', b: '5–7 business days', c: '2–3 weeks' },
+                  { label: 'Relative cost', a: '$', b: '$$', c: '$$$$' },
+                ].map((row, idx) => (
+                  <tr key={row.label} className={idx % 2 === 1 ? 'bg-ink/[0.015]' : ''}>
+                    <td className="px-4 sm:px-6 py-4 font-display text-[15px] sm:text-base text-ink">
+                      {row.label}
+                    </td>
+                    <td className="px-4 sm:px-6 py-4 text-center text-[14px] sm:text-[15px] text-ink/70 font-sans">
+                      {row.a}
+                    </td>
+                    <td className="relative px-4 sm:px-6 py-4 text-center text-[14px] sm:text-[15px] text-ink font-sans font-medium bg-brass/[0.06]">
+                      {row.b}
+                    </td>
+                    <td className="px-4 sm:px-6 py-4 text-center text-[14px] sm:text-[15px] text-ink/70 font-sans">
+                      {row.c}
+                    </td>
+                  </tr>
                 ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-elegant text-2xl text-ink mb-6 text-center">Wood Species</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {woodSpecies.map((species) => (
-                  <div
-                    key={species.name}
-                    className="p-5 bg-parchment rounded-sm border border-ink/10"
-                  >
-                    <p className="font-elegant text-lg text-ink font-semibold">{species.name}</p>
-                    <p className="text-ink/60 text-sm mt-1">{species.detail}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+              </tbody>
+            </table>
           </div>
-        </Container>
-      </Section>
 
-      {/* Gallery Showcase Section */}
-      <Section tone="parchment" className="py-16">
-        <Container>
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <Heading as="h2" eyebrow="Recent Work">
-                Cabinet Refacing Gallery
-              </Heading>
-              <p className="mt-4 text-lg text-ink/70 font-elegant">
-                Real refacing projects from St. Louis area kitchens
+          {/* Decision helpers */}
+          <div className="mt-12 grid md:grid-cols-3 gap-px bg-ink/10 border border-ink/10">
+            <div className="bg-parchment p-7">
+              <p className="text-[11px] tracking-[0.22em] uppercase text-umber/70 mb-3">
+                Choose painting
+              </p>
+              <p className="text-[15px] text-ink/80 leading-[1.7] font-sans">
+                Your door style still works for you, you want the lowest cost option, and you
+                accept the finish will need redoing in 5–10 years.
               </p>
             </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
-              {showcaseImages.map((image) => (
-                <Link
-                  key={image.src}
-                  href="/showroom/kitchens"
-                  className="group relative aspect-[3/4] overflow-hidden rounded-sm shadow-md hover:shadow-xl transition-all duration-300"
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </Link>
-              ))}
-            </div>
-
-            <div className="text-center">
-              <ButtonLink href="/showroom/kitchens" variant="outline" className="group">
-                View All Kitchen Projects
-                <svg
-                  className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </ButtonLink>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Service Area Cities */}
-      <Section className="py-16">
-        <Container>
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <Heading as="h2" eyebrow="Service Area">
-                Cabinet Refacing Across the St. Louis Metro
-              </Heading>
-              <p className="mt-4 text-lg text-ink/70 font-elegant max-w-2xl mx-auto">
-                We work with homeowners throughout St. Louis County and St. Charles County, with a
-                particular concentration in these communities.
+            <div className="bg-parchment p-7 relative">
+              <span className="absolute top-0 left-0 right-0 h-[3px] bg-brass" />
+              <p className="text-[11px] tracking-[0.22em] uppercase text-brass mb-3 font-medium">
+                Choose refacing
+              </p>
+              <p className="text-[15px] text-ink/85 leading-[1.7] font-sans">
+                Your cabinet boxes are sound, your layout works, and you want a transformed
+                kitchen with new doors, hardware, and finishes — without remodel-level cost or
+                disruption.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {cities.map((city) => (
-                <Link
-                  key={city.slug}
-                  href={`/locations/${city.slug}/cabinet-refacing`}
-                  className="group p-8 bg-parchment border border-ink/10 rounded-sm hover:border-brass hover:shadow-md transition-all text-center"
-                >
-                  <h3 className="font-elegant text-2xl text-ink group-hover:text-brass transition-colors mb-2">
-                    {city.name}
+            <div className="bg-parchment p-7">
+              <p className="text-[11px] tracking-[0.22em] uppercase text-umber/70 mb-3">
+                Choose replacement
+              </p>
+              <p className="text-[15px] text-ink/80 leading-[1.7] font-sans">
+                You want to change the layout, the existing boxes are damaged or low-quality, or
+                you&apos;re combining the kitchen with adjacent rooms.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* ============================================================
+          COST VARIABLES
+          ============================================================ */}
+      <Section className="py-16 sm:py-20">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <Heading as="h2" eyebrow="What Moves the Price">
+              The Variables in a Refacing Estimate
+            </Heading>
+            <p className="mt-5 max-w-2xl mx-auto text-base text-ink/75 font-sans leading-relaxed">
+              A real number requires seeing the cabinets in person, but here&apos;s what shifts
+              the bid in either direction.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-x-12 gap-y-8">
+            {priceVariables.map((item) => (
+              <div key={item.title} className="border-l-2 border-brass/40 pl-5 py-1">
+                <h3 className="font-display text-lg text-ink mb-2">{item.title}</h3>
+                <p className="text-[15px] text-ink/75 font-sans leading-[1.7]">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-14 text-center">
+            <p className="font-elegant italic text-xl sm:text-[22px] text-ink/85 leading-relaxed max-w-2xl mx-auto mb-8">
+              We provide a fixed written quote after the in-home consultation. No surprise add-ons.
+              What you approve is what you pay.
+            </p>
+            <ButtonLink href="/cabinet-refacing-cost" variant="outline">
+              Read the Full St. Louis Refacing Cost Guide
+            </ButtonLink>
+          </div>
+        </div>
+      </Section>
+
+      {/* ============================================================
+          PROCESS — Editorial timeline
+          ============================================================ */}
+      <Section tone="parchment" className="py-16 sm:py-20 border-t border-ink/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <Heading as="h2" eyebrow="How It Works">
+              From First Call to Finished Kitchen
+            </Heading>
+            <p className="mt-5 max-w-2xl mx-auto text-base text-ink/75 font-sans leading-relaxed">
+              Four steps, same crew throughout. No hand-offs to subcontractors.
+            </p>
+          </div>
+
+          <ol className="relative space-y-12 sm:space-y-14">
+            {/* Vertical line on desktop */}
+            <div
+              aria-hidden="true"
+              className="hidden md:block absolute left-[4.25rem] top-3 bottom-3 w-px bg-gradient-to-b from-brass/40 via-umber/15 to-transparent"
+            />
+
+            {processSteps.map((step) => (
+              <li
+                key={step.number}
+                className="relative grid md:grid-cols-[8rem_1fr] gap-4 md:gap-10 items-start"
+              >
+                <div className="relative z-10 flex items-baseline gap-3 md:block">
+                  <span className="font-display italic text-6xl sm:text-7xl text-brass leading-none">
+                    {step.number}
+                  </span>
+                </div>
+                <div className="md:pt-4">
+                  <h3 className="font-display text-2xl sm:text-[28px] text-ink mb-3">
+                    {step.title}
                   </h3>
-                  <p className="text-ink/60 font-sans">Cabinet Refacing in {city.name}, MO →</p>
-                </Link>
-              ))}
-            </div>
+                  <p className="text-[15px] sm:text-base text-ink/80 leading-[1.75] font-sans max-w-2xl">
+                    {step.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </Section>
+
+      {/* ============================================================
+          DOOR STYLES — Image-led
+          ============================================================ */}
+      <Section className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <Heading as="h2" eyebrow="Door Styles">
+              Built in Our Shop, Designed for Your Kitchen
+            </Heading>
+            <p className="mt-5 max-w-2xl mx-auto text-base text-ink/75 font-sans leading-relaxed">
+              Every door is built by hand. We bring physical samples to your consultation so you
+              can see grain, color, and finish in your kitchen lighting.
+            </p>
           </div>
-        </Container>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {doorStyles.map((style, idx) => (
+              <article key={style.title} className="group">
+                <div className="relative aspect-[3/4] overflow-hidden mb-5 bg-ink/5">
+                  <Image
+                    src={style.image.src}
+                    alt={`Example of ${style.title} cabinet door refacing in a St. Louis kitchen`}
+                    fill
+                    className="object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-ink/10 pointer-events-none" />
+                  <span className="absolute top-3 left-3 font-display italic text-xs tracking-wider text-parchment bg-walnut/85 backdrop-blur-sm px-2.5 py-1">
+                    №&nbsp;{String(idx + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                <h3 className="font-display text-xl text-ink mb-2">{style.title}</h3>
+                <p className="text-sm text-ink/75 font-sans leading-relaxed">
+                  {style.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ============================================================
+          WOOD SPECIES — Color/grain swatches
+          ============================================================ */}
+      <Section tone="parchment" className="py-16 sm:py-20 border-t border-ink/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <Heading as="h2" eyebrow="The Materials">
+              Wood Species We Build With
+            </Heading>
+            <p className="mt-5 max-w-2xl mx-auto text-base text-ink/75 font-sans leading-relaxed">
+              Approximations below — actual color and grain vary by board and finish. Physical
+              samples come to your in-home consultation.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 sm:gap-6">
+            {woodSpecies.map((species) => (
+              <article key={species.name}>
+                <div
+                  className="relative aspect-[3/2] mb-4 overflow-hidden"
+                  style={{ background: species.gradient }}
+                >
+                  {/* Grain texture overlay */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 opacity-50 mix-blend-multiply"
+                    style={{
+                      backgroundImage:
+                        'repeating-linear-gradient(91deg, transparent 0px, transparent 2px, rgba(0,0,0,0.07) 2px, rgba(0,0,0,0.07) 3px), repeating-linear-gradient(89deg, transparent 0px, transparent 9px, rgba(255,255,255,0.05) 9px, rgba(255,255,255,0.05) 10px)',
+                    }}
+                  />
+                  {/* Soft top-light */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        'linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.10) 100%)',
+                    }}
+                  />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-ink/15 pointer-events-none" />
+                </div>
+                <h3 className="font-display text-lg text-ink">{species.name}</h3>
+                <p className="text-sm text-ink/70 font-sans mt-1 leading-relaxed">
+                  {species.detail}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ============================================================
+          GALLERY — Editorial staggered
+          ============================================================ */}
+      <Section className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <Heading as="h2" eyebrow="Recent Work">
+              Cabinet Refacing in St. Louis Kitchens
+            </Heading>
+            <p className="mt-5 max-w-xl mx-auto text-base text-ink/75 font-sans">
+              A small selection of recent refacing projects.
+            </p>
+          </div>
+
+          {/* Featured image */}
+          <Link
+            href="/showroom/kitchens"
+            className="group block relative aspect-[21/10] sm:aspect-[16/7] overflow-hidden bg-ink/5 mb-3 sm:mb-4"
+          >
+            <Image
+              src={showcaseImages[0].src}
+              alt={showcaseImages[0].alt}
+              fill
+              className="object-cover transition-transform duration-[1200ms] group-hover:scale-[1.03]"
+              sizes="(max-width: 1024px) 100vw, 1100px"
+            />
+            <div className="absolute inset-0 ring-1 ring-inset ring-ink/10 pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-ink/65 via-ink/15 to-transparent">
+              <span className="font-elegant italic text-parchment text-lg sm:text-xl">
+                Recent kitchen refacing, St. Louis
+              </span>
+            </div>
+          </Link>
+
+          {/* Row of 3 medium */}
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-3 sm:mb-4">
+            {showcaseImages.slice(1, 4).map((image) => (
+              <Link
+                key={image.src}
+                href="/showroom/kitchens"
+                className="group relative aspect-square overflow-hidden bg-ink/5"
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="object-cover transition-transform duration-[1200ms] group-hover:scale-[1.05]"
+                  sizes="(max-width: 768px) 33vw, 360px"
+                />
+                <div className="absolute inset-0 ring-1 ring-inset ring-ink/10 pointer-events-none" />
+              </Link>
+            ))}
+          </div>
+
+          {/* Row of 4 small */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+            {showcaseImages.slice(4, 8).map((image) => (
+              <Link
+                key={image.src}
+                href="/showroom/kitchens"
+                className="group relative aspect-[4/5] overflow-hidden bg-ink/5"
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="object-cover transition-transform duration-[1200ms] group-hover:scale-[1.05]"
+                  sizes="(max-width: 768px) 50vw, 260px"
+                />
+                <div className="absolute inset-0 ring-1 ring-inset ring-ink/10 pointer-events-none" />
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <ButtonLink href="/showroom/kitchens" variant="outline" className="group">
+              View All Kitchen Projects
+              <svg
+                className="w-5 h-5 ml-1 transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </ButtonLink>
+          </div>
+        </div>
+      </Section>
+
+      {/* ============================================================
+          SERVICE AREA CITIES
+          ============================================================ */}
+      <Section tone="parchment" className="py-16 sm:py-20 border-t border-ink/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <Heading as="h2" eyebrow="Service Area">
+              Refacing Across the St. Louis Metro
+            </Heading>
+            <p className="mt-5 max-w-2xl mx-auto text-base text-ink/75 font-sans leading-relaxed">
+              We work with homeowners throughout St. Louis County and St. Charles County, with a
+              particular concentration in these communities.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-px bg-ink/10 border border-ink/10">
+            {cities.map((city) => (
+              <Link
+                key={city.slug}
+                href={`/locations/${city.slug}/cabinet-refacing`}
+                className="group bg-parchment p-10 hover:bg-walnut transition-colors duration-500 text-center"
+              >
+                <span className="text-[11px] tracking-[0.22em] uppercase text-umber/70 group-hover:text-brass transition-colors">
+                  Cabinet Refacing in
+                </span>
+                <h3 className="mt-3 font-display text-3xl text-ink group-hover:text-parchment transition-colors">
+                  {city.name}
+                </h3>
+                <p className="mt-4 text-sm text-ink/60 font-sans group-hover:text-parchment/70 transition-colors">
+                  {city.name}, Missouri&nbsp;&rarr;
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
       </Section>
 
       <ServiceAreaLinks serviceLocationSlug="cabinet-refacing" />
 
       <LocationFAQs faqs={cabinetRefacingFAQs} />
 
-      {/* CTA Section */}
-      <Section tone="walnut" className="py-16">
+      {/* ============================================================
+          FINAL CTA — Walnut with editorial frame
+          ============================================================ */}
+      <section className="relative isolate overflow-hidden bg-walnut text-parchment py-20 sm:py-24">
+        {/* Editorial frame border */}
+        <div className="absolute inset-5 sm:inset-8 lg:inset-12 border border-brass/15 pointer-events-none" />
+        <div className="absolute inset-6 sm:inset-9 lg:inset-[3.25rem] border border-parchment/8 pointer-events-none" />
+
         <Container>
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-3xl mx-auto text-center relative">
+            <p className="text-[11px] tracking-[0.24em] uppercase text-brass mb-6 font-medium">
+              Free, no-pressure
+            </p>
             <Heading tone="dark" showDivider={false} className="mb-6">
               Ready to See What Refacing Could Do?
             </Heading>
-            <p className="text-parchment/80 text-lg mb-8 leading-relaxed">
+            <p className="font-elegant italic text-lg sm:text-xl text-parchment/85 leading-relaxed mb-10 max-w-2xl mx-auto">
               We&apos;ll come measure, assess your cabinet boxes, show you door samples and
-              finishes, and give you a real quote — not a ballpark. No pressure, no follow-up
-              calls until you reach out.
+              finishes, and give you a real quote — not a ballpark. No follow-up calls until you
+              reach out.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="tel:3144379988"
-                className="inline-flex items-center gap-3 px-8 py-4 text-lg font-semibold text-walnut bg-brass hover:bg-brass/90 rounded-sm shadow-xl transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-walnut"
+                className="inline-flex items-center gap-3 px-8 py-4 text-base font-semibold tracking-wide text-walnut bg-brass hover:bg-brass/90 rounded-sm shadow-[0_14px_28px_rgba(0,0,0,0.35)] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-walnut"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -666,7 +920,7 @@ export default function CabinetRefacingPage() {
             </div>
           </div>
         </Container>
-      </Section>
+      </section>
     </>
   );
 }
