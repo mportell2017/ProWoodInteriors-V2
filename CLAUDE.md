@@ -220,6 +220,12 @@ Located in `components/locations/`:
 
 **Static Generation**: All pages pre-rendered at build time for performance
 
+### Service Areas Index
+A `/locations` index page (`app/locations/page.tsx`) lists every city, grouped by county, and is linked from the header "Service Areas" menu and the sitemap. It imports the full `locations` array server-side.
+
+### Header Navigation
+`components/Navigation.tsx` is a client component. To keep its bundle light it pulls menu content from **`lib/nav-data.ts`** (`navServices`, `navCities`) — a deliberately slim mirror, *not* the heavy server-only `lib/location-data.ts`. When you add a city to `location-data.ts`, mirror it into `navCities` so the "Service Areas" menu and the `/locations` index stay in sync. NAP comes from `lib/business.ts` (`PHONE_DISPLAY`/`PHONE_TEL`) — never hardcode it here. The header surfaces a "What We Do" mega-menu (services + blurbs), a "Service Areas" dropdown, and a "Free Consultation" CTA with a folded-in "★★★★★ family-owned since 1985" trust signal.
+
 ### Current Cities (All Implemented)
 - Wildwood `/locations/wildwood`
 - Chesterfield `/locations/chesterfield`
@@ -361,7 +367,6 @@ import { SoftCTA } from '@/components/homepage/SoftCTA';
 ### Planned Enhancements
 - Location-specific testimonials
 - Google Maps integration for service areas
-- Cities index page at `/locations`
 - Location-specific project galleries
 - Blog posts about local projects
 - Expand `/locations/[city]/[service]` coverage to more cities (Clayton, St. Peters, etc.) as local SEO priorities evolve
