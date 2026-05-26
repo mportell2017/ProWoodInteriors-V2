@@ -25,6 +25,13 @@ This Next.js 16 application uses the App Router with TypeScript and Tailwind CSS
 
 ## Design System
 
+**Agent-readable design contract:** [`DESIGN.md`](DESIGN.md) (Google Labs
+[design.md](https://github.com/google-labs-code/design.md) format — alpha) captures
+the tokens *and the rationale* behind them (color jobs, font roles, do's & don'ts).
+Read it before any visual work. `tailwind.config.js` + `app/globals.css` remain the
+**runtime source of truth**; keep DESIGN.md in sync by hand. You can validate it with
+`npx @google/design.md lint DESIGN.md` (not yet a project dependency).
+
 ### Color Palette
 ```typescript
 colors: {
