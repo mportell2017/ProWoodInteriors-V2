@@ -1,18 +1,14 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
+import { Resend } from 'resend'
+import { contactApiSchema, type ContactApiData } from '@/lib/contact-schema'
+import { ContactNotificationEmail } from '@/components/emails/ContactNotificationEmail'
 
-const contactSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  phone: z.string().min(1, 'Phone is required'),
-  email: z.string().email('Invalid email address'),
-  street_address: z.string().optional().nullable(),
-  city: z.string().optional().nullable(),
-  zip: z.string().optional().nullable(),
-  project_types: z.array(z.string().min(1)).min(1, 'Please select at least one project type'),
-  timeline: z.string().optional().nullable(),
-  message: z.string().optional().nullable(),
-  turnstileToken: z.string().min(1, 'CAPTCHA verification required'),
-})
+// React Email rendering and the Resend SDK require Node APIs — not Edge.
+export const runtime = 'nodejs'
+
+const CONTACT_RECIPIENTS = ['dave@prowoodinteriors.com', 'prowoodinteriors@gmail.com']
+const FROM_ADDRESS = 'ProWood Interiors <noreply@prowoodinteriors.com>'
 
 async function verifyTurnstileToken(token: string, ip: string | null): Promise<{ success: boolean; error?: string }> {
   const secretKey = process.env.TURNSTILE_SECRET_KEY
@@ -44,134 +40,47 @@ async function verifyTurnstileToken(token: string, ip: string | null): Promise<{
   }
 }
 
-type ContactData = z.infer<typeof contactSchema>
-
-function escapeHtml(text: string | null | undefined): string {
-  if (!text) return ''
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;')
-}
-
-function escapeHtmlWithBreaks(text: string | null | undefined): string {
-  if (!text) return ''
-  return escapeHtml(text).replace(/\n/g, '<br>')
-}
-
-async function sendEmailNotification(data: ContactData): Promise<{ success: boolean; error?: string }> {
-  const apiKey = process.env.SMTP2GO_API_KEY
+async function sendEmailNotification(data: ContactApiData): Promise<{ success: boolean; error?: string }> {
+  const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) {
-    return { success: false, error: 'SMTP2GO API key not configured' }
+    return { success: false, error: 'Resend API key not configured' }
   }
 
-  const location = [data.street_address, data.city, data.zip].filter(Boolean).map(escapeHtml).join(', ')
-  const escapedName = escapeHtml(data.name)
-  const escapedEmail = escapeHtml(data.email)
-  const escapedPhone = escapeHtml(data.phone)
-  const escapedProjectTypes = data.project_types.map(escapeHtml).join(', ')
-  const escapedTimeline = escapeHtml(data.timeline)
-  const escapedMessage = escapeHtmlWithBreaks(data.message)
+  const resend = new Resend(apiKey)
 
-  const emailBody = `
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .header { background-color: #2C1810; color: #FBF7F0; padding: 20px; text-align: center; }
-    .content { padding: 20px; background-color: #FBF7F0; }
-    .field { margin-bottom: 15px; }
-    .label { font-weight: bold; color: #5B3A2A; }
-    .value { margin-top: 5px; }
-    .message-box { background-color: #fff; border: 1px solid #ddd; padding: 15px; margin-top: 10px; }
-    .footer { text-align: center; padding: 15px; font-size: 12px; color: #666; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h1 style="margin: 0;">New Contact Form Submission</h1>
-    </div>
-    <div class="content">
-      <div class="field">
-        <div class="label">Name</div>
-        <div class="value">${escapedName}</div>
-      </div>
-      <div class="field">
-        <div class="label">Email</div>
-        <div class="value"><a href="mailto:${escapedEmail}">${escapedEmail}</a></div>
-      </div>
-      <div class="field">
-        <div class="label">Phone</div>
-        <div class="value"><a href="tel:${escapedPhone}">${escapedPhone}</a></div>
-      </div>
-      ${location ? `
-      <div class="field">
-        <div class="label">Project Location</div>
-        <div class="value">${location}</div>
-      </div>
-      ` : ''}
-      <div class="field">
-        <div class="label">Project Type</div>
-        <div class="value">${escapedProjectTypes}</div>
-      </div>
-      ${data.timeline ? `
-      <div class="field">
-        <div class="label">Timeline</div>
-        <div class="value">${escapedTimeline}</div>
-      </div>
-      ` : ''}
-      ${data.message ? `
-      <div class="field">
-        <div class="label">Message</div>
-        <div class="message-box">${escapedMessage}</div>
-      </div>
-      ` : ''}
-    </div>
-    <div class="footer">
-      <p>Submitted via prowoodinteriors.com</p>
-    </div>
-  </div>
-</body>
-</html>
-`
+  // The Node SDK renders both the HTML and plain-text bodies from the React
+  // component, and escapes all interpolated values for us.
+  const { error } = await resend.emails.send({
+    from: FROM_ADDRESS,
+    to: CONTACT_RECIPIENTS,
+    replyTo: data.email,
+    subject: `New Contact Form Submission from ${data.name}`,
+    react: ContactNotificationEmail({
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      streetAddress: data.street_address,
+      city: data.city,
+      zip: data.zip,
+      projectTypes: data.project_types,
+      timeline: data.timeline,
+      message: data.message,
+    }),
+    tags: [{ name: 'source', value: 'contact-form' }],
+  })
 
-  try {
-    const response = await fetch('https://api.smtp2go.com/v3/email/send', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        api_key: apiKey,
-        to: ['dave@prowoodinteriors.com', 'prowoodinteriors@gmail.com'],
-        sender: 'ProWood Interiors <noreply@prowoodinteriors.com>',
-        subject: `New Contact Form Submission from ${escapedName}`,
-        html_body: emailBody,
-      }),
-    })
-
-    const result = await response.json()
-
-    if (result.data?.succeeded > 0) {
-      return { success: true }
-    } else {
-      return { success: false, error: result.data?.failures?.[0]?.error || 'Email send failed' }
-    }
-  } catch (error) {
-    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' }
+  if (error) {
+    return { success: false, error: error.message }
   }
+
+  return { success: true }
 }
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
 
-    const validatedData = contactSchema.parse(body)
+    const validatedData = contactApiSchema.parse(body)
 
     // Verify Turnstile CAPTCHA
     const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || request.headers.get('x-real-ip')

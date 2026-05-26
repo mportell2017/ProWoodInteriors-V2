@@ -1,4 +1,5 @@
 import { HomeHero } from "@/components/homepage/HomeHero";
+import { HeroLeadForm } from "@/components/homepage/HeroLeadForm";
 import { ServiceAreaSection } from "@/components/homepage/ServiceAreaSection";
 import { CraftJourney } from "@/components/homepage/CraftJourney";
 import { IdealClientSection } from "@/components/homepage/IdealClientSection";
@@ -20,6 +21,7 @@ export default function HomePage() {
       />
       <HomeHero />
       <ServiceShowcase />
+      <HeroLeadForm />
       <PortfolioPreview />
       <ServiceAreaSection />
       <CraftJourney />

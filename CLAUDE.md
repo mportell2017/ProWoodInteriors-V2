@@ -8,7 +8,7 @@ This Next.js 16 application uses the App Router with TypeScript and Tailwind CSS
 - **React**: 19
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS with custom design system
-- **Contact form**: Next.js API route → SMTP2GO HTTP API (no database)
+- **Contact form**: Next.js API route → Resend Node SDK with React Email templates (no database)
 - **Validation**: Zod
 - **Bot protection**: Cloudflare Turnstile (`@marsidev/react-turnstile`)
 
@@ -70,7 +70,7 @@ app/                                    # Next.js App Router pages
 components/
   ui/                                   # Reusable UI primitives (Button, Card, Container, Heading, Section)
   forms/                                # Shared form code
-    ContactForm.tsx                     # Single canonical contact form (variant: spacious | compact)
+    ContactForm.tsx                     # Long-form contact form (React Hook Form + Zod)
     contact-form-icons.tsx              # Project-type icons + projectTypes + timelineOptions arrays
   services/                             # Service-page components
     ServiceAreaLinks.tsx                # Internal-linking block (services → locations)
@@ -103,16 +103,6 @@ public/images/gallery/                  # Gallery images by category
 - **Regenerate**: Run `npm run generate:gallery` to update manifest
 - **Categories**: Kitchens, Entertainment Centers, Bookcases, Bedrooms
 - **Components**: GalleryGrid, GalleryImageCard, ShowroomLightbox
-
-#### Forms
-- **`components/forms/ContactForm.tsx`** is the single source of truth for the contact form.
-  - `variant="spacious"` — used on homepage and `/contact-us` (wrapped by `SoftCTA.tsx`)
-  - `variant="compact"` — used inside location CTAs (wrapped by `LocationContactForm.tsx`)
-  - 8 project types (icons + arrays live in `contact-form-icons.tsx`)
-  - POSTs to `/api/contact`, which verifies Turnstile and hits the SMTP2GO HTTP API
-  - Email-only — no database, no queue
-  - Success/error states built-in
-- **Anytime you need to add/change form behavior (conversion tracking, validation, field order), edit `ContactForm.tsx` only — `SoftCTA` and `LocationContactForm` are now thin wrappers.**
 
 ## City Location Landing Pages
 
@@ -349,10 +339,14 @@ For detailed implementation plans and architectural decisions, see:
 
 ## Contact Form Integration
 
-The contact form (SoftCTA component) is fully functional:
+The contact form is fully functional:
 - POSTs to `app/api/contact/route.ts`
-- Route verifies the Turnstile token, then POSTs the submission to `https://api.smtp2go.com/v3/email/send`
-- Recipients are hardcoded in the route (`dave@prowoodinteriors.com`, `prowoodinteriors@gmail.com`); update there if they change
+- Route verifies the Turnstile token, then sends the notification via the **Resend Node SDK** (`resend.emails.send`)
+- The email body is a **React Email** template: `components/emails/ContactNotificationEmail.tsx`. Pass it to `send()` as a function call on the `react` param (`ContactNotificationEmail({...})`, not JSX) — the SDK renders both HTML and plain-text and escapes all values, so no manual HTML escaping in the route.
+- `replyTo` is set to the submitter's email, so replying goes straight to the customer
+- Recipients are hardcoded in the route (`CONTACT_RECIPIENTS`: `dave@prowoodinteriors.com`, `prowoodinteriors@gmail.com`); the `from` is `noreply@prowoodinteriors.com` (`FROM_ADDRESS`). Update there if they change.
+- The route sets `export const runtime = 'nodejs'` — React Email rendering and the Resend SDK need Node APIs, not Edge.
+- **`from` requires a verified domain.** Verify `prowoodinteriors.com` at https://resend.com/domains (add the SPF/DKIM/DMARC DNS records) or production sends will be rejected.
 - No database — email is the only record of a submission
 - Pre-configured with all project types
 
@@ -365,7 +359,7 @@ import { SoftCTA } from '@/components/homepage/SoftCTA';
 ```
 
 **Required env vars** (`.env.local`):
-- `SMTP2GO_API_KEY` — SMTP2GO HTTP API key
+- `RESEND_API_KEY` — Resend API key (from https://resend.com/api-keys)
 - `TURNSTILE_SECRET_KEY` — Cloudflare Turnstile server secret
 - `NEXT_PUBLIC_TURNSTILE_SITE_KEY` — Cloudflare Turnstile site key (exposed to client)
 
@@ -394,6 +388,9 @@ Track for context if you're picking this up cold:
 - FAQ schema now emitted on all 4 service pages (FAQ content lives in `lib/service-faqs.ts`).
 - `ServiceAreaLinks` component cross-links service pages → city + service-location pages.
 
+### Recent changes (2026-05-26)
+- **Contact email swapped from SMTP2GO to Resend.** `app/api/contact/route.ts` now uses the `resend` Node SDK instead of the SMTP2GO HTTP API. The hand-built HTML string + `escapeHtml`/`escapeHtmlWithBreaks` helpers were replaced by a **React Email** template (`components/emails/ContactNotificationEmail.tsx`) passed on the `react` param. Turnstile verification is unchanged. New deps: `resend`, `@react-email/components`. Env var changed: `SMTP2GO_API_KEY` → `RESEND_API_KEY`. **Action required:** verify `prowoodinteriors.com` at https://resend.com/domains before production sends work.
+
 ### Best Practices
 - Always read existing files before modifying
 - Reuse components whenever possible (don't duplicate)
@@ -404,5 +401,5 @@ Track for context if you're picking this up cold:
 
 ---
 
-**Last Updated**: 2026-05-22
+**Last Updated**: 2026-05-26
 **Maintained by**: Claude Code
