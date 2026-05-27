@@ -86,8 +86,8 @@ export const locations: LocationData[] = [
           description: 'You&apos;ll work with the same team from consultation through installation. Questions get answered quickly, changes are handled smoothly, and you&apos;re always informed about progress.'
         },
         {
-          title: 'Long-Term Value',
-          description: 'Custom cabinetry is an investment in your home. We use solid wood construction, premium hardware, and durable finishes that look beautiful for decades—not just years.'
+          title: 'Built to Endure',
+          description: 'Custom cabinetry becomes a lasting part of your home. We use solid wood construction, premium hardware, and durable finishes that look beautiful for decades—not just years.'
         }
       ]
     },
@@ -123,7 +123,7 @@ export const locations: LocationData[] = [
       },
       {
         question: 'Is cabinet refacing a good option for my Wildwood home?',
-        answer: 'Cabinet refacing is an excellent choice if your existing cabinet boxes are structurally sound but your doors, drawer fronts, and finish are outdated. It costs 40–50% less than full replacement, involves minimal disruption, and can completely transform your kitchen&apos;s appearance. During our consultation, we&apos;ll assess your cabinets and recommend whether refacing or new construction makes the most sense for your situation.'
+        answer: 'Cabinet refacing is an excellent choice if your existing cabinet boxes are structurally sound but your doors, drawer fronts, and finish are outdated. It involves minimal disruption and can completely transform your kitchen&apos;s appearance. During our consultation, we&apos;ll assess your cabinets and recommend whether refacing or new construction makes the most sense for your situation.'
       },
       {
         question: 'Do you build everything locally, or order from a manufacturer?',
@@ -148,14 +148,14 @@ export const locations: LocationData[] = [
     },
     heroTitle: 'Custom Cabinetry in Chesterfield, Missouri',
     heroSubtitle: 'Elegant custom cabinets and built-in solutions for discerning Chesterfield homeowners',
-    description: 'Since 1985, Professional Wood Interiors has earned the trust of Chesterfield families who appreciate fine craftsmanship and personalized service. We design and build custom cabinetry that enhances your home&apos;s value and complements your lifestyle—from sophisticated kitchen renovations to stunning built-in libraries. Every piece is handcrafted in our workshop with meticulous attention to detail and built to last generations.',
+    description: 'Since 1985, Professional Wood Interiors has earned the trust of Chesterfield families who appreciate fine craftsmanship and personalized service. We design and build custom cabinetry that complements your home and your lifestyle—from sophisticated kitchen renovations to stunning built-in libraries. Every piece is handcrafted in our workshop with meticulous attention to detail and built to last generations.',
     serviceArea: ['Town and Country', 'Ballwin', 'Wildwood', 'Clayton', 'Creve Coeur'],
     localExpertise: {
       heading: 'Trusted by Chesterfield Homeowners',
       content: [
         'Chesterfield represents a blend of established elegance and modern sophistication, with homes that range from classic estates to contemporary designs. Over the years, we&apos;ve had the privilege of working throughout the community—in neighborhoods near Chesterfield Mall, historic estates along the Monarch levee, and newer developments in the valley—creating custom cabinetry that respects each home&apos;s unique architectural character.',
         'We understand that Chesterfield homeowners value both aesthetics and functionality. Our portfolio includes everything from gourmet kitchen remodels with custom pantry systems to home offices with floor-to-ceiling built-ins, media rooms with hidden storage, and mudrooms designed for active families. Each project starts with careful listening: understanding not just what you need, but how your family actually uses the space.',
-        'As a local, family-owned business, we&apos;re committed to transparent communication and exceptional results. You&apos;ll work with experienced craftsmen who stand behind their work—no sales pressure, no surprises, just honest expertise and quality you can see and feel. We&apos;re proud to be part of the Chesterfield community and treat every home as if it were our own.'
+        'As a local, family-owned business, we&apos;re committed to clear communication and exceptional results. You&apos;ll work with experienced craftsmen who stand behind their work—no sales pressure, no runaround, just honest expertise and quality you can see and feel. We&apos;re proud to be part of the Chesterfield community and treat every home as if it were our own.'
       ]
     },
     whyChooseUs: {
@@ -163,7 +163,7 @@ export const locations: LocationData[] = [
       reasons: [
         {
           title: 'Personalized Design Process',
-          description: 'We don&apos;t work from stock plans or limited options. Our design process is collaborative and tailored entirely to your vision, space, and budget. Whether you prefer traditional styling or contemporary minimalism, we craft cabinetry that reflects your personal taste.'
+          description: 'We don&apos;t work from stock plans or limited options. Our design process is collaborative and tailored entirely to your vision, your space, and the way you live. Whether you prefer traditional styling or contemporary minimalism, we craft cabinetry that reflects your personal taste.'
         },
         {
           title: 'Crafted Locally with Pride',
@@ -179,7 +179,7 @@ export const locations: LocationData[] = [
         },
         {
           title: 'Built to Last Generations',
-          description: 'We use time-tested joinery, solid hardwoods, and commercial-grade hardware because we build cabinetry meant to be passed down—not replaced. Your investment today becomes a lasting part of your home&apos;s story.'
+          description: 'We use time-tested joinery, solid hardwoods, and commercial-grade hardware because we build cabinetry meant to be passed down—not replaced. What we craft today becomes a lasting part of your home&apos;s story.'
         }
       ]
     },
@@ -223,7 +223,7 @@ export const locations: LocationData[] = [
       },
       {
         question: 'Do you offer cabinet refacing, or only new construction?',
-        answer: 'We offer both custom new construction and professional cabinet refacing. Refacing can save 40–60% compared to full replacement while dramatically updating your kitchen&apos;s look. During our consultation, we&apos;ll honestly assess whether refacing or new cabinets makes more sense for your situation and budget.'
+        answer: 'We offer both custom new construction and professional cabinet refacing. Refacing dramatically updates your kitchen&apos;s look while reusing your existing cabinet boxes. During our consultation, we&apos;ll honestly assess whether refacing or new cabinets makes more sense for your situation.'
       }
     ]
   },
@@ -267,7 +267,7 @@ export const locations: LocationData[] = [
         },
         {
           title: 'Straightforward Communication',
-          description: 'We believe in clear, honest communication from start to finish. No high-pressure sales tactics, no confusing jargon, no surprise costs. Just transparent dialogue with people who respect your time and investment.'
+          description: 'We believe in clear, honest communication from start to finish. No high-pressure sales tactics, no confusing jargon, no runaround. Just direct dialogue with people who respect your time and listen to what you actually want.'
         },
         {
           title: 'Heirloom-Quality Construction',
@@ -338,8 +338,8 @@ export const locations: LocationData[] = [
       heading: 'Serving St. Peters Families Since 1985',
       content: [
         'St. Peters is a thriving community of families who value both quality and value in their homes. From established neighborhoods near Mid Rivers Mall to newer developments throughout the city, we&apos;ve helped hundreds of St. Peters homeowners create more functional, beautiful spaces with custom cabinetry designed specifically for how they live.',
-        'We understand that St. Peters families need practical solutions that also look great. Our projects range from complete kitchen transformations with smart storage solutions to mudrooms that handle busy family life, home offices for remote workers, and entertainment centers built around your lifestyle. Every design starts by listening to your needs and working within your budget to create maximum value.',
-        'As a local, family-run business, we treat every project with care and respect. You won&apos;t find pushy salespeople or cookie-cutter solutions here—just experienced craftsmen who take pride in delivering honest work, fair pricing, and cabinetry that your family will enjoy for years to come. We&apos;re part of the St. Charles County community and committed to earning your trust.'
+        'We understand that St. Peters families need practical solutions that also look great. Our projects range from complete kitchen transformations with smart storage solutions to mudrooms that handle busy family life, home offices for remote workers, and entertainment centers built around your lifestyle. Every design starts by listening closely to your needs and the way your household actually functions day to day.',
+        'As a local, family-run business, we treat every project with care and respect. You won&apos;t find pushy salespeople or cookie-cutter solutions here—just experienced craftsmen who take pride in delivering honest work and cabinetry that your family will enjoy for years to come. We&apos;re part of the St. Charles County community and committed to earning your trust.'
       ]
     },
     whyChooseUs: {
@@ -358,8 +358,8 @@ export const locations: LocationData[] = [
           description: 'We&apos;ve been serving St. Charles County families since 1985. That longevity comes from doing what we say we&apos;ll do, treating people fairly, and standing behind our work. We&apos;ve built our reputation one satisfied customer at a time.'
         },
         {
-          title: 'Clear, Honest Pricing',
-          description: 'We provide detailed, transparent quotes with no hidden fees or surprise costs. You&apos;ll know exactly what you&apos;re getting and what it costs before we start. We believe in fair pricing and honest communication throughout your project.'
+          title: 'We Stand Behind Our Work',
+          description: 'When we finish a project, we don&apos;t disappear. As a local shop, we&apos;re easy to reach if you ever have a question or concern down the road. We take responsibility for everything we build and make things right—that&apos;s how we&apos;ve kept families coming back for decades.'
         },
         {
           title: 'Durable, Lasting Quality',
@@ -372,11 +372,11 @@ export const locations: LocationData[] = [
       steps: [
         {
           title: 'Free In-Home Consultation',
-          description: 'We visit your St. Peters home to understand your vision, assess the space, and take accurate measurements. This conversation helps us understand your needs, preferences, and budget so we can design the right solution for your family.'
+          description: 'We visit your St. Peters home to understand your vision, assess the space, and take accurate measurements. This conversation helps us understand your needs and preferences so we can design the right solution for your family.'
         },
         {
-          title: 'Custom Design & Quote',
-          description: 'We create detailed plans tailored to your space and lifestyle, then provide a clear, itemized quote with no hidden costs. You&apos;ll see exactly what we&apos;re proposing and what it costs. We refine the design together until it&apos;s exactly right.'
+          title: 'Custom Design & Proposal',
+          description: 'We create detailed plans tailored to your space and lifestyle, then walk you through a clear proposal so you can see exactly what we&apos;re recommending. We refine the design together until it&apos;s exactly right.'
         },
         {
           title: 'Quality Construction',
@@ -394,20 +394,8 @@ export const locations: LocationData[] = [
         answer: 'Yes, we regularly work throughout St. Peters, O&apos;Fallon, St. Charles, Wentzville, and surrounding St. Charles County communities. We&apos;re familiar with the area and happy to serve homeowners across the region. Distance is not an issue—we treat every project with the same care regardless of location.'
       },
       {
-        question: 'How much does custom cabinetry cost compared to stock cabinets?',
-        answer: 'Custom cabinetry typically costs 20–40% more than quality stock cabinets, but you get significantly more value: perfect fit for your exact space, personalized design, superior construction, and cabinetry built to last decades. We work with various budgets and will be upfront about costs. Many families find the investment worthwhile for the quality and functionality they receive.'
-      },
-      {
-        question: 'Can you work within my budget?',
-        answer: 'Absolutely. We work with families across different budget ranges and will be honest about what&apos;s achievable. We can suggest cost-effective materials, phased approaches, or design modifications to maximize value without sacrificing quality. Our goal is to create the best possible solution within your budget—not upsell you beyond it.'
-      },
-      {
         question: 'How long will my cabinets last?',
         answer: 'With proper care, our cabinetry easily lasts 30+ years and often much longer. We use solid wood construction, quality hardware, durable finishes, and proven joinery methods specifically because we build for longevity. Many of our clients from the 1980s and 1990s still have their original cabinets looking great today.'
-      },
-      {
-        question: 'What&apos;s included in your quote?',
-        answer: 'Our quotes include everything: design, materials, construction, hardware, finishing, delivery, and professional installation. We break down costs clearly so you know exactly what you&apos;re paying for. The only potential extras would be structural repairs we discover during installation (which we discuss with you first) or design changes you request after approval.'
       }
     ]
   },
@@ -451,7 +439,7 @@ export const locations: LocationData[] = [
         },
         {
           title: 'No-Pressure Approach',
-          description: 'We don&apos;t employ high-pressure sales tactics or pushy follow-ups. We provide honest assessments, clear pricing, and respectful guidance. You decide if and when you&apos;re ready to move forward—no games, no gimmicks.'
+          description: 'We don&apos;t employ high-pressure sales tactics or pushy follow-ups. We provide honest assessments and respectful guidance, then give you room to think it over. You decide if and when you&apos;re ready to move forward—no games, no gimmicks.'
         },
         {
           title: 'Built to Be Inherited',
@@ -468,7 +456,7 @@ export const locations: LocationData[] = [
         },
         {
           title: 'Design & Proposal',
-          description: 'We develop a detailed design tailored to your space and present a comprehensive proposal with clear pricing. You&apos;ll see drawings, discuss materials and finishes, and have time to review everything carefully. We refine the plan together until it&apos;s exactly what you want.'
+          description: 'We develop a detailed design tailored to your space and present a comprehensive proposal that lays out the full plan. You&apos;ll see drawings, discuss materials and finishes, and have time to review everything carefully. We refine the plan together until it&apos;s exactly what you want.'
         },
         {
           title: 'Expert Construction',
@@ -516,14 +504,14 @@ export const locations: LocationData[] = [
     },
     heroTitle: 'Custom Cabinetry in Wentzville, Missouri',
     heroSubtitle: 'Custom cabinets built for Wentzville&apos;s growing community',
-    description: 'As Wentzville continues to grow, Professional Wood Interiors has been here providing homeowners with quality custom cabinetry since 1985. We understand that Wentzville families want practical, well-built solutions that fit their budget and lifestyle. From new construction kitchens to garage organization systems, mudroom storage to home office built-ins, we create cabinetry designed around how you live—built locally, priced fairly, and crafted to last.',
+    description: 'As Wentzville continues to grow, Professional Wood Interiors has been here providing homeowners with quality custom cabinetry since 1985. We understand that Wentzville families want practical, well-built solutions that fit their lifestyle. From new construction kitchens to garage organization systems, mudroom storage to home office built-ins, we create cabinetry designed around how you live—built locally and crafted to last.',
     serviceArea: ['O\'Fallon', 'Lake St. Louis', 'Dardenne Prairie', 'St. Peters', 'St. Charles'],
     localExpertise: {
       heading: 'Serving Wentzville&apos;s Growing Families',
       content: [
         'Wentzville is one of the fastest-growing communities in Missouri, with new neighborhoods and families moving in every year. We&apos;ve worked throughout the city—from newer developments near Wentzville Parkway to established neighborhoods closer to downtown—helping homeowners create functional, beautiful spaces with custom cabinetry that works for real family life.',
-        'We understand what Wentzville families need: practical storage solutions, durable materials that handle kids and pets, smart organization systems, and designs that maximize space and value. Whether it&apos;s a growing family that needs more kitchen storage, a home office for remote work, or built-in solutions for an active household, we listen carefully and design accordingly.',
-        'As a locally owned business, we take pride in straightforward service and honest pricing. No bait-and-switch, no pressure tactics, no inflated quotes. Just experienced craftsmen who build quality cabinetry, treat people fairly, and stand behind their work. We&apos;re part of this community, and we earn your trust one project at a time.'
+        'We understand what Wentzville families need: practical storage solutions, durable materials that handle kids and pets, smart organization systems, and designs that make the most of every square foot. Whether it&apos;s a growing family that needs more kitchen storage, a home office for remote work, or built-in solutions for an active household, we listen carefully and design accordingly.',
+        'As a locally owned business, we take pride in straightforward service from the first conversation onward. No bait-and-switch, no pressure tactics, no runaround. Just experienced craftsmen who build quality cabinetry, treat people fairly, and stand behind their work. We&apos;re part of this community, and we earn your trust one project at a time.'
       ]
     },
     whyChooseUs: {
@@ -542,12 +530,12 @@ export const locations: LocationData[] = [
           description: 'We&apos;ve been serving St. Charles County since 1985. Three decades in business doesn&apos;t happen by accident—it comes from doing quality work, treating customers fairly, and building relationships that last. We protect our reputation with every project.'
         },
         {
-          title: 'Fair, Transparent Pricing',
-          description: 'We provide clear quotes with honest pricing and no hidden costs. You&apos;ll know exactly what you&apos;re getting and what it costs before any work begins. We respect your budget and work to maximize value without compromising quality.'
+          title: 'We Show Up When We Say',
+          description: 'When we commit to a date, we keep it. We arrive on schedule, communicate clearly if anything shifts, and keep your project moving. For busy Wentzville families juggling work and kids, a contractor who respects your time makes all the difference.'
         },
         {
           title: 'Built for the Long Term',
-          description: 'We don&apos;t build disposable cabinetry. Solid construction, quality materials, and proven techniques mean your investment serves your family for decades. This is workmanship you can count on, built to withstand daily use and still look great years from now.'
+          description: 'We don&apos;t build disposable cabinetry. Solid construction, quality materials, and proven techniques mean your cabinetry serves your family for decades. This is workmanship you can count on, built to withstand daily use and still look great years from now.'
         }
       ]
     },
@@ -556,11 +544,11 @@ export const locations: LocationData[] = [
       steps: [
         {
           title: 'Free Home Visit',
-          description: 'We come to your Wentzville home to see the space, understand what you need, and take measurements. This conversation helps us design solutions tailored to your family&apos;s lifestyle and budget. No charge, no pressure—just good conversation and expert assessment.'
+          description: 'We come to your Wentzville home to see the space, understand what you need, and take measurements. This conversation helps us design solutions tailored to your family&apos;s lifestyle. No charge, no pressure—just good conversation and expert assessment.'
         },
         {
-          title: 'Design & Clear Quote',
-          description: 'We develop a design specific to your needs and provide a detailed, itemized quote. You&apos;ll see exactly what we&apos;re proposing, what materials we&apos;ll use, and what everything costs. We work together to refine the design until it&apos;s exactly right for you.'
+          title: 'Design & Detailed Plan',
+          description: 'We develop a design specific to your needs and present a detailed plan. You&apos;ll see exactly what we&apos;re proposing and what materials we&apos;ll use. We work together to refine the design until it&apos;s exactly right for you.'
         },
         {
           title: 'Quality Construction',
@@ -578,16 +566,12 @@ export const locations: LocationData[] = [
         answer: 'Absolutely. We work throughout Wentzville, including all the newer developments. We&apos;re familiar with the area and happy to serve homeowners wherever they are. Many of our clients are in newer homes who want to add custom touches, upgrade builder-grade cabinets, or add storage solutions the builder didn&apos;t include.'
       },
       {
-        question: 'Can you beat big-box store prices?',
-        answer: 'We typically can&apos;t match the lowest big-box prices because we build custom, not mass-produced. However, we offer significantly better value: cabinetry built to fit your exact space, personalized design, superior construction, and quality that lasts 30+ years instead of 10. Most families find our pricing competitive when they compare quality, service, and longevity.'
-      },
-      {
         question: 'Do you work with new construction?',
         answer: 'Yes, we frequently work with homeowners building new homes in Wentzville. We can coordinate with builders, work within construction schedules, and ensure your cabinetry is installed correctly and on time. If you&apos;re building, contact us early in the process so we can plan properly and provide input on cabinet layout.'
       },
       {
         question: 'How do you handle changes or issues during installation?',
-        answer: 'We believe in straightforward communication. If we discover something unexpected during installation—structural issues, measurement challenges, etc.—we stop, discuss options with you, and agree on solutions before proceeding. We don&apos;t make assumptions or surprise you with changes. Any adjustments to scope or cost are discussed and approved first.'
+        answer: 'We believe in straightforward communication. If we discover something unexpected during installation—structural issues, measurement challenges, etc.—we stop, discuss options with you, and agree on solutions before proceeding. We don&apos;t make assumptions or surprise you with changes. Any adjustments to the scope or schedule are discussed and approved first.'
       },
       {
         question: 'Can I see examples of your work before committing?',
@@ -615,7 +599,7 @@ export const locations: LocationData[] = [
       content: [
         'St. Louis neighborhoods each have their own distinct character and architectural heritage. We&apos;ve worked throughout the city—from Soulard&apos;s brick townhomes to Lafayette Square&apos;s Victorian mansions, from The Hill&apos;s cozy bungalows to the sleek condos of downtown—and we know how to design cabinetry that honors each area&apos;s unique style while adding modern functionality.',
         'Our work spans every type of project: restoring historic kitchens with period-appropriate details, creating contemporary built-ins for urban lofts, designing wine storage for collectors, maximizing space in smaller city homes, and crafting statement pieces for grand renovations. What ties everything together is our commitment to understanding your vision, respecting your home&apos;s architecture, and delivering workmanship that stands the test of time.',
-        'We&apos;re a St. Louis business through and through—locally owned, locally operated, deeply connected to this community. When you work with us, you get straightforward answers, fair pricing, and the confidence that comes from working with people who&apos;ve built their reputation here, one project at a time, for over 35 years.'
+        'We&apos;re a St. Louis business through and through—locally owned, locally operated, deeply connected to this community. When you work with us, you get straightforward answers, dependable craftsmanship, and the confidence that comes from working with people who&apos;ve built their reputation here, one project at a time, for over 35 years.'
       ]
     },
     whyChooseUs: {
@@ -635,7 +619,7 @@ export const locations: LocationData[] = [
         },
         {
           title: 'Honest, Direct Communication',
-          description: 'We believe in transparency and respect. Clear proposals, realistic timelines, straightforward pricing, and accessible team members. We&apos;ll tell you what&apos;s possible, what makes sense, and what it costs—without sales pressure or hidden agendas.'
+          description: 'We believe in transparency and respect. Clear proposals, realistic timelines, and accessible team members. We&apos;ll tell you what&apos;s possible and what makes sense for your home—without sales pressure or hidden agendas.'
         },
         {
           title: 'Heirloom Craftsmanship',
@@ -652,7 +636,7 @@ export const locations: LocationData[] = [
         },
         {
           title: 'Collaborative Design',
-          description: 'We develop detailed plans that reflect your vision and work within your parameters. You&apos;ll see drawings, review materials and finishes, and have time to ask questions. We refine the design together through collaboration—this is your cabinetry, and it needs to be right.'
+          description: 'We develop detailed plans that reflect your vision and the way you use your space. You&apos;ll see drawings, review materials and finishes, and have time to ask questions. We refine the design together through collaboration—this is your cabinetry, and it needs to be right.'
         },
         {
           title: 'Master Craftsmanship',
@@ -676,10 +660,6 @@ export const locations: LocationData[] = [
       {
         question: 'Do you handle small projects, or only full kitchen renovations?',
         answer: 'We handle projects of all sizes. Whether it&apos;s a single bathroom vanity, a built-in bookcase, or a complete whole-house cabinetry package, we approach every project with the same care and quality standards. Small projects are welcome and receive the same attention as larger ones.'
-      },
-      {
-        question: 'How does pricing work for custom cabinetry?',
-        answer: 'Pricing depends on the scope, materials, complexity, and finishes you choose. During our consultation, we&apos;ll discuss your budget and work to design solutions that maximize value. We provide detailed, itemized quotes so you understand exactly what you&apos;re getting. Custom work typically costs more than stock cabinets, but the difference in quality, fit, and longevity makes it a worthwhile investment for most homeowners.'
       },
       {
         question: 'What areas of St. Louis do you serve most often?',

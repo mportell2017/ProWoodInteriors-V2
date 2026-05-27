@@ -1,4 +1,5 @@
 import { cn } from "@/lib/cn";
+import { Sparkle } from "@/components/ui/Ornament";
 
 type HeadingProps = {
   as?: "h1" | "h2" | "h3";
@@ -75,16 +76,7 @@ export function Heading({
               ? "bg-gradient-to-r from-transparent via-brass/50 to-transparent" 
               : "bg-gradient-to-r from-transparent via-umber/25 to-transparent"
           )} />
-          <svg 
-            className={cn(
-              "w-3 h-3",
-              isDark ? "text-brass/60" : "text-umber/40"
-            )} 
-            viewBox="0 0 24 24" 
-            fill="currentColor"
-          >
-            <path d="M12 2L13.09 5.26L16 6L13.09 6.74L12 10L10.91 6.74L8 6L10.91 5.26L12 2Z" />
-          </svg>
+          <Sparkle className={cn("w-3 h-3", isDark ? "text-brass/60" : "text-umber/40")} />
           <div className={cn(
             "h-px w-12",
             isDark 

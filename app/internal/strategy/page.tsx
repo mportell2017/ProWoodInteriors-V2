@@ -147,7 +147,6 @@ const funnelStages = [
 
 const pagesBuilt = [
   { url: '/services/cabinet-refacing', label: 'Cabinet Refacing pillar page', status: 'Rebuilt' },
-  { url: '/cabinet-refacing-cost', label: 'Cabinet Refacing Cost Guide', status: 'New' },
   { url: '/services/custom-kitchen-cabinetry', label: 'Kitchen Cabinetry + Remodeling', status: 'Expanded' },
   { url: '/locations/clayton/cabinet-refacing', label: 'Cabinet Refacing in Clayton', status: 'New' },
   { url: '/locations/clayton/kitchen-remodeling', label: 'Kitchen Remodeling in Clayton', status: 'New' },
@@ -564,10 +563,10 @@ export default function InternalStrategyPage() {
               </p>
               <p className="text-base text-ink/80 leading-relaxed">
                 Fresh Faced Cabinets does 92% of their traffic from{' '}
-                <em>one cost-guide page</em>. We&apos;ve built the same play locally with
-                /cabinet-refacing-cost. Classic Kitchen Refacing is St. Louis-based but pulls
-                only 82 visits/month — beatable in 4–6 months. MidAmerica is functionally a
-                non-competitor.
+                <em>one cost-guide page</em> — a play we&apos;ve chosen not to follow, since
+                we no longer showcase pricing. Classic Kitchen Refacing is St. Louis-based but
+                pulls only 82 visits/month — beatable in 4–6 months. MidAmerica is functionally
+                a non-competitor.
               </p>
             </div>
           </div>

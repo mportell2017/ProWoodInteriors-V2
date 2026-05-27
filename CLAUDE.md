@@ -68,11 +68,13 @@ app/                                    # Next.js App Router pages
   error.tsx                             # Route error boundary
   global-error.tsx                      # Root error boundary (very rare cases)
 components/
-  ui/                                   # Reusable UI primitives (Button, Card, Container, Heading, Section)
+  ui/                                   # Reusable UI primitives (Button, Card, Container, Heading, Section,
+                                        #   CallButton, ArrowLink, Ornament, EditorialFrame)
   forms/                                # Shared form code
     ContactForm.tsx                     # Long-form contact form (React Hook Form + Zod)
     contact-form-icons.tsx              # Project-type icons + projectTypes + timelineOptions arrays
-  services/                             # Service-page components
+  services/                             # Service-page section components (the editorial design system —
+                                        #   see "Service Page Sections" below). ServiceAreaLinks lives here too.
     ServiceAreaLinks.tsx                # Internal-linking block (services → locations)
   locations/                            # Location page components
   showroom/                             # Gallery components
@@ -92,11 +94,37 @@ public/images/gallery/                  # Gallery images by category
 ### Core Components
 
 #### UI Components (components/ui/)
-- **Heading.tsx**: Typography component with eyebrow text, accent styling
-- **Section.tsx**: Layout sections with tone variants (parchment/walnut/clear)
+- **Heading.tsx**: Typography component with eyebrow text, accent styling (uses `Sparkle` from Ornament)
+- **Section.tsx**: Layout sections with tone variants (parchment/cream/walnut/clear). `cream` maps to the `cream` color token in `tailwind.config.js` — not a raw hex.
 - **Container.tsx**: Max-width wrapper with responsive padding
-- **Button.tsx**: CTA buttons (primary/outline/ghost variants)
+- **Button.tsx**: CTA buttons (primary/outline/ghost variants) — `Button` + `ButtonLink`
 - **Card.tsx**: Content cards with hover effects
+- **CallButton.tsx**: The phone CTA. `tone="light"` (oxblood, on parchment) / `tone="dark"` (brass, on walnut). Pulls the number from `lib/business.ts` — **never hardcode the phone number in a page.**
+- **ArrowLink.tsx**: Outline button with a trailing arrow that nudges on hover (the recurring "View all … →").
+- **Ornament.tsx**: Exports `Ornament` (sparkle flanked by fading rules — the standalone section divider) and `Sparkle` (the shared sparkle SVG atom).
+- **EditorialFrame.tsx**: Double-border + corner-tick overlay for framed imagery (drop inside a `relative` image container).
+
+#### Service Page Sections (components/services/)
+The four service pages (`/services/*`) are **composed** from a shared editorial design system —
+they hold the *content*; these components own the *styling*. Don't inline section markup or
+re-implement these patterns on a page. Decorative gradients/textures live as utility classes in
+`app/globals.css` (`.atmos-glow`, `.atmos-glow-top`, `.wood-strip-vignette`, `.paper-grain`,
+`.wood-grain`, `.sheen-vertical`) — never inline gradient hex in `style={{}}`.
+
+- **Universal** (every service page): `ServiceHero` (split editorial hero), `ServiceIntro` (drop-cap
+  two-column), `ServiceProcessTimeline` (walnut numbered timeline), `EditorialGallery` (featured + 3
+  + 4, needs ~8 images), `SimpleGallery` (even grid for <8 images), `ServiceCityGrid`, `ServiceCTA`
+  (framed walnut CTA).
+- **Parameterized** (used where the content fits): `StatMoment`, `NumberedBenefits`,
+  `ComparisonTable`, `CardGrid` (`variant="detail"|"checklist"`, optional `footer`), `DiptychList`,
+  `ImageStrip` (palette-cleanser band), `ImageCardRow` (image-led numbered cards, optional `footer`).
+- **Bespoke** (only on cabinet-refacing): the wood-species swatch grid and — note — door styles use
+  the shared `ImageCardRow`. Wood species is the only remaining inline section, because its per-swatch
+  gradients are data.
+
+`ServiceCityGrid` takes an `hrefFor(city)` builder: refacing/kitchen point at per-city service pages
+(`/locations/[city]/cabinet-refacing`); entertainment/bookcases point at the generic city page
+(`/locations/[city]`) since no per-service city pages exist for them.
 
 #### Gallery System
 - **Gallery Manifest**: Auto-generated from images, 86 images catalogued
@@ -262,7 +290,7 @@ Breadcrumbs → service-specific H1 → 3-paragraph intro → project gallery �
 **Content rules (important for SEO):**
 - Each page must be genuinely unique — no spun variants. Google penalizes templated local content.
 - Don't fabricate neighborhood or subdivision names. Stick to verifiable references (highways, parks, named landmarks, school districts) unless you have confirmed local names.
-- Respect existing pricing wording already on the site (Chesterfield refacing = 40–60% less; Wildwood refacing = 40–50% less).
+- **No pricing.** The site does not showcase pricing anywhere — no dollar figures, no "X% less than replacement," no cost comparisons, no ROI-of-cost framing, and no "how much does it cost" FAQs. Keep "free consultation" CTAs and the detailed-plan/proposal deliverable, but never reintroduce price/cost/quote-as-price language.
 
 ## Development Workflow
 
@@ -389,6 +417,8 @@ Track for context if you're picking this up cold:
 - `ServiceAreaLinks` component cross-links service pages → city + service-location pages.
 
 ### Recent changes (2026-05-26)
+- **All pricing removed from public marketing pages.** Per a business decision not to showcase pricing, every dollar figure, "% less than replacement," cost comparison, ROI-of-cost line, and "how much does it cost" FAQ was stripped from: the four service pages, `lib/location-data.ts`, `lib/service-location-data.ts`, `lib/service-faqs.ts`, `components/locations/ServiceGrid.tsx`, and the `lib/nav-data.ts` refacing blurb. On cabinet-refacing this removed the "40–50%" stat moment and the cost-variables section, and dropped the cost row from the comparison table (the table now compares method, not price). The dedicated `/cabinet-refacing-cost` route was **deleted** (and its dead links cleaned up in the internal strategy dashboard). Free-consultation CTAs and the detailed-plan/proposal deliverable were kept. See the "No pricing" content rule above — don't reintroduce it.
+- **Service pages unified on one editorial design system.** The cabinet-refacing redesign was extracted into reusable section components under `components/services/` (+ new `ui/` primitives `CallButton`, `ArrowLink`, `Ornament`, `EditorialFrame`), and all four service pages (`/services/cabinet-refacing`, `/custom-kitchen-cabinetry`, `/entertainment-centers`, `/custom-bookcases`) now compose those components instead of inlining markup. See **Service Page Sections** above. Refacing was recomposed to render the same (one normalization: a section header margin `mb-14`→`mb-12`, folded through `CardGrid`). The hardcoded phone number was removed from every service page in favor of `CallButton` (sources `lib/business.ts`). Repeated decorative gradients moved from inline `style={{}}` to `globals.css` utilities; a real `cream` color token was added to `tailwind.config.js`. Kitchen/entertainment/bookcases got newly authored long-form content to match refacing's depth. **Note:** project lint is currently un-runnable (`next lint` was removed in Next 16; the `.eslintrc.json` crashes ESLint 9's legacy loader) — verification was `tsc --noEmit` + `next build` + visual check on all four pages.
 - **Contact email swapped from SMTP2GO to Resend.** `app/api/contact/route.ts` now uses the `resend` Node SDK instead of the SMTP2GO HTTP API. The hand-built HTML string + `escapeHtml`/`escapeHtmlWithBreaks` helpers were replaced by a **React Email** template (`components/emails/ContactNotificationEmail.tsx`) passed on the `react` param. Turnstile verification is unchanged. New deps: `resend`, `@react-email/components`. Env var changed: `SMTP2GO_API_KEY` → `RESEND_API_KEY`. **Action required:** verify `prowoodinteriors.com` at https://resend.com/domains before production sends work.
 
 ### Best Practices

@@ -16,7 +16,7 @@ const featured = [
   {
     title: "Cabinet Refacing",
     description:
-      "Give your existing cabinets a fresh, updated look without a full replacement — a fraction of the cost and disruption, with a wide selection of styles.",
+      "Give your existing cabinets a fresh, updated look without a full replacement — far less disruption, with a wide selection of styles.",
     href: "/services/cabinet-refacing",
     image:
       "/images/gallery/kitchen remodel/Kitchen Cabinet Refacing/kitchen-cabinet-remodel-refacing-01.jpg",

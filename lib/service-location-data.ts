@@ -101,7 +101,7 @@ export const serviceLocations: ServiceLocationData[] = [
 
     intro: [
       "Many Chesterfield homes were built with cabinet boxes that are still perfectly sound — solid plywood or hardwood frames, properly mounted, with layouts that work for the room. What's usually dated is the face: tired oak doors, chipped paint, worn hinges, or a finish that hasn't aged gracefully. That's exactly what cabinet refacing solves.",
-      "Instead of tearing out functional cabinetry and adding weeks of disruption to your home, we replace what you actually see: new solid-wood doors, matching drawer fronts, a veneer over the visible box surfaces, and upgraded hardware. The result looks like a brand-new kitchen — without the brand-new kitchen timeline or price tag.",
+      "Instead of tearing out functional cabinetry and adding weeks of disruption to your home, we replace what you actually see: new solid-wood doors, matching drawer fronts, a veneer over the visible box surfaces, and upgraded hardware. The result looks like a brand-new kitchen — without the brand-new kitchen timeline.",
       "We've refaced cabinets in homes across Chesterfield — from established neighborhoods near Chesterfield Mall to newer construction in the Valley — and the common thread is straightforward: homeowners who want a real visual transformation without the full-scope remodel.",
     ],
 
@@ -181,9 +181,9 @@ export const serviceLocations: ServiceLocationData[] = [
             "We visit your home, measure every cabinet, check the condition of the boxes, and talk through what you want to change. If refacing is the right call, we show you door samples, wood species, finishes, and hardware options on the spot.",
         },
         {
-          title: "Design and Detailed Quote",
+          title: "Design and Detailed Proposal",
           description:
-            "Within a few days you receive a written quote with every door style, dimension, finish, and hardware choice specified. No surprises — if you approve it, that's exactly what we build.",
+            "Within a few days you receive a written proposal with every door style, dimension, finish, and hardware choice specified. Once you approve the plan, that's exactly what we build.",
         },
         {
           title: "Shop Build",
@@ -207,11 +207,6 @@ export const serviceLocations: ServiceLocationData[] = [
     },
 
     faqs: [
-      {
-        question: "How much does cabinet refacing cost in Chesterfield?",
-        answer:
-          "Every project is priced specifically to the kitchen, but cabinet refacing generally costs 40–60% less than replacing your cabinets with new custom ones. The exact figure depends on cabinet count, door style, wood species, and any upgrades. We provide a detailed written quote after the in-home assessment — no ballpark numbers that change later.",
-      },
       {
         question: "How long does a Chesterfield refacing project take?",
         answer:
@@ -375,16 +370,11 @@ export const serviceLocations: ServiceLocationData[] = [
       heading: "Designing Kitchens for Chesterfield Living",
       content: [
         "Chesterfield kitchens tend to anchor bigger gatherings — holiday dinners, weekend entertaining, kids home from college. We design with that in mind: islands sized for seating and prep, walk-in pantries for a serious grocery haul, beverage stations that keep guests out of the cooking flow, and sightlines that connect the kitchen to the family room without making it feel like one big echo chamber.",
-        "We also think about resale. Chesterfield has a strong housing market, and the kitchen is usually the room that moves the needle most. The choices we recommend are the ones that stay current — neutral painted cabinets with wood islands, clean hardware lines, timeless layouts, and solid wood construction that a future home inspector will appreciate as much as you do.",
+        "We also think about longevity. The choices we recommend are the ones that stay current — neutral painted cabinets with wood islands, clean hardware lines, timeless layouts, and solid wood construction that a future home inspector will appreciate as much as you do.",
       ],
     },
 
     faqs: [
-      {
-        question: "What does a full kitchen remodel cost in Chesterfield?",
-        answer:
-          "Full-scope kitchen remodels for Chesterfield homes typically range from the low five figures into six figures, depending on cabinet count, door style, wood species, and the scope of any structural or layout changes. Countertops, appliances, and other trades are priced separately. We provide a detailed written quote after the in-home consultation — no ballpark figures that move on you later.",
-      },
       {
         question: "How long does a Chesterfield kitchen remodel take?",
         answer:
@@ -451,7 +441,7 @@ export const serviceLocations: ServiceLocationData[] = [
 
     intro: [
       "Wildwood homes — especially those built in the late 1990s and early 2000s along Highway 100 and the wooded lots near Babler State Park — were often built with surprisingly good cabinet boxes. What's usually dated is what you actually see: oak doors that haven't aged well, brass hardware from a different era, or a finish that's been through two kids and a dog.",
-      "Cabinet refacing replaces everything visible — doors, drawer fronts, end panels, hardware — while keeping the structural boxes that still work. For most Wildwood kitchens, that's the smart call: a transformed look without the cost, waste, or disruption of a full tear-out.",
+      "Cabinet refacing replaces everything visible — doors, drawer fronts, end panels, hardware — while keeping the structural boxes that still work. For most Wildwood kitchens, that's the smart call: a transformed look without the waste or disruption of a full tear-out.",
       "We've been refacing kitchens for Wildwood families for years. The shop build happens off-site, the on-site install typically wraps in about a week, and the finished kitchen looks like a new one — often with better materials than the originals.",
     ],
 
@@ -528,7 +518,7 @@ export const serviceLocations: ServiceLocationData[] = [
         {
           title: "Design and Selections",
           description:
-            "You receive a written quote with every door style, wood, finish, and hardware choice specified. No loose ends — what you approve is exactly what we build.",
+            "You receive a written design plan with every door style, wood, finish, and hardware choice specified. No loose ends — what you approve is exactly what we build.",
         },
         {
           title: "Shop Build and Finishing",
@@ -553,11 +543,6 @@ export const serviceLocations: ServiceLocationData[] = [
 
     faqs: [
       {
-        question: "How much does cabinet refacing cost in Wildwood?",
-        answer:
-          "Refacing generally costs 40–50% less than replacing your cabinets with new custom ones. Exact pricing depends on cabinet count, door style, wood species, hardware, and any add-ons. You'll receive a detailed written quote after the in-home assessment — not a moving target.",
-      },
-      {
         question: "How long will my kitchen be out of commission?",
         answer:
           "The shop build happens off-site, so the only disruption is during the on-site installation week — typically 5–7 business days. We install in sections, so you generally keep access to your sink and at least some storage throughout.",
@@ -570,7 +555,7 @@ export const serviceLocations: ServiceLocationData[] = [
       {
         question: "What happens if you find damage we didn't know about?",
         answer:
-          "We check box condition during the initial assessment, so major issues are identified before we start. If we find unexpected damage during installation, we pause, walk you through it, and agree on an approach before moving forward. No surprise charges tacked onto a final invoice.",
+          "We check box condition during the initial assessment, so major issues are identified before we start. If we find unexpected damage during installation, we pause, walk you through it, and agree on an approach before moving forward.",
       },
       {
         question: "Can I add features during the refacing project?",
@@ -726,11 +711,6 @@ export const serviceLocations: ServiceLocationData[] = [
 
     faqs: [
       {
-        question: "What does a full kitchen remodel cost in Wildwood?",
-        answer:
-          "Full-scope Wildwood remodels vary widely based on cabinet count, wood species, door style, and the scope of layout or structural changes. Countertops and other trades are priced separately. We provide a detailed written quote after the in-home consultation — a real number, not a moving estimate.",
-      },
-      {
         question: "How long does a Wildwood kitchen remodel take?",
         answer:
           "Expect 10–14 weeks from design approval to final walkthrough: roughly 2–3 weeks for design finalization, 6–8 weeks for the shop build, and 2–3 weeks for installation and trade coordination on-site.",
@@ -793,7 +773,7 @@ export const serviceLocations: ServiceLocationData[] = [
     heroEyebrow: "Serving Clayton, MO",
     heroTitle: "Cabinet Refacing in Clayton, Missouri",
     heroSubtitle:
-      "A kitchen update that respects your home's architecture — handcrafted new doors, drawer fronts, and custom finishes, installed in about a week. 40–50% less than full replacement.",
+      "A kitchen update that respects your home's architecture — handcrafted new doors, drawer fronts, and custom finishes, installed in about a week.",
 
     intro: [
       "Clayton homes have character. Whether you live in a 1920s Tudor near Wydown, a Colonial off Forsyth, a mid-century ranch closer to Brentwood, or a more recent build in University Heights, the architecture matters — and the kitchen needs to belong to the rest of the house. Refacing is often the best way to update an older Clayton kitchen because it preserves the existing layout (which is usually intentional in these homes) while giving you a chance to choose door styles and finishes that genuinely fit your home's era.",
@@ -877,9 +857,9 @@ export const serviceLocations: ServiceLocationData[] = [
             "We come to your Clayton home, measure every cabinet, evaluate the structural condition of the boxes, and talk through what you want changed. We bring physical samples — door styles, wood species, stain and paint chips, hardware — so you can see them in your kitchen lighting before committing.",
         },
         {
-          title: "Design and Detailed Quote",
+          title: "Design and Detailed Plan",
           description:
-            "Within a few days you receive a written quote with every door style, dimension, finish, hardware choice, and add-on specified. The total is a fixed number; we don't do ballparks that grow on the final invoice.",
+            "Within a few days you receive a written plan with every door style, dimension, finish, hardware choice, and add-on specified down to the detail. Once you sign off, that documented scope is exactly what we build.",
         },
         {
           title: "Shop Build",
@@ -904,11 +884,6 @@ export const serviceLocations: ServiceLocationData[] = [
 
     faqs: [
       {
-        question: "How much does cabinet refacing cost in Clayton?",
-        answer:
-          "Refacing is priced specifically to each kitchen, but generally runs 40–50% less than fully replacing the same cabinets with comparable custom work. For a typical Clayton kitchen (20–30 cabinets), most projects fall between roughly $9,000 and $25,000 depending on door style, wood species, hardware, and any add-ons. We provide a fixed written quote after the in-home consultation — no ballparks, no surprise add-ons.",
-      },
-      {
         question: "Can refacing work in a Clayton home built in the 1920s or earlier?",
         answer:
           "In most cases, yes. Older Clayton homes tend to have well-built cabinet boxes — solid hardwood frames designed to last. We check each box during the assessment; if the structural integrity is intact (which is usually the case in homes from this era), refacing is often the ideal update. The challenge in older homes is usually matching the surrounding architectural details, which is something we specifically pay attention to in Clayton projects.",
@@ -921,12 +896,7 @@ export const serviceLocations: ServiceLocationData[] = [
       {
         question: "I live in a Clayton condo — does refacing still make sense?",
         answer:
-          "Often yes. Condo kitchens typically have smaller cabinet counts (which keeps the cost lower), and the constrained on-site timeline of refacing — 5–7 business days vs. 2–3 weeks for full replacement — works well in condos with HOA considerations, shared elevators, and neighbor proximity. We've done refacing projects in several Clayton condos and understand the building-management coordination they require.",
-      },
-      {
-        question: "Will refacing increase my home's value in Clayton?",
-        answer:
-          "Kitchens are consistently one of the highest-ROI rooms to update, and Clayton's strong housing market amplifies that. Industry data suggests midrange kitchen updates recoup 60–80% of cost at resale, with stronger returns in higher-end markets. Beyond ROI, an updated kitchen helps a Clayton home photograph and show dramatically better — which often matters as much as the precise recouped dollar figure when listing.",
+          "Often yes. Condo kitchens typically have smaller cabinet counts, and the constrained on-site timeline of refacing — 5–7 business days vs. 2–3 weeks for full replacement — works well in condos with HOA considerations, shared elevators, and neighbor proximity. We've done refacing projects in several Clayton condos and understand the building-management coordination they require.",
       },
       {
         question: "How long does the entire process take from first call to finished kitchen?",
@@ -1070,17 +1040,12 @@ export const serviceLocations: ServiceLocationData[] = [
     considerations: {
       heading: "What Makes a Clayton Kitchen Remodel Different",
       content: [
-        "Clayton's housing market is one of the strongest in the St. Louis region, and kitchen remodels here disproportionately influence both how the home shows and how it appraises. We design with both in mind: timeless choices that will look current in fifteen years, materials that hold up to daily use, and finish work that an inspector or buyer's agent will notice on a walkthrough.",
+        "Clayton homes ask a lot of their kitchens, so we design for the long view: timeless choices that will look current in fifteen years, materials that hold up to daily use, and finish work that an inspector or buyer's agent will notice on a walkthrough.",
         "The other reality of Clayton remodels is that the homes themselves often dictate the design vocabulary. A 1925 Tudor in Wydown demands different cabinetry than a 1960s ranch off Topton Way, which is different again from a contemporary condo near downtown Clayton. We don't push a house style toward our preferences — we design the kitchen the house wants, then make it work brilliantly for how your family lives.",
       ],
     },
 
     faqs: [
-      {
-        question: "What does a full kitchen remodel cost in Clayton?",
-        answer:
-          "Full-scope kitchen remodels for Clayton homes vary widely based on cabinet count, wood species, door style, and the scope of any structural or layout changes. Countertops, appliances, and other trades are priced separately. We provide a detailed written quote after the in-home consultation — a real number, not a ballpark that grows. If a full remodel is more than your kitchen actually needs, we'll be honest about that and steer you toward refacing if it fits better.",
-      },
       {
         question: "How long does a Clayton kitchen remodel take?",
         answer:

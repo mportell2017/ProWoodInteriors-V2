@@ -45,10 +45,10 @@ const services = [
   },
   {
     title: 'Cabinet Refacing',
-    description: 'Give your existing cabinets a completely new look without the cost and disruption of a full replacement. New doors, drawer fronts, and veneers over your existing cabinet boxes.',
+    description: 'Give your existing cabinets a completely new look without the disruption of a full replacement. New doors, drawer fronts, and veneers over your existing cabinet boxes.',
     href: '/services/cabinet-refacing',
     image: '/images/gallery/kitchen remodel/Kitchen Cabinet Refacing/kitchen-cabinet-remodel-refacing-01.jpg',
-    features: ['Fraction of replacement cost', 'Less disruption', 'Wide style selection', 'Quick turnaround'],
+    features: ['Keeps your existing boxes', 'Less disruption', 'Wide style selection', 'Quick turnaround'],
   },
 ];
 

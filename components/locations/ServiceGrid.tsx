@@ -64,7 +64,7 @@ const services: Service[] = [
     title: 'Cabinet Refacing',
     href: '/services/cabinet-refacing',
     icon: RefacingIcon,
-    description: 'Transform your kitchen for 40-50% less than full replacement with custom cabinet doors and drawer fronts.',
+    description: 'Transform your kitchen with custom cabinet doors and drawer fronts while keeping the cabinet boxes you already own.',
     features: [
       'Custom door styles',
       'Quick installation',

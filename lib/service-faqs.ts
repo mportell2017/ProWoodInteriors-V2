@@ -34,11 +34,6 @@ export const kitchenCabinetryFAQs: FAQ[] = [
       'Because we build everything in our own shop, we stand behind both the construction and the finish. If anything fails due to materials or workmanship we make it right. Most clients find the cabinets outlast the kitchen around them.',
   },
   {
-    question: 'How much does a full kitchen remodel cost in St. Louis?',
-    answer:
-      "Full-scope kitchen remodels for St. Louis-area homes vary widely based on cabinet count, wood species, door style, and the scope of any structural or layout changes. Countertops, appliances, and other trades are priced separately from the cabinetry. We provide a detailed written quote after the in-home consultation — a real number, not a moving estimate. If a full remodel is more than your kitchen needs, we'll be honest about that and steer you toward refacing if it fits better.",
-  },
-  {
     question: "Do I need a permit for a kitchen remodel?",
     answer:
       "It depends on scope. Like-for-like cabinet replacement usually doesn't require a permit. Moving walls, plumbing, electrical, or structural elements does. We identify permit requirements during design and either pull them ourselves or coordinate with the trades that will. Building codes vary slightly by municipality across the St. Louis metro — we know the local requirements in Clayton, Chesterfield, Wildwood, and the rest of our service area.",
@@ -54,7 +49,7 @@ export const cabinetRefacingFAQs: FAQ[] = [
   {
     question: 'How is cabinet refacing different from replacing cabinets?',
     answer:
-      'Refacing keeps your existing cabinet boxes in place and replaces the doors, drawer fronts, and visible exterior surfaces with new custom-built wood. Replacement tears out the boxes entirely. If your boxes are structurally sound, refacing gives you a brand-new kitchen look for 40–50% less than full replacement, with far less disruption.',
+      'Refacing keeps your existing cabinet boxes in place and replaces the doors, drawer fronts, and visible exterior surfaces with new custom-built wood. Replacement tears out the boxes entirely. If your boxes are structurally sound, refacing gives you a brand-new kitchen look with far less disruption.',
   },
   {
     question: 'How long does a typical refacing project take?',
@@ -70,11 +65,6 @@ export const cabinetRefacingFAQs: FAQ[] = [
     question: 'Can you change the layout during refacing?',
     answer:
       "Refacing works best when the existing layout stays the same. If you want to add an island, change cabinet heights, or move runs of cabinetry, that's a custom build, not a reface — and we're happy to do either. We'll be honest about which approach fits your goals.",
-  },
-  {
-    question: 'How does refacing pricing compare to new cabinets?',
-    answer:
-      'Cabinet refacing typically runs 40–50% less than fully replacing the cabinets with comparable custom work — sometimes more when the existing boxes are in good shape. We give a fixed quote after the in-home consultation, with no surprise add-ons.',
   },
   {
     question: 'Should I reface my cabinets or replace them entirely?',
@@ -99,7 +89,7 @@ export const cabinetRefacingFAQs: FAQ[] = [
   {
     question: 'Does cabinet refacing increase home resale value?',
     answer:
-      'Kitchens are consistently one of the highest-ROI rooms to update. Refacing typically delivers most of the visual benefit of a full kitchen remodel at a fraction of the cost — which is why agents in Clayton, Chesterfield, and Wildwood often recommend refacing when prepping a home for sale. The ROI depends on the local market, but refacing rarely fails to pay back at least most of its cost in resale value, and it dramatically improves how a kitchen photographs and shows.',
+      'Kitchens are consistently one of the highest-impact rooms to update before a sale. Refacing delivers much of the visual benefit of a full kitchen remodel — which is why agents in Clayton, Chesterfield, and Wildwood often recommend refacing when prepping a home for sale. It dramatically improves how a kitchen photographs and shows to buyers.',
   },
 ];
 

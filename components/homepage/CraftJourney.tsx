@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/Card";
 const steps = [
   {
     name: "Consultation",
-    body: "We meet with you, listen to your ideas, and talk through goals, budget, and timeline.",
+    body: "We meet with you, listen to your ideas, and talk through goals, style, and timeline.",
   },
   {
     name: "Design & Planning",

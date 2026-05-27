@@ -72,7 +72,7 @@ export default function ServiceAreasPage() {
               From our shop in Maryland Heights, we&apos;ve been crafting custom
               cabinetry and built-ins for homeowners across {MARKETING_REGION}{' '}
               and St. Charles counties since {FOUNDED_YEAR}. Choose your city to
-              see local projects, pricing, and the way we work in your community.
+              see local projects and the way we work in your community.
             </p>
           </div>
         </Container>

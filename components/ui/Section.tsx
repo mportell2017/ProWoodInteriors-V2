@@ -9,7 +9,7 @@ export function Section({
   containerClassName,
 }: {
   id?: string;
-  tone?: "parchment" | "walnut" | "clear";
+  tone?: "parchment" | "cream" | "walnut" | "clear";
   className?: string;
   containerClassName?: string;
   children: React.ReactNode;
@@ -17,9 +17,11 @@ export function Section({
   const toneClass =
     tone === "walnut"
       ? "bg-walnut text-parchment"
-      : tone === "clear"
-        ? ""
-        : "bg-parchment text-ink";
+      : tone === "cream"
+        ? "bg-cream text-ink"
+        : tone === "clear"
+          ? ""
+          : "bg-parchment text-ink";
 
   return (
     <section id={id} className={cn("py-8 sm:py-12", toneClass, className)}>

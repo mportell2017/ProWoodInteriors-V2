@@ -26,7 +26,7 @@ export const navServices: NavService[] = [
   {
     name: "Cabinet Refacing",
     href: "/services/cabinet-refacing",
-    blurb: "A brand-new look for sound cabinets — a fraction of replacement cost.",
+    blurb: "A brand-new look for sound cabinets — without a full tear-out.",
     icon: "refacing",
   },
   {

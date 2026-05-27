@@ -1,14 +1,17 @@
 import { Metadata } from 'next';
-import { Section } from '@/components/ui/Section';
-import { Heading } from '@/components/ui/Heading';
-import { Container } from '@/components/ui/Container';
-import { ButtonLink } from '@/components/ui/Button';
-import Image from 'next/image';
-import Link from 'next/link';
 import { generateServiceSchema, generateFAQSchema } from '@/lib/structured-data';
 import { customBookcasesFAQs } from '@/lib/service-faqs';
 import { LocationFAQs } from '@/components/locations/LocationFAQs';
 import { ServiceAreaLinks } from '@/components/services/ServiceAreaLinks';
+import { ServiceHero } from '@/components/services/ServiceHero';
+import { ServiceIntro } from '@/components/services/ServiceIntro';
+import { NumberedBenefits } from '@/components/services/NumberedBenefits';
+import { CardGrid } from '@/components/services/CardGrid';
+import { StatMoment } from '@/components/services/StatMoment';
+import { ServiceProcessTimeline } from '@/components/services/ServiceProcessTimeline';
+import { SimpleGallery } from '@/components/services/SimpleGallery';
+import { ServiceCityGrid } from '@/components/services/ServiceCityGrid';
+import { ServiceCTA } from '@/components/services/ServiceCTA';
 
 export const metadata: Metadata = {
   title: 'Custom Bookcases',
@@ -40,254 +43,205 @@ const serviceSchema = generateServiceSchema({
 const faqSchema = generateFAQSchema(customBookcasesFAQs);
 
 export default function CustomBookcasesPage() {
-  // Use specific bookcase images
   const bookcaseImages = [
     {
       src: '/images/gallery/Bookcases/white  bookcase remodel-02.jpg',
       alt: 'Custom white bookcase with built-in shelving by Professional Wood Interiors - St. Louis, MO',
-      category: 'Bookcases',
-      project: 'White Bookcase Remodel',
     },
     {
       src: '/images/gallery/Bookcases/white  bookcase remodel-03.jpg',
       alt: 'Floor-to-ceiling custom bookcase with solid wood construction - Professional Wood Interiors - St. Louis, MO',
-      category: 'Bookcases',
-      project: 'White Bookcase Remodel',
     },
     {
       src: '/images/gallery/Bookcases/white  bookcase remodel-04.jpg',
       alt: 'Built-in bookcase with architectural detail by Professional Wood Interiors - St. Louis, MO',
-      category: 'Bookcases',
-      project: 'White Bookcase Remodel',
     },
   ];
 
-  const options = [
+  const benefits = [
     {
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
-          />
-        </svg>
-      ),
+      title: 'Fills the Whole Wall',
+      description:
+        'From the floor to the ceiling, around the window, into the alcove. A built-in uses the space a freestanding unit wastes — including the dead air that usually collects above store-bought shelves.',
+    },
+    {
+      title: 'Scribed to Your Walls',
+      description:
+        "Real walls aren't plumb or square. We scribe and trim each built-in to your room on-site, so there are no gaps along the wall or ceiling — just a seamless fit.",
+    },
+    {
+      title: 'Shelves That Hold',
+      description:
+        'Solid-wood shelves sized and supported for books, not the sagging laminate spans of a flat-pack kit. Adjustable, so the layout changes as your collection does.',
+    },
+    {
+      title: 'Part of the House',
+      description:
+        'Finished to match your existing trim and built to stay, a built-in adds architectural character — and value — that furniture never will.',
+    },
+  ];
+
+  const configurations = [
+    {
       title: 'Floor to Ceiling',
-      description:
-        'Maximize vertical space with full-height built-ins that make a dramatic statement.',
+      description: 'Full-height built-ins that maximize vertical storage and make a dramatic architectural statement.',
     },
     {
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
-          />
-        </svg>
-      ),
-      title: 'With Cabinets',
-      description:
-        'Combine open shelving with closed storage for a practical, organized look.',
+      title: 'With Integrated Cabinets',
+      description: "Open shelving above, closed cabinet storage below — display what you want, hide what you don't.",
     },
     {
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-          />
-        </svg>
-      ),
-      title: 'Window Seats',
-      description:
-        'Integrate bookcases around windows with cozy reading nooks.',
+      title: 'Around Windows & Seats',
+      description: 'Shelving wrapped around a window with a built-in bench, turning an awkward corner into a reading nook.',
     },
+  ];
+
+  const buildStandard = [
+    { title: 'Solid-wood construction' },
+    { title: 'Adjustable, weight-rated shelves' },
+    { title: 'Scribed and trimmed to your walls' },
+    { title: 'Finish matched to your trim and décor' },
+    { title: 'Integrated cabinets and display lighting (optional)' },
+    { title: 'Installed by the team that built it' },
+  ];
+
+  const processSteps = [
+    {
+      number: '01',
+      title: 'In-Home Design Visit',
+      description:
+        "We measure the wall, look at the room's existing trim and architecture, and talk through how you'll use the shelves — books, display, storage, a window seat. The visit takes about an hour.",
+    },
+    {
+      number: '02',
+      title: 'Design and Detailed Quote',
+      description:
+        'You receive a design with every dimension, wood species, finish, and option specified, plus a fixed written quote. What you approve is exactly what we build.',
+    },
+    {
+      number: '03',
+      title: 'Shop Build and Finish',
+      description:
+        'Your bookcase is built by hand and finished in our climate-controlled St. Louis shop, so the color is even and your home stays free of dust and fumes.',
+    },
+    {
+      number: '04',
+      title: 'On-Site Installation',
+      description:
+        'We install the built-in, then scribe and trim it to your walls and ceiling so the fit is seamless. We clean up and leave you a finished wall.',
+    },
+  ];
+
+  const cities = [
+    { name: 'Clayton', slug: 'clayton' },
+    { name: 'Chesterfield', slug: 'chesterfield' },
+    { name: 'Wildwood', slug: 'wildwood' },
   ];
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+
+      <ServiceHero
+        eyebrow="Serving the St. Louis Metro Since 1985"
+        title={
+          <>
+            Custom
+            <span className="block italic font-light text-umber">Bookcases</span>
+            <span className="block">built into</span>
+            <span className="block">your home.</span>
+          </>
+        }
+        intro="Floor-to-ceiling shelving, library walls, and built-ins designed for your room and scribed to your walls — furniture-grade millwork that becomes part of the architecture."
+        image={{ src: bookcaseImages[0].src, alt: bookcaseImages[0].alt }}
+        stat={{
+          value: '40',
+          label: (
+            <>
+              Years of <br />
+              Local Craft
+            </>
+          ),
+        }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+
+      <ServiceIntro
+        lead="Freestanding shelves sit in a room. A built-in becomes the room — scribed to the walls, sized to the ceiling, and finished to match the trim already there."
+        left={[
+          "A built-in bookcase is designed for one wall in one house. It fills the height you actually have, works around the window or fireplace that's already there, and leaves no awkward gap collecting dust on top. The result reads as original architecture, not furniture pushed into place.",
+          'We build them like fine furniture: solid-wood construction, adjustable shelves that carry real weight, and joinery meant to last decades — not the cam-and-dowel particleboard of a flat-pack unit.',
+        ]}
+        right={[
+          "Whether you want a simple run of shelves for a home office or a full library wall with cabinets and display lighting, we design around how you'll use it and what you'll put on it.",
+          'Everything is finished in our shop and installed by the team that built it, then scribed and trimmed to your walls on-site so the fit is seamless. Built in St. Louis since 1985.',
+        ]}
       />
 
-      {/* Hero Section */}
-      <Section className="pt-24 pb-16">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <Heading accent="italic" as="h1">
-              Custom Bookcases
-            </Heading>
-            <p className="mt-6 text-xl text-ink/60 font-sans leading-relaxed">
-              Custom built-in bookcases designed to fit your space and enhance your home.
-            </p>
-            <p className="mt-8 text-xl text-ink/70 leading-relaxed font-elegant">
-              A custom built-in bookcase adds both beauty and functionality to your home. Unlike
-              freestanding furniture, built-ins are designed specifically for your space,
-              maximizing storage while creating a seamless, architectural look.
-            </p>
-          </div>
-        </Container>
-      </Section>
+      <NumberedBenefits
+        eyebrow="Why Built-In"
+        title="Why a Built-In Beats a Freestanding Bookshelf"
+        benefits={benefits}
+      />
 
-      {/* Main Content */}
-      <Section className="py-12">
-        <Container>
-          <div className="max-w-4xl mx-auto">
-            {/* Body Content */}
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg text-ink/80 leading-relaxed font-sans mb-6">
-                Our bookcases are built like fine furniture, with solid wood construction,
-                adjustable shelves, and meticulous attention to detail. Whether you want a simple
-                set of shelves or an elaborate library wall with cabinets and display lighting, we
-                can bring your vision to life.
-              </p>
-              <p className="text-lg text-ink/80 leading-relaxed font-sans">
-                We build bookcases for living rooms, home offices, bedrooms, and anywhere you need
-                attractive storage. Each piece is designed to complement your home&apos;s existing
-                architecture and finished to match your décor.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </Section>
+      <CardGrid
+        eyebrow="Configurations"
+        title="Ways We Build Them"
+        subtitle="Most projects combine these — designed around your room and how you'll use the shelves."
+        items={configurations}
+        columns={3}
+        tone="cream"
+      />
 
-      {/* Gallery Showcase Section */}
-      <Section className="py-16">
-        <Container>
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <Heading as="h2" showDivider={false}>
-                Bookcase Gallery
-              </Heading>
-              <p className="mt-4 text-lg text-ink/70 font-elegant">
-                Explore our custom bookcase projects
-              </p>
-            </div>
+      <StatMoment
+        eyebrow="Built to Stay"
+        value="Built-in"
+        caption="part of the house, not the furniture"
+        body="A freestanding shelf moves out with you. A built-in stays — scribed to the walls, finished to match the trim, and counted as part of the home. It's the difference between buying furniture and adding architecture."
+      />
 
-            {/* Image Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-              {bookcaseImages.map((image, idx) => (
-                <Link
-                  key={image.src}
-                  href="/showroom/bookcases"
-                  className="group relative aspect-[3/4] overflow-hidden rounded-sm shadow-md hover:shadow-xl transition-all duration-300"
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </Link>
-              ))}
-            </div>
+      <CardGrid
+        eyebrow="The Build"
+        title="How We Build Every Bookcase"
+        items={buildStandard}
+        variant="checklist"
+        columns={2}
+      />
 
-            {/* CTA to Full Gallery */}
-            <div className="text-center">
-              <ButtonLink href="/showroom/bookcases" variant="outline" className="group">
-                View All Bookcase Projects
-                <svg
-                  className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </ButtonLink>
-            </div>
-          </div>
-        </Container>
-      </Section>
+      <ServiceProcessTimeline
+        eyebrow="How It Works"
+        title="From Bare Wall to Built-In"
+        subtitle="Four steps, the same crew throughout."
+        steps={processSteps}
+      />
 
-      {/* Options Section */}
-      <Section tone="parchment" className="py-16">
-        <Container>
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <Heading as="h2" showDivider={false}>
-                Bookcase Options
-              </Heading>
-            </div>
+      <SimpleGallery
+        eyebrow="Recent Work"
+        title="Built-In Bookcases We've Made"
+        subtitle="Custom shelving and library walls for St. Louis homes."
+        images={bookcaseImages}
+        columns={3}
+        galleryHref="/showroom/bookcases"
+        ctaLabel="View All Bookcase Projects"
+      />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {options.map((option, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center text-center p-8 bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="flex-shrink-0 w-16 h-16 mb-6 text-brass flex items-center justify-center">
-                    {option.icon}
-                  </div>
-                  <h3 className="text-2xl font-elegant font-semibold text-ink mb-3">
-                    {option.title}
-                  </h3>
-                  <p className="text-lg text-ink/70 leading-relaxed">{option.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </Section>
+      <ServiceCityGrid
+        title="Custom Bookcases Across the St. Louis Metro"
+        subtitle="We design and build built-ins for homeowners throughout St. Louis County and St. Charles County."
+        cities={cities}
+        cardEyebrow="Custom Bookcases in"
+        hrefFor={(city) => `/locations/${city.slug}`}
+      />
 
       <ServiceAreaLinks />
 
       <LocationFAQs faqs={customBookcasesFAQs} />
 
-      {/* CTA Section */}
-      <Section tone="walnut" className="py-16">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <Heading tone="dark" showDivider={false} className="mb-6">
-              Ready to Add Custom Bookcases?
-            </Heading>
-            <p className="text-parchment/80 text-lg mb-8 leading-relaxed">
-              Let&apos;s discuss how custom built-ins can transform your space.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="tel:3144379988"
-                className="inline-flex items-center gap-3 px-8 py-4 text-lg font-semibold text-walnut bg-brass hover:bg-brass/90 rounded-sm shadow-xl transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-walnut"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                (314) 437-9988
-              </a>
-              <ButtonLink
-                href="/contact-us"
-                variant="outline"
-                className="border-2 border-parchment/40 text-parchment hover:bg-parchment/10"
-              >
-                Schedule a Consultation
-              </ButtonLink>
-            </div>
-          </div>
-        </Container>
-      </Section>
+      <ServiceCTA
+        title="Ready to Add Custom Built-Ins?"
+        body="Tell us about the wall and how you'd use it, and we'll show you what a built-in could look like. The in-home consultation is free — we'll measure, talk through options, and follow up with a detailed written quote."
+        estimateLabel="Schedule a Consultation"
+      />
     </>
   );
 }

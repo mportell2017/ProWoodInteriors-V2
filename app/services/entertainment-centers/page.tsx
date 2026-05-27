@@ -1,14 +1,18 @@
 import { Metadata } from 'next';
-import { Section } from '@/components/ui/Section';
-import { Heading } from '@/components/ui/Heading';
-import { Container } from '@/components/ui/Container';
-import { ButtonLink } from '@/components/ui/Button';
-import Image from 'next/image';
-import Link from 'next/link';
 import { generateServiceSchema, generateFAQSchema } from '@/lib/structured-data';
 import { entertainmentCentersFAQs } from '@/lib/service-faqs';
 import { LocationFAQs } from '@/components/locations/LocationFAQs';
 import { ServiceAreaLinks } from '@/components/services/ServiceAreaLinks';
+import { ServiceHero } from '@/components/services/ServiceHero';
+import { ServiceIntro } from '@/components/services/ServiceIntro';
+import { NumberedBenefits } from '@/components/services/NumberedBenefits';
+import { CardGrid } from '@/components/services/CardGrid';
+import { StatMoment } from '@/components/services/StatMoment';
+import { ImageStrip } from '@/components/services/ImageStrip';
+import { ServiceProcessTimeline } from '@/components/services/ServiceProcessTimeline';
+import { EditorialGallery } from '@/components/services/EditorialGallery';
+import { ServiceCityGrid } from '@/components/services/ServiceCityGrid';
+import { ServiceCTA } from '@/components/services/ServiceCTA';
 
 export const metadata: Metadata = {
   title: 'Entertainment Centers',
@@ -40,277 +44,223 @@ const serviceSchema = generateServiceSchema({
 const faqSchema = generateFAQSchema(entertainmentCentersFAQs);
 
 export default function EntertainmentCentersPage() {
-  // Use specific entertainment center images
   const entertainmentImages = [
     {
       src: '/images/gallery/Entertainment Centers/entertainment-center-01.jpg',
       alt: 'Custom entertainment center with integrated storage by Professional Wood Interiors - St. Louis, MO',
-      category: 'Entertainment Centers',
     },
     {
       src: '/images/gallery/Entertainment Centers/entertainment-fireplace-remodel-01.jpg',
       alt: 'Entertainment center with fireplace built-in by Professional Wood Interiors - St. Louis, MO',
-      category: 'Entertainment Centers',
     },
     {
       src: '/images/gallery/Entertainment Centers/entertainment-fireplace-remodel-02.jpg',
       alt: 'Custom media center with fireplace integration - Professional Wood Interiors - St. Louis, MO',
-      category: 'Entertainment Centers',
     },
     {
       src: '/images/gallery/Entertainment Centers/full fireplace entertainment center remodel-01.jpg',
       alt: 'Full wall entertainment center with fireplace by Professional Wood Interiors - St. Louis, MO',
-      category: 'Entertainment Centers',
     },
     {
       src: '/images/gallery/Entertainment Centers/full fireplace entertainment center remodel-02.jpg',
       alt: 'Floor-to-ceiling entertainment center with custom woodwork - Professional Wood Interiors - St. Louis, MO',
-      category: 'Entertainment Centers',
     },
     {
       src: '/images/gallery/Entertainment Centers/full fireplace entertainment center remodel-03.jpg',
       alt: 'Built-in media center with solid wood construction by Professional Wood Interiors - St. Louis, MO',
-      category: 'Entertainment Centers',
     },
     {
       src: '/images/gallery/Entertainment Centers/full fireplace entertainment center remodel-04.jpg',
       alt: 'Custom entertainment center with adjustable shelving - Professional Wood Interiors - St. Louis, MO',
-      category: 'Entertainment Centers',
     },
     {
       src: '/images/gallery/Entertainment Centers/full fireplace entertainment center remodel-05.jpg',
       alt: 'Architectural entertainment center with wire management by Professional Wood Interiors - St. Louis, MO',
-      category: 'Entertainment Centers',
     },
   ];
 
-  const showcaseImages = entertainmentImages.slice(0, 8);
+  const benefits = [
+    {
+      title: 'Sized to Your Wall',
+      description:
+        'No gaps at the sides, no unit that sits three inches too tall for the alcove. A built-in fills the space exactly, so the wall reads as architecture instead of furniture parked against it.',
+    },
+    {
+      title: 'Engineered for Your Electronics',
+      description:
+        'Each component gets ventilation, access, and a shelf sized to fit. Heat escapes, remotes still reach the gear, and nothing is crammed into a cubby it was never meant for.',
+    },
+    {
+      title: 'Cables, Out of Sight',
+      description:
+        'Power and signal runs are routed through the cabinetry from the start, so the only thing you see is the screen — not a tangle of cords behind a console.',
+    },
+    {
+      title: 'Built to Outlast the Gear',
+      description:
+        'Solid-wood construction and a shop-applied finish mean the cabinetry will still look right through three generations of televisions.',
+    },
+  ];
 
-  const features = [
+  const engineeredIn = [
     {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-        </svg>
-      ),
-      title: 'Custom sizing for your TV and equipment',
+      title: 'Custom sizing',
+      description:
+        'Built to the exact width, height, and depth of your wall and your TV — including above-fireplace installs.',
     },
     {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-        </svg>
-      ),
       title: 'Integrated wire management',
+      description: 'Power and signal cables routed through the cabinetry so nothing shows.',
     },
     {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-        </svg>
-      ),
-      title: 'Ventilation for electronics',
+      title: 'Component ventilation',
+      description: 'Airflow designed in for receivers, consoles, and amplifiers that run warm.',
     },
     {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-        </svg>
-      ),
       title: 'Adjustable shelving',
+      description: 'Reconfigurable shelves that adapt as your equipment changes.',
     },
     {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-        </svg>
-      ),
-      title: 'Hidden storage options',
+      title: 'Hidden storage',
+      description: 'Doors and drawers that tuck media, games, and everyday clutter out of sight.',
     },
     {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-        </svg>
-      ),
-      title: 'Matches your existing décor',
+      title: 'Finish-matched to your room',
+      description: 'Stained or painted to coordinate with your existing trim, built-ins, and décor.',
     },
+  ];
+
+  const processSteps = [
+    {
+      number: '01',
+      title: 'In-Home Design Visit',
+      description:
+        'We measure the wall, look at your TV and components, and talk through how you use the room — focal-point screen or hidden behind doors, open shelving or closed storage. The visit takes about an hour.',
+    },
+    {
+      number: '02',
+      title: 'Design and Detailed Quote',
+      description:
+        'You receive a design with every dimension, wood species, finish, and storage decision specified, plus a fixed written quote. What you approve is exactly what we build.',
+    },
+    {
+      number: '03',
+      title: 'Shop Build and Finish',
+      description:
+        'Your entertainment center is built by hand and finished in our climate-controlled St. Louis shop, so the color is even and your home stays free of dust and fumes.',
+    },
+    {
+      number: '04',
+      title: 'On-Site Installation',
+      description:
+        'We install the built-in, route and conceal the cabling, set the shelving for your gear, and clean up — leaving you a finished wall, not a project.',
+    },
+  ];
+
+  const cities = [
+    { name: 'Clayton', slug: 'clayton' },
+    { name: 'Chesterfield', slug: 'chesterfield' },
+    { name: 'Wildwood', slug: 'wildwood' },
   ];
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+
+      <ServiceHero
+        eyebrow="Serving the St. Louis Metro Since 1985"
+        title={
+          <>
+            Custom
+            <span className="block italic font-light text-umber">Entertainment</span>
+            <span className="block">Centers, built</span>
+            <span className="block">for your wall.</span>
+          </>
+        }
+        intro="Media walls designed around your TV, your components, and your room — with wire management, ventilation, and storage engineered in, not added on."
+        image={{ src: entertainmentImages[3].src, alt: entertainmentImages[3].alt }}
+        stat={{
+          value: '40',
+          label: (
+            <>
+              Years of <br />
+              Local Craft
+            </>
+          ),
+        }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+
+      <ServiceIntro
+        lead="A store-bought media console is built to an average living room. Yours isn't average — so why should the centerpiece of it be?"
+        left={[
+          'A built-in entertainment center is designed around the wall it lives on: the exact width of the alcove, the height of your mounted TV, the depth your components need to breathe. Where a freestanding unit leaves gaps and wasted space, a built-in makes the whole wall feel intentional.',
+          'We design around your equipment, not the other way around. Receivers, gaming consoles, sound bars, and cable boxes each get a home with airflow and access — and the cables that connect them disappear into the cabinetry.',
+        ]}
+        right={[
+          "Whether you want the television to be the focal point or hidden behind doors when it's off, we build the solution around how your family actually uses the room.",
+          'Every piece is built with the same solid-wood construction and joinery as our cabinetry, finished in our shop, and installed by the team that built it — furniture-grade millwork that becomes part of the house.',
+        ]}
       />
 
-      {/* Hero Section */}
-      <Section className="pt-24 pb-16">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <Heading accent="italic" as="h1">
-              Entertainment Centers
-            </Heading>
-            <p className="mt-6 text-xl text-ink/60 font-sans leading-relaxed">
-              Custom-built media centers designed around your space, equipment, and lifestyle.
-            </p>
-            <p className="mt-8 text-xl text-ink/70 leading-relaxed font-elegant">
-              A custom entertainment center provides the perfect solution for organizing your media
-              equipment while creating a beautiful focal point for your living room. Unlike
-              store-bought units, our custom designs are built to fit your space exactly and
-              accommodate your specific equipment.
-            </p>
-          </div>
-        </Container>
-      </Section>
+      <NumberedBenefits
+        eyebrow="Why Built-In"
+        title="Why a Built-In Beats a Store-Bought Console"
+        benefits={benefits}
+      />
 
-      {/* Main Content */}
-      <Section className="py-12">
-        <Container>
-          <div className="max-w-4xl mx-auto">
-            {/* Body Content */}
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg text-ink/80 leading-relaxed font-sans mb-6">
-                We design entertainment centers with practical features like wire management,
-                ventilation for electronics, adjustable shelving, and hidden storage. Whether you
-                want to showcase your TV or hide it behind custom doors, we can create a solution
-                that works for your lifestyle.
-              </p>
-              <p className="text-lg text-ink/80 leading-relaxed font-sans">
-                Our entertainment centers are built with the same quality construction as our
-                cabinetry, using solid wood and expert joinery techniques. The result is a piece of
-                furniture that will last for generations.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </Section>
+      <CardGrid
+        eyebrow="The Details"
+        title="What We Engineer In"
+        subtitle="The practical features that separate a built-in from a piece of furniture."
+        items={engineeredIn}
+        columns={3}
+        tone="cream"
+      />
 
-      {/* Gallery Showcase Section */}
-      <Section className="py-16">
-        <Container>
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <Heading as="h2" showDivider={false}>
-                Entertainment Center Gallery
-              </Heading>
-              <p className="mt-4 text-lg text-ink/70 font-elegant">
-                Explore our custom entertainment center projects
-              </p>
-            </div>
+      <StatMoment
+        eyebrow="Made to Measure"
+        value="1-of-1"
+        caption="built for your wall and your gear"
+        body="We don't build to a catalog size. Every entertainment center is designed for one room — the dimensions of your wall, the equipment on your shelves, and the way your family actually watches. There is exactly one like it."
+      />
 
-            {/* Masonry Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
-              {showcaseImages.map((image, idx) => (
-                <Link
-                  key={image.src}
-                  href="/showroom/entertainment-centers"
-                  className="group relative aspect-[3/4] overflow-hidden rounded-sm shadow-md hover:shadow-xl transition-all duration-300"
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </Link>
-              ))}
-            </div>
+      <ImageStrip src={entertainmentImages[7].src} />
 
-            {/* CTA to Full Gallery */}
-            <div className="text-center">
-              <ButtonLink href="/showroom/entertainment-centers" variant="outline" className="group">
-                View All Entertainment Center Projects
-                <svg
-                  className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </ButtonLink>
-            </div>
-          </div>
-        </Container>
-      </Section>
+      <ServiceProcessTimeline
+        eyebrow="How It Works"
+        title="From Empty Wall to Finished Built-In"
+        subtitle="Four steps, the same crew throughout."
+        steps={processSteps}
+      />
 
-      {/* Features Section */}
-      <Section tone="parchment" className="py-16">
-        <Container>
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <Heading as="h2" showDivider={false}>
-                Design Features
-              </Heading>
-            </div>
+      <EditorialGallery
+        eyebrow="Recent Work"
+        title="Entertainment Centers We've Built"
+        subtitle="Custom media walls and fireplace built-ins for St. Louis homes."
+        featuredCaption="Full-wall entertainment center, St. Louis"
+        images={entertainmentImages}
+        galleryHref="/showroom/entertainment-centers"
+        ctaLabel="View All Entertainment Center Projects"
+      />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="flex items-start gap-4 p-6 bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="flex-shrink-0 w-6 h-6 text-brass">{feature.icon}</div>
-                  <p className="text-lg text-ink font-sans leading-relaxed">{feature.title}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </Section>
+      <ServiceCityGrid
+        title="Entertainment Centers Across the St. Louis Metro"
+        subtitle="We design and build media walls for homeowners throughout St. Louis County and St. Charles County."
+        cities={cities}
+        cardEyebrow="Entertainment Centers in"
+        hrefFor={(city) => `/locations/${city.slug}`}
+      />
 
       <ServiceAreaLinks />
 
       <LocationFAQs faqs={entertainmentCentersFAQs} />
 
-      {/* CTA Section */}
-      <Section tone="walnut" className="py-16">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <Heading tone="dark" showDivider={false} className="mb-6">
-              Ready to Create Your Entertainment Center?
-            </Heading>
-            <p className="text-parchment/80 text-lg mb-8 leading-relaxed">
-              Let&apos;s discuss how a custom entertainment center can enhance your living space.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="tel:3144379988"
-                className="inline-flex items-center gap-3 px-8 py-4 text-lg font-semibold text-walnut bg-brass hover:bg-brass/90 rounded-sm shadow-xl transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-walnut"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                (314) 437-9988
-              </a>
-              <ButtonLink
-                href="/contact-us"
-                variant="outline"
-                className="border-2 border-parchment/40 text-parchment hover:bg-parchment/10"
-              >
-                Schedule a Consultation
-              </ButtonLink>
-            </div>
-          </div>
-        </Container>
-      </Section>
+      <ServiceCTA
+        title="Ready to Design Your Entertainment Center?"
+        body="Tell us about your wall and your equipment, and we'll show you what a built-in could look like. The in-home consultation is free — we'll measure, talk through options, and follow up with a detailed written quote."
+        estimateLabel="Schedule a Consultation"
+      />
     </>
   );
 }

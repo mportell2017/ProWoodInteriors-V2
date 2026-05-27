@@ -32,6 +32,84 @@
   .engraved-rule {
     @apply h-px w-full bg-gradient-to-r from-transparent via-umber/25 to-transparent;
   }
+
+  /* ---- Editorial decorative textures ----
+     Promoted out of inline style={{}} so brass/walnut token shifts cascade.
+     Pair with positioning + opacity/blend utilities at the call site, e.g.
+     <div className="absolute inset-0 opacity-50 mix-blend-multiply wood-grain" /> */
+
+  /* Soft brass atmosphere over dark sections */
+  .atmos-glow {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(181, 139, 75, 0.1) 0%,
+      rgba(44, 24, 16, 0) 60%
+    );
+  }
+  .atmos-glow-top {
+    background: radial-gradient(
+      ellipse at 50% 0%,
+      rgba(181, 139, 75, 0.1) 0%,
+      rgba(44, 24, 16, 0) 55%
+    );
+  }
+
+  /* Left/right walnut vignette for full-bleed image strips */
+  .wood-strip-vignette {
+    background: linear-gradient(
+      90deg,
+      rgba(44, 24, 16, 0.55) 0%,
+      rgba(44, 24, 16, 0.18) 30%,
+      rgba(44, 24, 16, 0.18) 70%,
+      rgba(44, 24, 16, 0.55) 100%
+    );
+  }
+
+  /* Fine ruled-paper grain backdrop (use with low opacity + mix-blend-multiply) */
+  .paper-grain {
+    background-image: repeating-linear-gradient(
+        91deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(91, 58, 42, 1) 2px,
+        rgba(91, 58, 42, 1) 3px
+      ),
+      repeating-linear-gradient(
+        180deg,
+        transparent 0px,
+        transparent 23px,
+        rgba(91, 58, 42, 0.5) 23px,
+        rgba(91, 58, 42, 0.5) 24px
+      );
+  }
+
+  /* Wood-grain texture for material swatches (use with mix-blend-multiply) */
+  .wood-grain {
+    background-image: repeating-linear-gradient(
+        91deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.07) 2px,
+        rgba(0, 0, 0, 0.07) 3px
+      ),
+      repeating-linear-gradient(
+        89deg,
+        transparent 0px,
+        transparent 9px,
+        rgba(255, 255, 255, 0.05) 9px,
+        rgba(255, 255, 255, 0.05) 10px
+      );
+  }
+
+  /* Soft directional sheen for swatches/cards */
+  .sheen-vertical {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+  }
 }
 
 /* Subtle hero background animation */

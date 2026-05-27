@@ -370,7 +370,7 @@ export function generateLocalServiceSchema(location: {
             '@type': 'Service',
             name: 'Cabinet Refacing',
             description:
-              'Cost-effective cabinet door and drawer replacement with new finishes',
+              'Custom solid-wood cabinet door and drawer replacement with new finishes',
             provider: {
               '@type': 'LocalBusiness',
               '@id': `${SITE_URL}#business`,
