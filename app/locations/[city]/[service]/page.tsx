@@ -318,16 +318,16 @@ export default async function ServiceLocationPage(
       <Section tone="clear" className="py-16">
         <Container>
           <figure className="relative max-w-3xl mx-auto text-center px-4">
-            {/* Ghosted opening quote mark */}
-            <span
-              aria-hidden="true"
-              className="absolute -top-8 left-1/2 -translate-x-1/2 font-display italic text-[9rem] leading-none text-brass/12 select-none pointer-events-none"
-            >
-              &ldquo;
-            </span>
-
             <div className="relative">
-              <p className="text-[11px] tracking-[0.32em] uppercase text-umber/70 mb-8">
+              {/* Decorative opening quote mark — centered in its own space, faint */}
+              <span
+                aria-hidden="true"
+                className="block font-display italic text-7xl sm:text-8xl leading-[0.7] text-brass/30 select-none"
+              >
+                &ldquo;
+              </span>
+
+              <p className="mt-4 text-[11px] tracking-[0.32em] uppercase text-umber/70 mb-8">
                 A Word from Our Clients
               </p>
 
