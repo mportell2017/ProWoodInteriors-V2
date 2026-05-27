@@ -35,6 +35,11 @@ export const metadata: Metadata = {
   },
   description: "Custom cabinetry and built-in interiors designed and built for your home. Serving St. Louis, Missouri since 1985.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.prowoodinteriors.com"),
+  icons: {
+    icon: "/images/professional-wood-interiors-favicon.png",
+    shortcut: "/images/professional-wood-interiors-favicon.png",
+    apple: "/images/professional-wood-interiors-favicon.png",
+  },
 };
 
 export default function RootLayout({
