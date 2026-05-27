@@ -274,6 +274,8 @@ To rank for service-specific local intent (e.g. "cabinet refacing chesterfield m
 - `/locations/chesterfield/kitchen-remodeling`
 - `/locations/wildwood/cabinet-refacing`
 - `/locations/wildwood/kitchen-remodeling`
+- `/locations/clayton/cabinet-refacing`
+- `/locations/clayton/kitchen-remodeling`
 
 `generateStaticParams` only emits the combos listed in `serviceLocations` — it is **not** a cross-product of cities × services. Other cities won't get service pages until they're added to the data file.
 
@@ -283,7 +285,7 @@ Breadcrumbs → service-specific H1 → 3-paragraph intro → project gallery �
 ### Adding a new service-location combo
 1. Add an entry to `serviceLocations` in `lib/service-location-data.ts` with all required fields (intro, included, whyChooseUs, process, considerations, faqs, galleryProjects).
 2. Pick `galleryProjects` from names in the gallery manifest (e.g. "Kitchen Cabinet Refacing", "Vintage Kitchen"). Use non-overlapping `galleryImageRange` slices across cities so no two pages show identical galleries.
-3. The parent city page automatically renders a "Looking for a specific service?" callout linking to any service-locations defined for that city — no edits needed there.
+3. The parent city page's `ServiceGrid` automatically links its Cabinet Refacing and Kitchen Remodeling cards to the matching `/locations/[city]/[service]` page (with localized "… in [City]" anchor text) when a combo exists for that city — no edits needed there. Cities without a combo fall back to the generic `/services/*` page.
 4. The sitemap picks up new entries automatically.
 5. `npm run build` to verify.
 
@@ -416,6 +418,12 @@ Track for context if you're picking this up cold:
 - FAQ schema now emitted on all 4 service pages (FAQ content lives in `lib/service-faqs.ts`).
 - `ServiceAreaLinks` component cross-links service pages → city + service-location pages.
 
+### Recent changes (2026-05-27)
+- **Kitchen service URL renamed for SEO:** `/services/custom-kitchen-cabinetry` → **`/services/kitchen-remodeling`**. The old slug targeted a ~720/mo term while the page already markets full-scope kitchen remodeling (confirmed: ProWood does full remodels incl. plumbing/electrical); the new slug matches the head term (33,100/mo, SEMRUSH US) and unifies the hub page with the existing city `/locations/[city]/kitchen-remodeling` pages. A permanent 301 was added in `next.config.js` (the project's first `redirects()`), and the slug + display label ("Kitchen Remodeling") were updated across `lib/nav-data.ts`, `components/Footer.tsx`, `app/services/page.tsx`, `components/homepage/ServiceShowcase.tsx`, `app/sitemap.ts`, `lib/structured-data.ts`, the internal strategy dashboard, and `marketing/google-business-profile.md`.
+- **Local internal linking moved into `ServiceGrid`.** The city page's prominent service grid now links its Cabinet Refacing and Kitchen Remodeling cards to the matching `/locations/[city]/[service]` page with localized anchor text ("Cabinet Refacing in Clayton") via the `getServiceLocation` helper; it takes a new `citySlug` prop. The redundant lower "Looking for a Specific Service?" block on `app/locations/[city]/page.tsx` was removed (no more duplicate internal links to the same target).
+- **Strategy dashboard:** added a "Kitchen Remodeling — Secondary Cluster (Organic/SEO Only)" sub-section with SEMRUSH volumes. PPC stays refacing-only (kitchen CPCs $7.71–$11.36 are out of budget). Kitchen is a supporting effort behind refacing, pursued via the hub + city pages.
+- **Note (not done):** `GoogleAdsRunbook` ad copy in `app/internal/strategy/page.tsx` still has "Save 40-50% vs. New Cabinets" + a "Cost Guide" sitelink — these violate the no-pricing rule once ads go live. Scrub in a follow-up.
+
 ### Recent changes (2026-05-26)
 - **All pricing removed from public marketing pages.** Per a business decision not to showcase pricing, every dollar figure, "% less than replacement," cost comparison, ROI-of-cost line, and "how much does it cost" FAQ was stripped from: the four service pages, `lib/location-data.ts`, `lib/service-location-data.ts`, `lib/service-faqs.ts`, `components/locations/ServiceGrid.tsx`, and the `lib/nav-data.ts` refacing blurb. On cabinet-refacing this removed the "40–50%" stat moment and the cost-variables section, and dropped the cost row from the comparison table (the table now compares method, not price). The dedicated `/cabinet-refacing-cost` route was **deleted** (and its dead links cleaned up in the internal strategy dashboard). Free-consultation CTAs and the detailed-plan/proposal deliverable were kept. See the "No pricing" content rule above — don't reintroduce it.
 - **Service pages unified on one editorial design system.** The cabinet-refacing redesign was extracted into reusable section components under `components/services/` (+ new `ui/` primitives `CallButton`, `ArrowLink`, `Ornament`, `EditorialFrame`), and all four service pages (`/services/cabinet-refacing`, `/custom-kitchen-cabinetry`, `/entertainment-centers`, `/custom-bookcases`) now compose those components instead of inlining markup. See **Service Page Sections** above. Refacing was recomposed to render the same (one normalization: a section header margin `mb-14`→`mb-12`, folded through `CardGrid`). The hardcoded phone number was removed from every service page in favor of `CallButton` (sources `lib/business.ts`). Repeated decorative gradients moved from inline `style={{}}` to `globals.css` utilities; a real `cream` color token was added to `tailwind.config.js`. Kitchen/entertainment/bookcases got newly authored long-form content to match refacing's depth. **Note:** project lint is currently un-runnable (`next lint` was removed in Next 16; the `.eslintrc.json` crashes ESLint 9's legacy loader) — verification was `tsc --noEmit` + `next build` + visual check on all four pages.
@@ -431,5 +439,5 @@ Track for context if you're picking this up cold:
 
 ---
 
-**Last Updated**: 2026-05-26
+**Last Updated**: 2026-05-27
 **Maintained by**: Claude Code

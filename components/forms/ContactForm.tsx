@@ -24,7 +24,11 @@ const inputClassName = cn(
   "transition-colors duration-200 hover:border-umber/40",
   "focus:border-brass/60 focus:outline-none focus:ring-1 focus:ring-brass/50"
 );
-const labelClassName = "mb-1.5 block text-[13px] font-medium text-ink/80";
+// Per-field labels are visually hidden (kept for screen readers); the field
+// name shows as the input placeholder to condense the form. Section headings
+// (sectionLabelClassName), the project-type label, and the timeline's default
+// option remain visible to preserve structure.
+const labelClassName = "sr-only";
 const sectionLabelClassName =
   "text-[11px] font-semibold uppercase tracking-[0.16em] text-umber/70";
 const errorClassName = "mt-1 text-[12px] text-oxblood";
@@ -100,14 +104,14 @@ export function ContactForm() {
       <fieldset className="space-y-3.5">
         <legend className={cn(sectionLabelClassName, "mb-1")}>Your Contact Information</legend>
         <Field label="Full Name" htmlFor="d-name" required error={errors.name?.message}>
-          <input id="d-name" {...register("name")} placeholder="John Smith" className={inputClassName} />
+          <input id="d-name" {...register("name")} placeholder="Full Name" className={inputClassName} />
         </Field>
         <div className="grid gap-3.5 sm:grid-cols-2">
           <Field label="Phone Number" htmlFor="d-phone" required error={errors.phone?.message}>
-            <input id="d-phone" type="tel" {...register("phone")} placeholder="(314) 555-0123" className={inputClassName} />
+            <input id="d-phone" type="tel" {...register("phone")} placeholder="Phone Number" className={inputClassName} />
           </Field>
           <Field label="Email Address" htmlFor="d-email" required error={errors.email?.message}>
-            <input id="d-email" type="email" {...register("email")} placeholder="you@example.com" className={inputClassName} />
+            <input id="d-email" type="email" {...register("email")} placeholder="Email Address" className={inputClassName} />
           </Field>
         </div>
       </fieldset>
@@ -116,14 +120,14 @@ export function ContactForm() {
       <fieldset className="space-y-3.5">
         <legend className={cn(sectionLabelClassName, "mb-1")}>Project Location</legend>
         <Field label="Street Address" htmlFor="d-street" required error={errors.street?.message}>
-          <input id="d-street" {...register("street")} placeholder="123 Main Street" className={inputClassName} />
+          <input id="d-street" {...register("street")} placeholder="Street Address" className={inputClassName} />
         </Field>
         <div className="grid gap-3.5 sm:grid-cols-2">
           <Field label="City" htmlFor="d-city" required error={errors.city?.message}>
-            <input id="d-city" {...register("city")} placeholder="St. Louis" className={inputClassName} />
+            <input id="d-city" {...register("city")} placeholder="City" className={inputClassName} />
           </Field>
           <Field label="ZIP Code" htmlFor="d-zip" required error={errors.zip?.message}>
-            <input id="d-zip" {...register("zip")} placeholder="63101" className={inputClassName} />
+            <input id="d-zip" {...register("zip")} placeholder="ZIP Code" className={inputClassName} />
           </Field>
         </div>
       </fieldset>
@@ -166,7 +170,7 @@ export function ContactForm() {
             id="d-message"
             rows={4}
             {...register("message")}
-            placeholder="Share your ideas, style preferences, dimensions, and any specific requirements."
+            placeholder="Tell us about your vision"
             className={cn(inputClassName, "resize-none")}
           />
         </Field>

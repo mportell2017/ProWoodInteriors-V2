@@ -9,7 +9,7 @@ const featured = [
     title: "Kitchens",
     description:
       "Custom kitchen cabinetry designed around how you cook, entertain, and live — built by hand in our shop and installed by the people who made it.",
-    href: "/services/custom-kitchen-cabinetry",
+    href: "/services/kitchen-remodeling",
     image:
       "/images/gallery/kitchen remodel/Quartzite Remodel/white-luxury-kitchen-remodel-07.jpg",
   },

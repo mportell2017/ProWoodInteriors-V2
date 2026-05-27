@@ -18,9 +18,9 @@ export type NavService = {
 
 export const navServices: NavService[] = [
   {
-    name: "Custom Kitchen Cabinetry",
-    href: "/services/custom-kitchen-cabinetry",
-    blurb: "Solid-wood cabinets handcrafted to fit your exact space.",
+    name: "Kitchen Remodeling",
+    href: "/services/kitchen-remodeling",
+    blurb: "Full kitchen remodels and solid-wood cabinets, designed and built locally.",
     icon: "kitchen",
   },
   {

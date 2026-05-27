@@ -9,6 +9,8 @@ import { ProcessSection } from "@/components/locations/ProcessSection";
 import { LocationFAQs } from "@/components/locations/LocationFAQs";
 import { LocationCTA } from "@/components/locations/LocationCTA";
 import { LocationGallery } from "@/components/locations/LocationGallery";
+import { ConversionHero } from "@/components/locations/ConversionHero";
+import { StickyCallBar } from "@/components/ui/StickyCallBar";
 import {
   getServiceLocation,
   getAllServiceLocationParams,
@@ -109,52 +111,21 @@ export default async function ServiceLocationPage(
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />      {/* Breadcrumbs */}
-      <Section tone="clear" className="pt-24 pb-2 sm:pt-28 sm:pb-2">
-        <Container>
-          <nav
-            aria-label="Breadcrumb"
-            className="text-[12px] tracking-[0.18em] uppercase text-ink/55"
-          >
-            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
-              <li>
-                <Link href="/" className="hover:text-oxblood transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden="true" className="text-umber/40">
-                /
-              </li>
-              <li>
-                <Link
-                  href={`/locations/${entry.citySlug}`}
-                  className="hover:text-oxblood transition-colors"
-                >
-                  {entry.city}
-                </Link>
-              </li>
-              <li aria-hidden="true" className="text-umber/40">
-                /
-              </li>
-              <li className="text-ink/80" aria-current="page">
-                {entry.service}
-              </li>
-            </ol>
-          </nav>
-        </Container>
-      </Section>
+      />      {/* Visual breadcrumbs intentionally omitted on this conversion-focused
+          landing page; the BreadcrumbList JSON-LD above still feeds SERP
+          breadcrumb rich results. */}
 
-      {/* Hero */}
-      <Section tone="clear" className="pt-6 pb-6">
-        <div className="text-center max-w-4xl mx-auto">
-          <Heading as="h1" eyebrow={entry.heroEyebrow} showDivider>
-            {entry.heroTitle}
-          </Heading>
-          <p className="mt-5 text-lg sm:text-xl text-ink/75 font-elegant leading-relaxed">
-            {entry.heroSubtitle}
-          </p>
-        </div>
-      </Section>
+      {/* Hero — image-led split with the lead form in the first screen */}
+      <ConversionHero
+        eyebrow={entry.heroEyebrow}
+        title={entry.heroTitle}
+        subtitle={entry.heroSubtitle}
+        image={{
+          src: "/images/hero/pro-wood-interiors-kitchen.jpg",
+          alt: `${entry.service} in ${entry.city}, ${entry.stateAbbr} by Professional Wood Interiors.`,
+        }}
+        formHeading={`Get Your Free ${entry.city} ${entry.service} Consultation`}
+      />
 
       {/* Credibility stat bar */}
       <Section tone="clear" className="pt-2 pb-10">
@@ -478,6 +449,8 @@ export default async function ServiceLocationPage(
 
       {/* CTA */}
       <LocationCTA city={entry.city} phoneNumber="(314) 437-9988" />
+
+      <StickyCallBar />
     </>
   );
 }

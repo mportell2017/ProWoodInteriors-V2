@@ -23,10 +23,21 @@ const inputClassName = cn(
   "transition-all duration-200 hover:border-brass/50",
   "focus:border-brass focus:bg-parchment/10 focus:outline-none focus:ring-2 focus:ring-brass/25"
 );
-const labelClassName = "mb-1.5 block text-[13px] font-medium text-parchment/80";
+// Visually hidden but kept for screen readers — the field name shows as the
+// input placeholder to keep this dark "quick" bar compact (see the visible
+// "What type of project?" label, which stays, in ProjectPicker).
+const labelClassName = "sr-only";
 const errorClassName = "mt-1 text-[12px] text-rose-300";
 
-export function QuickContactBar() {
+type QuickContactBarProps = {
+  /** Layout of the project-type picker. Defaults to the wide 8-across strip;
+   *  pass a 4-column grid when the form sits in a narrow column (e.g. a hero card). */
+  projectGridClassName?: string;
+};
+
+export function QuickContactBar({
+  projectGridClassName = "grid grid-cols-4 gap-2 sm:grid-cols-8",
+}: QuickContactBarProps = {}) {
   const {
     register,
     handleSubmit,
@@ -36,7 +47,7 @@ export function QuickContactBar() {
   } = useForm<QuickContactValues>({
     resolver: zodResolver(quickContactSchema),
     mode: "onTouched",
-    defaultValues: { name: "", phone: "", email: "", projectType: "", message: "" },
+    defaultValues: { name: "", phone: "", email: "", street: "", city: "", zip: "", projectType: "", message: "" },
   });
 
   const {
@@ -64,35 +75,60 @@ export function QuickContactBar() {
           <label htmlFor="qb-name" className={labelClassName}>
             Full Name <span className="text-brass">*</span>
           </label>
-          <input id="qb-name" {...register("name")} placeholder="John Smith" className={inputClassName} />
+          <input id="qb-name" {...register("name")} placeholder="Full Name" className={inputClassName} />
           {errors.name && <p className={errorClassName}>{errors.name.message}</p>}
         </div>
         <div>
           <label htmlFor="qb-phone" className={labelClassName}>
             Phone <span className="text-brass">*</span>
           </label>
-          <input id="qb-phone" type="tel" {...register("phone")} placeholder="(314) 555-0123" className={inputClassName} />
+          <input id="qb-phone" type="tel" {...register("phone")} placeholder="Phone" className={inputClassName} />
           {errors.phone && <p className={errorClassName}>{errors.phone.message}</p>}
         </div>
         <div>
           <label htmlFor="qb-email" className={labelClassName}>
             Email <span className="text-brass">*</span>
           </label>
-          <input id="qb-email" type="email" {...register("email")} placeholder="you@example.com" className={inputClassName} />
+          <input id="qb-email" type="email" {...register("email")} placeholder="Email" className={inputClassName} />
           {errors.email && <p className={errorClassName}>{errors.email.message}</p>}
         </div>
       </div>
 
-      {/* Row 2 — project icons as a horizontal strip */}
+      {/* Row 2 — project location */}
+      <div className="grid gap-4 sm:grid-cols-4">
+        <div className="sm:col-span-2">
+          <label htmlFor="qb-street" className={labelClassName}>
+            Street Address <span className="text-brass">*</span>
+          </label>
+          <input id="qb-street" {...register("street")} placeholder="Street Address" className={inputClassName} />
+          {errors.street && <p className={errorClassName}>{errors.street.message}</p>}
+        </div>
+        <div>
+          <label htmlFor="qb-city" className={labelClassName}>
+            City <span className="text-brass">*</span>
+          </label>
+          <input id="qb-city" {...register("city")} placeholder="City" className={inputClassName} />
+          {errors.city && <p className={errorClassName}>{errors.city.message}</p>}
+        </div>
+        <div>
+          <label htmlFor="qb-zip" className={labelClassName}>
+            ZIP Code <span className="text-brass">*</span>
+          </label>
+          <input id="qb-zip" {...register("zip")} placeholder="ZIP Code" className={inputClassName} />
+          {errors.zip && <p className={errorClassName}>{errors.zip.message}</p>}
+        </div>
+      </div>
+
+      {/* Row 3 — project icons as a horizontal strip */}
       <ProjectPicker
         tone="dark"
-        gridClassName="grid grid-cols-4 gap-2 sm:grid-cols-8"
+        gridClassName={projectGridClassName}
         value={watch("projectType")}
         onSelect={(id) => setValue("projectType", id, { shouldValidate: true })}
         error={errors.projectType?.message}
       />
 
-      {/* Row 3 — message */}
+      {/* Row 4 — message */}
       <div>
         <label htmlFor="qb-message" className={labelClassName}>
           Tell us about your project <span className="text-brass">*</span>
@@ -101,13 +137,13 @@ export function QuickContactBar() {
           id="qb-message"
           rows={2}
           {...register("message")}
-          placeholder="A sentence or two about what you have in mind."
+          placeholder="Tell us about your project"
           className={cn(inputClassName, "resize-none")}
         />
         {errors.message && <p className={errorClassName}>{errors.message.message}</p>}
       </div>
 
-      {/* Row 4 — verification + submit */}
+      {/* Row 5 — verification + submit */}
       <div className="flex flex-col items-stretch gap-4 pt-1 sm:flex-row sm:items-center sm:justify-between">
         <TurnstileField turnstileRef={turnstileRef} onToken={setTurnstileToken} theme="dark" />
         <button

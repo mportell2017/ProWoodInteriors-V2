@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Card } from "@/components/ui/Card";
+import { getServiceLocation, type ServiceSlug } from "@/lib/service-location-data";
 
 // Icons extracted from SoftCTA component
 const KitchenIcon = ({ className }: { className?: string }) => (
@@ -57,12 +58,16 @@ interface Service {
   icon: React.ComponentType<{ className?: string }>;
   description: string;
   features: string[];
+  // When set, and a city-specific landing page exists for this combo, the
+  // card links to /locations/[city]/[serviceSlug] with localized anchor text.
+  serviceSlug?: ServiceSlug;
 }
 
 const services: Service[] = [
   {
     title: 'Cabinet Refacing',
     href: '/services/cabinet-refacing',
+    serviceSlug: 'cabinet-refacing',
     icon: RefacingIcon,
     description: 'Transform your kitchen with custom cabinet doors and drawer fronts while keeping the cabinet boxes you already own.',
     features: [
@@ -72,10 +77,11 @@ const services: Service[] = [
     ]
   },
   {
-    title: 'Custom Kitchen Cabinetry',
-    href: '/services/custom-kitchen-cabinetry',
+    title: 'Kitchen Remodeling',
+    href: '/services/kitchen-remodeling',
+    serviceSlug: 'kitchen-remodeling',
     icon: KitchenIcon,
-    description: 'Handcrafted cabinets built to fit your exact space with solid wood construction and premium finishes.',
+    description: 'Full-scope kitchen remodels and handcrafted cabinets built to fit your exact space — solid wood construction, premium finishes, one team coordinating the whole project.',
     features: [
       'Dovetail drawers',
       'Soft-close hardware',
@@ -108,15 +114,25 @@ const services: Service[] = [
 
 interface ServiceGridProps {
   city: string;
+  citySlug: string;
 }
 
-export function ServiceGrid({ city }: ServiceGridProps) {
+export function ServiceGrid({ city, citySlug }: ServiceGridProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {services.map((service) => {
         const Icon = service.icon;
+        // Prefer the city-specific landing page when one exists for this
+        // service + city, with localized anchor text for local SEO.
+        const cityPage = service.serviceSlug
+          ? getServiceLocation(citySlug, service.serviceSlug)
+          : undefined;
+        const href = cityPage
+          ? `/locations/${citySlug}/${service.serviceSlug}`
+          : service.href;
+        const title = cityPage ? `${service.title} in ${city}` : service.title;
         return (
-          <Link key={service.href} href={service.href} className="group">
+          <Link key={service.title} href={href} className="group">
             <Card className="h-full p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-brass/10 flex items-center justify-center group-hover:bg-brass/20 transition-colors">
@@ -124,7 +140,7 @@ export function ServiceGrid({ city }: ServiceGridProps) {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-display font-semibold text-ink mb-2 group-hover:text-brass transition-colors">
-                    {service.title}
+                    {title}
                   </h3>
                   <p className="text-ink/70 mb-4 leading-relaxed">
                     {service.description}

@@ -23,9 +23,9 @@ const businessSchema = generateLocalBusinessSchema();
 
 const services = [
   {
-    title: 'Custom Kitchen Cabinetry',
-    description: 'Handcrafted kitchen cabinets built to fit your exact space. Solid wood construction, dovetail drawers, soft-close hinges, and a perfect fit for your kitchen.',
-    href: '/services/custom-kitchen-cabinetry',
+    title: 'Kitchen Remodeling',
+    description: 'Full-scope kitchen remodels and handcrafted cabinets built to fit your exact space. Solid wood construction, dovetail drawers, soft-close hinges, and one team coordinating the whole project.',
+    href: '/services/kitchen-remodeling',
     image: '/images/gallery/kitchen remodel/Quartzite Remodel/white-luxury-kitchen-remodel-07.jpg',
     features: ['Solid wood construction', 'Dovetail drawer boxes', 'Soft-close hardware', 'Custom storage solutions'],
   },

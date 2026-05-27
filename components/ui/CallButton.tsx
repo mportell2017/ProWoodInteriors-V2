@@ -1,7 +1,7 @@
 import { cn } from "@/lib/cn";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/business";
 
-type CallButtonTone = "light" | "dark";
+type CallButtonTone = "light" | "dark" | "outline";
 
 const base =
   "inline-flex items-center justify-center gap-3 px-7 py-4 text-base font-semibold tracking-wide rounded-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
@@ -12,6 +12,9 @@ const tones: Record<CallButtonTone, string> = {
     "text-parchment bg-oxblood hover:bg-oxblood/90 shadow-[0_10px_24px_rgba(122,29,29,0.22)] focus-visible:ring-oxblood",
   // On walnut/dark backgrounds
   dark: "text-walnut bg-brass hover:bg-brass/90 shadow-[0_14px_28px_rgba(0,0,0,0.35)] focus-visible:ring-brass focus-visible:ring-offset-walnut",
+  // Secondary outline on parchment — pairs with a solid primary CTA
+  outline:
+    "text-oxblood bg-transparent ring-1 ring-inset ring-oxblood/40 hover:bg-oxblood/5 focus-visible:ring-oxblood",
 };
 
 function PhoneGlyph() {

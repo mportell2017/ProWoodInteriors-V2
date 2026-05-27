@@ -74,8 +74,8 @@ For each service below, add as a separate **Service** entry with description and
 | Service Name | Link |
 |---|---|
 | Cabinet Refacing | /services/cabinet-refacing |
-| Kitchen Remodeling | /services/custom-kitchen-cabinetry |
-| Custom Kitchen Cabinets | /services/custom-kitchen-cabinetry |
+| Kitchen Remodeling | /services/kitchen-remodeling |
+| Custom Kitchen Cabinets | /services/kitchen-remodeling |
 | Custom Bookcases | /services/custom-bookcases |
 | Entertainment Centers | /services/entertainment-centers |
 | Cabinet Refacing in Clayton | /locations/clayton/cabinet-refacing |

@@ -147,7 +147,7 @@ const funnelStages = [
 
 const pagesBuilt = [
   { url: '/services/cabinet-refacing', label: 'Cabinet Refacing pillar page', status: 'Rebuilt' },
-  { url: '/services/custom-kitchen-cabinetry', label: 'Kitchen Cabinetry + Remodeling', status: 'Expanded' },
+  { url: '/services/kitchen-remodeling', label: 'Kitchen Remodeling page', status: 'Expanded' },
   { url: '/locations/clayton/cabinet-refacing', label: 'Cabinet Refacing in Clayton', status: 'New' },
   { url: '/locations/clayton/kitchen-remodeling', label: 'Kitchen Remodeling in Clayton', status: 'New' },
   { url: '/locations/chesterfield/cabinet-refacing', label: 'Cabinet Refacing in Chesterfield', status: 'Existing' },
@@ -182,7 +182,7 @@ export default function InternalStrategyPage() {
               Cabinet refacing and kitchen remodeling lead generation for Clayton, Chesterfield,
               and Wildwood — at a $500–$1,000/month budget that fits a two-person shop.
             </p>
-            <p className="mt-6 text-sm text-ink/50 font-sans">Last updated: May 23, 2026</p>
+            <p className="mt-6 text-sm text-ink/50 font-sans">Last updated: May 27, 2026</p>
           </div>
         </Container>
       </Section>
@@ -395,6 +395,62 @@ export default function InternalStrategyPage() {
                         <td className="py-3 text-right font-sans text-ink/70">${k.cpc}</td>
                         <td className="py-3 text-right font-sans text-ink/60 text-sm italic">
                           {k.why}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Kitchen — secondary SEO cluster */}
+            <div className="mt-12">
+              <div className="flex items-baseline gap-4 mb-6">
+                <h3 className="font-elegant text-2xl text-ink">
+                  Kitchen Remodeling — Secondary Cluster
+                </h3>
+                <span className="text-sm text-brass uppercase tracking-widest font-sans">
+                  Organic / SEO Only
+                </span>
+              </div>
+              <div className="bg-parchment border-l-4 border-brass p-6 rounded-sm">
+                <p className="text-base text-ink/80 leading-relaxed mb-4">
+                  Refacing stays the primary head term and the only PPC play. Kitchen
+                  remodeling is a <strong>secondary, organic-only</strong> push: the volume
+                  is large but the CPCs ($7.71–$11.36) blow the budget, so we pursue it through
+                  the renamed{' '}
+                  <code className="bg-white px-2 py-1 rounded text-sm">
+                    /services/kitchen-remodeling
+                  </code>{' '}
+                  hub page and the city{' '}
+                  <code className="bg-white px-2 py-1 rounded text-sm">
+                    /locations/[city]/kitchen-remodeling
+                  </code>{' '}
+                  pages — never paid search.
+                </p>
+                <table className="w-full text-left">
+                  <thead>
+                    <tr className="text-xs uppercase tracking-widest text-ink/50 font-sans border-b border-ink/10">
+                      <th className="pb-2">Keyword</th>
+                      <th className="pb-2 text-right">Volume</th>
+                      <th className="pb-2 text-right">CPC</th>
+                      <th className="pb-2 text-right">Channel</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-ink/10">
+                    {[
+                      { kw: 'kitchen remodel', vol: '49,500', cpc: '7.71', ch: 'SEO' },
+                      { kw: 'kitchen remodeling', vol: '33,100', cpc: '7.71', ch: 'SEO' },
+                      { kw: 'kitchen remodeling near me', vol: '18,100', cpc: '11.36', ch: 'SEO' },
+                      { kw: 'custom kitchen cabinets', vol: '8,100', cpc: '4.33', ch: 'SEO' },
+                      { kw: 'kitchen cabinetry', vol: '3,600', cpc: '0', ch: 'SEO' },
+                    ].map((k) => (
+                      <tr key={k.kw}>
+                        <td className="py-3 font-sans text-ink">{k.kw}</td>
+                        <td className="py-3 text-right font-sans text-ink/70">{k.vol}</td>
+                        <td className="py-3 text-right font-sans text-ink/70">${k.cpc}</td>
+                        <td className="py-3 text-right font-sans text-brass text-sm uppercase tracking-wider">
+                          {k.ch}
                         </td>
                       </tr>
                     ))}

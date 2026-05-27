@@ -14,9 +14,10 @@ import { WhyChooseUs } from '@/components/locations/WhyChooseUs';
 import { ProcessSection } from '@/components/locations/ProcessSection';
 import { LocationFAQs } from '@/components/locations/LocationFAQs';
 import { LocationCTA } from '@/components/locations/LocationCTA';
+import { LeadCaptureBand } from '@/components/forms/LeadCaptureBand';
+import { CityServiceLinks } from '@/components/locations/CityServiceLinks';
+import { StickyCallBar } from '@/components/ui/StickyCallBar';
 import { generateLocalServiceSchema } from '@/lib/structured-data';
-import { getServiceLocationsByCity } from '@/lib/service-location-data';
-import Link from 'next/link';
 
 // Enable static generation for all cities
 export async function generateStaticParams() {
@@ -34,7 +35,7 @@ export async function generateMetadata(props: { params: Promise<{ city: string }
     };
   }
 
-  const title = `Custom Cabinetry ${location.city}, ${location.stateAbbr} | Professional Wood Interiors`;
+  const title = `Custom Cabinetry & Woodworking ${location.city}, ${location.stateAbbr} | Professional Wood Interiors`;
   const description = `Custom kitchen cabinets, built-ins & cabinetry in ${location.city}, ${location.state}. Handcrafted wood interiors serving ${location.county}. Free consultation: (314) 437-9988`;
 
   return {
@@ -90,9 +91,6 @@ export default async function LocationPage(props: { params: Promise<{ city: stri
   // Generate structured data for local SEO
   const structuredData = generateLocalServiceSchema(location);
 
-  // Service-specific landing pages for this city (Chesterfield + Wildwood)
-  const serviceLinks = getServiceLocationsByCity(location.slug);
-
   return (
     <>
       <script
@@ -121,9 +119,19 @@ export default async function LocationPage(props: { params: Promise<{ city: stri
               {location.description}
             </p>
           </div>
-          <ServiceGrid city={location.city} />
+          <ServiceGrid city={location.city} citySlug={location.slug} />
         </Container>
       </Section>
+
+      {/* Dedicated per-service city pages (local-SEO internal links) */}
+      <CityServiceLinks city={location.city} citySlug={location.slug} />
+
+      {/* Lead capture — positioned just above the portfolio per design preference */}
+      <LeadCaptureBand
+        id="book"
+        heading={`Get Your Free Cabinetry Consultation in ${location.city}`}
+        subtitle={`Tell us about your project in ${location.city} — we'll be in touch within 1–2 business days.`}
+      />
 
       {/* Gallery Section */}
       <Section tone="parchment" className="py-16">
@@ -167,60 +175,6 @@ export default async function LocationPage(props: { params: Promise<{ city: stri
         />
       )}
 
-      {/* Service-specific landing pages (Chesterfield + Wildwood) */}
-      {serviceLinks.length > 0 && (
-        <Section tone="clear" className="py-14">
-          <Container>
-            <div className="max-w-4xl mx-auto text-center">
-              <p className="text-[11px] tracking-[0.32em] uppercase text-umber/70 mb-3">
-                Looking for a Specific Service?
-              </p>
-              <h2 className="font-display text-2xl sm:text-3xl text-ink mb-8 leading-tight">
-                Learn more about what we do in {location.city}
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                {serviceLinks.map((link) => (
-                  <Link
-                    key={link.serviceSlug}
-                    href={`/locations/${link.citySlug}/${link.serviceSlug}`}
-                    className="group relative bg-parchment/60 border border-umber/20 hover:border-brass/60 p-6 text-left transition-colors duration-300"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="absolute top-0 left-0 h-px w-0 bg-brass transition-all duration-500 ease-out group-hover:w-full"
-                    />
-                    <p className="font-display text-lg text-ink leading-tight">
-                      {link.service} in {location.city}
-                    </p>
-                    <p className="mt-2 text-sm text-ink/65 font-elegant leading-relaxed">
-                      {link.serviceSlug === "cabinet-refacing"
-                        ? `Update your kitchen without the full-remodel timeline — handcrafted doors, drawer fronts, and finishes installed in about a week.`
-                        : `Full-scope custom kitchens designed for ${location.city} homes — cabinets, islands, and pantries built by hand in our local shop.`}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-xs tracking-[0.18em] uppercase text-oxblood group-hover:gap-2.5 transition-all">
-                      Learn More
-                      <svg
-                        className="w-3.5 h-3.5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </Container>
-        </Section>
-      )}
-
       {/* FAQs Section */}
       {location.faqs && location.faqs.length > 0 && (
         <LocationFAQs
@@ -231,6 +185,8 @@ export default async function LocationPage(props: { params: Promise<{ city: stri
 
       {/* Call to Action Section */}
       <LocationCTA city={location.city} phoneNumber="(314) 437-9988" />
+
+      <StickyCallBar />
     </>
   );
 }

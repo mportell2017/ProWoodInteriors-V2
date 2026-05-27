@@ -29,6 +29,9 @@ export const quickContactSchema = z.object({
   name,
   phone,
   email,
+  street,
+  city,
+  zip,
   projectType,
   message,
 });

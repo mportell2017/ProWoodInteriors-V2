@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: 'Kitchen Remodeling & Custom Cabinets in St. Louis',
   description:
     'Kitchen remodeling and custom cabinetry in St. Louis, Clayton, Chesterfield, and Wildwood. Full-scope kitchen design and handcrafted solid-wood cabinets built in our local shop since 1985. Free in-home consultation.',
-  alternates: { canonical: '/services/custom-kitchen-cabinetry' },
+  alternates: { canonical: '/services/kitchen-remodeling' },
   openGraph: {
     title: 'Kitchen Remodeling & Custom Cabinets in St. Louis | Professional Wood Interiors',
     description:
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 
 const serviceSchema = generateServiceSchema({
   name: 'Kitchen Remodeling and Custom Cabinetry',
-  slug: 'custom-kitchen-cabinetry',
+  slug: 'kitchen-remodeling',
   description:
     'Full-scope kitchen remodeling and handcrafted custom cabinets for St. Louis area homes. Solid-wood construction, dovetail drawers, soft-close hardware, custom design, and coordinated trade management. Serving Clayton, Chesterfield, Wildwood, and the surrounding metro since 1985.',
 });
@@ -168,10 +168,9 @@ export default function CustomKitchenCabinetryPage() {
         eyebrow="Serving the St. Louis Metro Since 1985"
         title={
           <>
-            Custom
-            <span className="block italic font-light text-umber">Kitchens,</span>
-            <span className="block">designed and built</span>
-            <span className="block">in St. Louis.</span>
+            Kitchen
+            <span className="block italic font-light text-umber">Remodeling,</span>
+            <span className="block">designed and built in St. Louis.</span>
           </>
         }
         intro="Full-scope kitchen remodels and handcrafted cabinetry — designed around how your family actually cooks and gathers, built by hand in our local shop, coordinated by one team."

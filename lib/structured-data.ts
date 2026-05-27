@@ -352,9 +352,9 @@ export function generateLocalServiceSchema(location: {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Custom Kitchen Cabinetry',
+            name: 'Kitchen Remodeling',
             description:
-              'Handcrafted custom kitchen cabinets built to your exact specifications',
+              'Full-scope kitchen remodeling and handcrafted custom cabinets built to your exact specifications',
             provider: {
               '@type': 'LocalBusiness',
               '@id': `${SITE_URL}#business`,
