@@ -7,6 +7,7 @@ import { GalleryImageCard } from './GalleryImageCard';
 import { ShowroomLightbox } from './ShowroomLightbox';
 import { GalleryImage } from '@/lib/gallery-manifest';
 import { cn } from '@/lib/cn';
+import Link from 'next/link';
 
 interface GalleryGridProps {
   images: GalleryImage[];
@@ -15,15 +16,21 @@ interface GalleryGridProps {
   activeCategory: string;
 }
 
+// URL-safe slug — mirrors lib/gallery-utils generateSlug so the project links
+// below resolve to the same paths the [project] route generates.
+function slugify(name: string): string {
+  return name
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]/g, '')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 // Stable anchor id for a project section.
 function sectionId(name: string): string {
-  return (
-    'project-' +
-    name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '')
-  );
+  return 'project-' + slugify(name);
 }
 
 // Helper function to group kitchen images by project
@@ -194,6 +201,17 @@ export function GalleryGrid({
                     </svg>
                     <div className="h-px w-10 bg-gradient-to-l from-transparent via-umber/30 to-transparent" />
                   </div>
+                  {projectName !== 'Other Kitchen Projects' && (
+                    <div className="mt-3 text-center">
+                      <Link
+                        href={`/showroom/${slugify(activeCategory)}/${slugify(projectName)}`}
+                        className="inline-flex items-center gap-1.5 font-sans text-sm font-medium text-oxblood underline-offset-4 transition-colors hover:text-brass hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-parchment"
+                      >
+                        View this project
+                        <span aria-hidden="true">→</span>
+                      </Link>
+                    </div>
+                  )}
                 </div>
               )}
 
