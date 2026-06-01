@@ -336,6 +336,18 @@ npm run generate:gallery    # Regenerate gallery manifest from images
 
 ## SEO Best Practices
 
+### Canonical domain (www) — do not un-set
+`www.prowoodinteriors.com` is the canonical host. The apex (`prowoodinteriors.com`) **must
+308-redirect to www** in Vercel → Settings → Domains (set www as the *primary* domain; set the
+apex to *Redirect → www*). The codebase already emits www canonicals, sitemap, robots, and OG
+everywhere (defaults in `app/layout.tsx`, `app/sitemap.ts`, `app/robots.ts`,
+`lib/structured-data.ts`), so keep the Vercel env var `NEXT_PUBLIC_SITE_URL=https://www.prowoodinteriors.com`
+— pointing it at the apex would flip every canonical to the wrong host. This redirect lives only in
+the Vercel dashboard (nothing in git enforces it) and has been silently reset before; Vercel's
+default favors the bare apex, so re-adding/re-importing the domain can undo it. Verify with
+`curl -sS -o /dev/null -D - https://prowoodinteriors.com/` — the apex must return `308` with
+`Location: https://www.prowoodinteriors.com/`, not `200`.
+
 ### Heading Hierarchy
 - One H1 per page (in hero)
 - H2 for major sections

@@ -6,6 +6,9 @@ import { Container } from '@/components/ui/Container';
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description: 'Terms of Service for Professional Wood Interiors. Read our terms and conditions for using our website and services.',
+  alternates: {
+    canonical: '/terms-of-service',
+  },
 };
 
 export default function TermsOfServicePage() {
