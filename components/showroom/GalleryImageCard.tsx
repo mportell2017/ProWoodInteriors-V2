@@ -8,9 +8,11 @@ interface GalleryImageCardProps {
   image: GalleryImage;
   onClick: () => void;
   index: number;
+  /** Eager-load + fetchpriority for the first card on the page (LCP). */
+  priority?: boolean;
 }
 
-export function GalleryImageCard({ image, onClick, index }: GalleryImageCardProps) {
+export function GalleryImageCard({ image, onClick, index, priority = false }: GalleryImageCardProps) {
   // Use more consistent aspect ratios for better grid layout
   const aspectRatioClass = [
     "aspect-[3/4]",   // Portrait
@@ -35,7 +37,8 @@ export function GalleryImageCard({ image, onClick, index }: GalleryImageCardProp
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-          loading="lazy"
+          priority={priority}
+          loading={priority ? undefined : "lazy"}
         />
       </div>
 

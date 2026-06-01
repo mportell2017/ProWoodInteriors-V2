@@ -57,14 +57,17 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const images = getImagesByProject(categoryName, projectName);
   const heroImage = images[0];
 
-  const title = `${projectName} | ${categoryName} | Professional Wood Interiors`;
+  // Page <title> omits the brand — the root layout template appends
+  // "| Professional Wood Interiors". Social cards use the explicit brand title.
+  const pageTitle = `${projectName} | ${categoryName}`;
+  const socialTitle = `${projectName} | ${categoryName} | Professional Wood Interiors`;
   const description = `Explore our ${projectName} project featuring custom ${categoryName.toLowerCase()} craftsmanship. ${images.length} high-quality images showcasing expert woodworking from our St. Louis shop.`;
 
   return {
-    title,
+    title: pageTitle,
     description,
     openGraph: {
-      title,
+      title: socialTitle,
       description,
       images: [
         {
@@ -79,7 +82,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: socialTitle,
       description,
       images: [heroImage?.src],
     },
@@ -126,8 +129,8 @@ export default async function ProjectPage(props: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-      />      {/* Hero Section */}
-      <Section className="pt-24 pb-12">
+      />      {/* Hero Section — compact masthead so the project images clear the fold */}
+      <Section className="pt-8 pb-5 sm:pt-10 sm:pb-6">
         <Container>
           <BreadcrumbNav
             items={[
@@ -138,17 +141,15 @@ export default async function ProjectPage(props: Props) {
             ]}
           />
 
-          <div className="max-w-4xl mx-auto mt-8">
-            <div className="flex items-center gap-3 text-sm text-ink/60 mb-4">
-              <Link
-                href={`/showroom/${params.category}`}
-                className="hover:text-oxblood transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 rounded-sm"
-              >
-                ← Back to {categoryName}
-              </Link>
-            </div>
+          <div className="max-w-4xl mx-auto mt-4 sm:mt-5">
+            <Link
+              href={`/showroom/${params.category}`}
+              className="inline-flex items-center gap-1 text-sm text-ink/60 mb-2 hover:text-oxblood transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 rounded-sm"
+            >
+              ← Back to {categoryName}
+            </Link>
 
-            <h1 className="text-4xl md:text-5xl font-elegant font-semibold text-ink mb-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-elegant font-semibold text-ink">
               {projectName}
             </h1>
           </div>

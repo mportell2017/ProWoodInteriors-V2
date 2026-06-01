@@ -38,10 +38,10 @@ export function ProjectPageView({ images, projectName, categoryName }: ProjectPa
 
   return (
     <>
-      <Section className="py-8">
+      <Section className="pt-3 pb-12">
         <Container>
           {/* Project description */}
-          <div className="mb-8 text-center max-w-3xl mx-auto">
+          <div className="mb-6 text-center max-w-3xl mx-auto">
             <p className="text-lg text-ink/70 leading-relaxed font-elegant">
               A custom {categoryName.toLowerCase()} project featuring {images.length}{' '}
               {images.length === 1 ? 'image' : 'images'} showcasing our craftsmanship and attention to detail.

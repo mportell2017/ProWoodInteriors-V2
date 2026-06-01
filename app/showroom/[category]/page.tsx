@@ -5,6 +5,7 @@ import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Heading';
 import { Container } from '@/components/ui/Container';
 import { ButtonLink } from '@/components/ui/Button';
+import { CallButton } from '@/components/ui/CallButton';
 import { BreadcrumbNav } from '@/components/showroom/BreadcrumbNav';
 import { CategoryPageView } from '@/components/showroom/CategoryPageView';
 import { galleryManifest } from '@/lib/gallery-manifest';
@@ -34,14 +35,17 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const categoryData = getCategoryData(categoryName);
   const images = getImagesByCategory(categoryName);
 
-  const title = `${categoryName} Gallery | Professional Wood Interiors`;
+  // Page <title> omits the brand — the root layout template appends
+  // "| Professional Wood Interiors". Social cards use the explicit brand title.
+  const pageTitle = `${categoryName} Gallery`;
+  const socialTitle = `${categoryName} Gallery | Professional Wood Interiors`;
   const description = `Browse ${categoryData?.count || images.length} custom ${categoryName.toLowerCase()} projects from Professional Wood Interiors. Expert craftsmanship serving St. Louis, Missouri since 1985.`;
 
   return {
-    title,
+    title: pageTitle,
     description,
     openGraph: {
-      title,
+      title: socialTitle,
       description,
       images: [
         {
@@ -56,7 +60,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: socialTitle,
       description,
       images: [categoryData?.heroImage || images[0]?.src],
     },
@@ -89,8 +93,8 @@ export default async function CategoryPage(props: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(gallerySchema) }}
-      />      {/* Hero Section */}
-      <Section className="pt-24 pb-12">
+      />      {/* Hero Section — compact masthead so the gallery clears the fold */}
+      <Section className="pt-8 pb-5 sm:pt-10 sm:pb-7">
         <Container>
           <BreadcrumbNav
             items={[
@@ -100,11 +104,17 @@ export default async function CategoryPage(props: Props) {
             ]}
           />
 
-          <div className="max-w-4xl mx-auto text-center mt-8">
-            <Heading eyebrow={categoryName} accent="italic" as="h1">
+          <div className="max-w-3xl mx-auto text-center mt-4 sm:mt-5">
+            <Heading
+              eyebrow={categoryName}
+              accent="italic"
+              as="h1"
+              showDivider={false}
+              className="[&_h1]:text-3xl [&_h1]:sm:text-4xl [&_h1]:lg:text-5xl"
+            >
               {categoryName} Gallery
             </Heading>
-            <p className="mt-6 text-xl text-ink/70 leading-relaxed font-elegant">
+            <p className="mt-3 text-base sm:text-lg text-ink/70 leading-relaxed font-elegant">
               Explore {categoryData?.count || images.length} custom{' '}
               {categoryName.toLowerCase()} projects from our St. Louis showroom.
             </p>
@@ -127,20 +137,7 @@ export default async function CategoryPage(props: Props) {
               your home.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="tel:3144379988"
-                className="inline-flex items-center gap-3 px-8 py-4 text-lg font-semibold text-walnut bg-brass hover:bg-brass/90 rounded-sm shadow-xl transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-walnut"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                (314) 437-9988
-              </a>
+              <CallButton tone="dark" showIcon />
               <ButtonLink
                 href="/contact-us"
                 variant="outline"

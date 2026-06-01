@@ -1,21 +1,29 @@
 "use client";
 
-import { useCallback, type Dispatch, type SetStateAction } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction } from 'react';
 import { Section } from '@/components/ui/Section';
 import { Container } from '@/components/ui/Container';
-import { Button } from '@/components/ui/Button';
 import { GalleryImageCard } from './GalleryImageCard';
 import { ShowroomLightbox } from './ShowroomLightbox';
 import { GalleryImage } from '@/lib/gallery-manifest';
+import { cn } from '@/lib/cn';
 
 interface GalleryGridProps {
   images: GalleryImage[];
-  allImages: GalleryImage[]; // Full filtered list for lightbox
-  hasMore: boolean;
-  onLoadMore: () => void;
   lightboxIndex: number | null;
   onLightboxChange: Dispatch<SetStateAction<number | null>>;
   activeCategory: string;
+}
+
+// Stable anchor id for a project section.
+function sectionId(name: string): string {
+  return (
+    'project-' +
+    name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+  );
 }
 
 // Helper function to group kitchen images by project
@@ -39,34 +47,119 @@ function groupByProject(images: GalleryImage[]): Record<string, GalleryImage[]> 
   return sortedGrouped;
 }
 
+/**
+ * Sticky, additive jump-nav for the Kitchens gallery. Each chip is an anchor
+ * link to a project section — the sections are always in the DOM (no
+ * filtering/unmounting), so every image stays server-rendered and crawlable.
+ */
+function ProjectJumpNav({
+  projects,
+}: {
+  projects: { name: string; id: string; count: number }[];
+}) {
+  const [activeId, setActiveId] = useState(projects[0]?.id ?? '');
+
+  useEffect(() => {
+    const sections = projects
+      .map(p => document.getElementById(p.id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      entries => {
+        // The section nearest the top of the viewport wins.
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActiveId(visible[0].target.id);
+      },
+      // Trigger band sits just below the sticky header + this nav (~150px).
+      { rootMargin: '-150px 0px -65% 0px', threshold: 0 }
+    );
+
+    sections.forEach(s => observer.observe(s));
+    return () => observer.disconnect();
+  }, [projects]);
+
+  return (
+    <div className="sticky top-[71px] z-40 -mx-4 mb-7 border-y border-umber/15 bg-parchment/85 backdrop-blur-md sm:mx-0 sm:rounded-sm sm:border-x">
+      <div className="flex items-center gap-2 overflow-x-auto px-4 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <span className="mr-1 hidden shrink-0 font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-umber/70 sm:inline">
+          Jump to
+        </span>
+        {projects.map(p => {
+          const isActive = p.id === activeId;
+          return (
+            <a
+              key={p.id}
+              href={`#${p.id}`}
+              aria-current={isActive ? 'true' : undefined}
+              className={cn(
+                'shrink-0 rounded-full border px-4 py-1.5 font-sans text-sm transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-parchment',
+                isActive
+                  ? 'border-oxblood bg-oxblood text-parchment shadow-sm'
+                  : 'border-umber/25 bg-white/60 text-ink/75 hover:border-brass/50 hover:text-ink'
+              )}
+            >
+              {p.name}
+              <span className={cn('ml-1.5 text-xs', isActive ? 'text-parchment/70' : 'text-ink/40')}>
+                {p.count}
+              </span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export function GalleryGrid({
   images,
-  allImages,
-  hasMore,
-  onLoadMore,
   lightboxIndex,
   onLightboxChange,
-  activeCategory
+  activeCategory,
 }: GalleryGridProps) {
   // Group kitchen images by project if Kitchens category is active
   const isKitchenView = activeCategory === 'Kitchens';
-  const groupedImages = isKitchenView ? groupByProject(images) : { 'All': images };
+  const groupedImages = useMemo(
+    () => (isKitchenView ? groupByProject(images) : { All: images }),
+    [isKitchenView, images]
+  );
+
+  // O(1) lookup of an image's index within the full list (lightbox navigation).
+  const indexBySrc = useMemo(() => {
+    const map = new Map<string, number>();
+    images.forEach((img, i) => map.set(img.src, i));
+    return map;
+  }, [images]);
+
+  const projects = useMemo(
+    () =>
+      isKitchenView
+        ? Object.entries(groupedImages).map(([name, imgs]) => ({
+            name,
+            id: sectionId(name),
+            count: imgs.length,
+          }))
+        : [],
+    [isKitchenView, groupedImages]
+  );
 
   // Stable navigation handlers using setter function pattern
   // This prevents the callbacks from changing when lightboxIndex changes
   const handleNext = useCallback(() => {
     onLightboxChange((current) => {
       if (current === null) return null;
-      return (current + 1) % allImages.length;
+      return (current + 1) % images.length;
     });
-  }, [allImages.length, onLightboxChange]);
+  }, [images.length, onLightboxChange]);
 
   const handlePrev = useCallback(() => {
     onLightboxChange((current) => {
       if (current === null) return null;
-      return (current - 1 + allImages.length) % allImages.length;
+      return (current - 1 + images.length) % images.length;
     });
-  }, [allImages.length, onLightboxChange]);
+  }, [images.length, onLightboxChange]);
 
   const handleClose = useCallback(() => {
     onLightboxChange(null);
@@ -74,33 +167,32 @@ export function GalleryGrid({
 
   return (
     <>
-      <Section className="py-8">
+      <Section className="pt-3 pb-12">
         <Container>
-          {/* Results count */}
-          <div className="mb-8 text-center">
-            <p className="text-ink/60 text-sm">
-              Showing {images.length} of {allImages.length} {allImages.length === 1 ? 'image' : 'images'}
-            </p>
-          </div>
+          {isKitchenView && projects.length > 1 && <ProjectJumpNav projects={projects} />}
 
-          {/* Render grouped or flat grid */}
+          {/* Render grouped (Kitchens) or flat grid */}
           {Object.entries(groupedImages).map(([projectName, projectImages]) => (
-            <div key={projectName} className="mb-12 last:mb-0">
+            <section
+              key={projectName}
+              id={isKitchenView ? sectionId(projectName) : undefined}
+              className="mb-16 scroll-mt-[150px] last:mb-0"
+            >
               {isKitchenView && (
-                <div className="mb-8">
-                  <h3 className="text-2xl sm:text-3xl font-elegant font-semibold text-ink text-center mb-3">
+                <div className="mb-6">
+                  <h2 className="text-xl sm:text-2xl font-elegant font-semibold text-ink text-center mb-2">
                     {projectName}
-                  </h3>
+                  </h2>
                   <div className="flex items-center justify-center gap-2">
-                    <div className="h-px w-12 bg-gradient-to-r from-transparent via-umber/30 to-transparent" />
+                    <div className="h-px w-10 bg-gradient-to-r from-transparent via-umber/30 to-transparent" />
                     <svg
-                      className="w-3 h-3 text-umber/40"
+                      className="w-2.5 h-2.5 text-umber/40"
                       viewBox="0 0 24 24"
                       fill="currentColor"
                     >
                       <path d="M12 2L13.09 5.26L16 6L13.09 6.74L12 10L10.91 6.74L8 6L10.91 5.26L12 2Z" />
                     </svg>
-                    <div className="h-px w-12 bg-gradient-to-l from-transparent via-umber/30 to-transparent" />
+                    <div className="h-px w-10 bg-gradient-to-l from-transparent via-umber/30 to-transparent" />
                   </div>
                 </div>
               )}
@@ -108,49 +200,28 @@ export function GalleryGrid({
               {/* Grid layout - always uses full column count */}
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {projectImages.map((image, idx) => {
-                  // Find the global index in allImages to ensure lightbox navigates correctly
-                  const globalIndex = allImages.findIndex(img => img.src === image.src);
-
-                  // Safety check: if globalIndex is -1, something went wrong
-                  if (globalIndex === -1) {
-                    console.error('Could not find image in allImages:', image.src);
-                    return null;
-                  }
+                  const globalIndex = indexBySrc.get(image.src) ?? -1;
+                  if (globalIndex === -1) return null;
 
                   return (
                     <GalleryImageCard
-                      key={`${image.src}-${globalIndex}`}
+                      key={image.src}
                       image={image}
                       onClick={() => onLightboxChange(globalIndex)}
                       index={idx}
+                      priority={globalIndex === 0}
                     />
                   );
                 })}
               </div>
-            </div>
+            </section>
           ))}
-
-          {/* Load More Button */}
-          {hasMore && (
-            <div className="mt-12 text-center">
-              <Button
-                onClick={onLoadMore}
-                variant="outline"
-                className="px-8 py-4 text-base hover:bg-umber/10 border-umber/35"
-              >
-                Load More Images
-                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </Button>
-            </div>
-          )}
         </Container>
       </Section>
 
       {/* Lightbox */}
       <ShowroomLightbox
-        images={allImages}
+        images={images}
         currentIndex={lightboxIndex}
         isOpen={lightboxIndex !== null}
         onClose={handleClose}

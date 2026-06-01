@@ -17,18 +17,27 @@ export const metadata: Metadata = {
     description: 'Browse our portfolio of custom woodworking projects',
     images: ['/images/gallery/kitchen remodel/Blue Island/kitchen-remodel-blue-island-01.jpg'],
   },
+  alternates: {
+    canonical: '/showroom',
+  },
 };
 
 export default function ShowroomPage() {
   return (
     <>      {/* Hero Section */}
-      <Section className="pt-24 pb-12">
+      <Section className="pt-8 pb-5 sm:pt-10 sm:pb-7">
         <Container>
-          <div className="max-w-4xl mx-auto text-center">
-            <Heading eyebrow="Our Work" accent="italic" as="h1">
+          <div className="max-w-3xl mx-auto text-center">
+            <Heading
+              eyebrow="Our Work"
+              accent="italic"
+              as="h1"
+              showDivider={false}
+              className="[&_h1]:text-3xl [&_h1]:sm:text-4xl [&_h1]:lg:text-5xl"
+            >
               Our Showroom & Gallery
             </Heading>
-            <p className="mt-6 text-xl text-ink/70 leading-relaxed font-elegant">
+            <p className="mt-3 text-base sm:text-lg text-ink/70 leading-relaxed font-elegant">
               Explore our collection of custom kitchens, cabinetry, and built-ins
               crafted for homeowners throughout St. Louis. Browse by category to see
               our finished projects.
@@ -38,7 +47,7 @@ export default function ShowroomPage() {
       </Section>
 
       {/* Category Cards as Navigation Links */}
-      <Section className="py-12">
+      <Section className="pt-2 pb-12">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {galleryManifest.categories.map((category) => (
