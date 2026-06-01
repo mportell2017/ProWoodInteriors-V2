@@ -265,7 +265,7 @@ export const serviceLocations: ServiceLocationData[] = [
     coordinates: { latitude: "38.6631", longitude: "-90.5771" },
 
     metaTitle:
-      "Kitchen Remodeling in Chesterfield, MO | Custom Design & Cabinetry",
+      "Kitchen Remodeling in Chesterfield, MO",
     metaDescription:
       "Full-scope kitchen remodeling in Chesterfield, MO. Custom cabinets, islands, and layouts designed around how your family actually cooks and entertains. Family-owned since 1985. Free consultation: (314) 437-9988.",
 
@@ -600,7 +600,7 @@ export const serviceLocations: ServiceLocationData[] = [
     coordinates: { latitude: "38.5806", longitude: "-90.6630" },
 
     metaTitle:
-      "Kitchen Remodeling in Wildwood, MO | Custom Cabinets & Design",
+      "Kitchen Remodeling in Wildwood, MO",
     metaDescription:
       "Full-scope kitchen remodeling in Wildwood, MO. Custom cabinets, islands, and pantries built by hand in our local shop. Designed for Wildwood homes and lifestyle. Free consultation: (314) 437-9988.",
 
@@ -936,7 +936,7 @@ export const serviceLocations: ServiceLocationData[] = [
     coordinates: { latitude: "38.6425", longitude: "-90.3235" },
 
     metaTitle:
-      "Kitchen Remodeling in Clayton, MO | Custom Design & Cabinetry",
+      "Kitchen Remodeling in Clayton, MO",
     metaDescription:
       "Full-scope kitchen remodeling in Clayton, MO. Custom cabinets and design that honor the character of Clayton's Tudor, Colonial, and mid-century homes. Family-owned since 1985. Free consultation: (314) 437-9988.",
 
@@ -1269,7 +1269,7 @@ export const serviceLocations: ServiceLocationData[] = [
     county: "St. Louis County",
     coordinates: { latitude: "38.5834", longitude: "-90.4068" },
 
-    metaTitle: "Kitchen Remodeling in Kirkwood, MO | Custom Design & Cabinetry",
+    metaTitle: "Kitchen Remodeling in Kirkwood, MO",
     metaDescription:
       "Full-scope kitchen remodeling in Kirkwood, MO. Custom cabinets and design that honor the character of Kirkwood's historic and mid-century homes. Family-owned since 1985. Free consultation: (314) 437-9988.",
 
@@ -1598,7 +1598,7 @@ export const serviceLocations: ServiceLocationData[] = [
     county: "St. Louis County",
     coordinates: { latitude: "38.5950", longitude: "-90.5462" },
 
-    metaTitle: "Kitchen Remodeling in Ballwin, MO | Custom Cabinets & Design",
+    metaTitle: "Kitchen Remodeling in Ballwin, MO",
     metaDescription:
       "Full-scope kitchen remodeling in Ballwin, MO. Custom cabinets, islands, and layouts designed around busy family life. Built by hand in our local shop. Family-owned since 1985. Free consultation: (314) 437-9988.",
 
@@ -1928,7 +1928,7 @@ export const serviceLocations: ServiceLocationData[] = [
     coordinates: { latitude: "38.6608", longitude: "-90.4426" },
 
     metaTitle:
-      "Kitchen Remodeling in Creve Coeur, MO | Custom Design & Cabinetry",
+      "Kitchen Remodeling in Creve Coeur, MO",
     metaDescription:
       "Full-scope kitchen remodeling in Creve Coeur, MO, by a family-owned shop based next door in Maryland Heights. Custom cabinets, islands, and layouts. Free consultation: (314) 437-9988.",
 
@@ -2252,7 +2252,7 @@ export const serviceLocations: ServiceLocationData[] = [
     county: "St. Louis County",
     coordinates: { latitude: "38.5959", longitude: "-90.3779" },
 
-    metaTitle: "Kitchen Remodeling in Glendale, MO | Custom Design & Cabinetry",
+    metaTitle: "Kitchen Remodeling in Glendale, MO",
     metaDescription:
       "Full-scope kitchen remodeling in Glendale, MO. Custom cabinets and design that honor the character of Glendale's classic older homes. Family-owned since 1985. Free consultation: (314) 437-9988.",
 

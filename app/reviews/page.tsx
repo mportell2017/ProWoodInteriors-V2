@@ -7,7 +7,7 @@ import { GOOGLE_REVIEW_URL } from "@/lib/business";
 import { generateReviewListSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Customer Reviews — 5-Star Custom Cabinetry, St. Louis",
+  title: "Customer Reviews — St. Louis Cabinetry",
   description:
     "Read reviews from Chesterfield, Wildwood, and St. Louis homeowners about Professional Wood Interiors. 5-star rated custom cabinets, built-ins, and refacing.",
   alternates: {
@@ -54,7 +54,7 @@ export default function ReviewsPage() {
       {/* Hero Section */}
       <Section className="pt-24 pb-10">
         <div className="max-w-4xl mx-auto text-center">
-          <Heading eyebrow="Customer Reviews" accent="italic">
+          <Heading as="h1" eyebrow="Customer Reviews" accent="italic">
             What Our Clients Say
           </Heading>
           <p className="mt-8 text-xl text-ink/70 leading-relaxed font-elegant">

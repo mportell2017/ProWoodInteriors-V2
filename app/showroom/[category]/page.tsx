@@ -116,7 +116,11 @@ export default async function CategoryPage(props: Props) {
             </Heading>
             <p className="mt-3 text-base sm:text-lg text-ink/70 leading-relaxed font-elegant">
               Explore {categoryData?.count || images.length} custom{' '}
-              {categoryName.toLowerCase()} projects from our St. Louis showroom.
+              {categoryName.toLowerCase()} projects, handcrafted in our St. Louis–area
+              shop since 1985. Every piece is built by hand from solid wood and designed
+              for the home it lives in — for homeowners across Chesterfield, Wildwood,
+              Clayton, Kirkwood, and the greater St. Louis area. Click any project to
+              see the craftsmanship up close.
             </p>
           </div>
         </Container>

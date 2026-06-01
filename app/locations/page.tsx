@@ -18,7 +18,7 @@ import {
 } from '@/lib/business';
 
 export const metadata: Metadata = {
-  title: 'Service Areas | Custom Cabinetry Across Greater St. Louis',
+  title: 'Service Areas — Greater St. Louis',
   description: `${BUSINESS_NAME} designs and builds custom cabinetry, built-ins, and cabinet refacing for homeowners across the greater St. Louis area — including Chesterfield, Wildwood, Clayton, St. Charles, and more.`,
   alternates: { canonical: '/locations' },
   openGraph: {

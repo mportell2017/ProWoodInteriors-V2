@@ -35,14 +35,19 @@ export async function generateMetadata(props: { params: Promise<{ city: string }
     };
   }
 
-  const title = `Custom Cabinetry & Woodworking ${location.city}, ${location.stateAbbr} | Professional Wood Interiors`;
+  // Keep the <title> short: the root layout appends " | Professional Wood
+  // Interiors" automatically, so we must NOT repeat the brand here (doing so
+  // both doubled the brand and pushed titles past ~70 chars). Social cards get
+  // the branded form via ogTitle.
+  const title = `Custom Cabinetry in ${location.city}, ${location.stateAbbr}`;
+  const ogTitle = `${title} | Professional Wood Interiors`;
   const description = `Custom kitchen cabinets, built-ins & cabinetry in ${location.city}, ${location.state}. Handcrafted wood interiors serving ${location.county}. Free consultation: (314) 437-9988`;
 
   return {
     title,
     description,
     openGraph: {
-      title,
+      title: ogTitle,
       description,
       type: 'website',
       siteName: 'Professional Wood Interiors',
@@ -50,7 +55,7 @@ export async function generateMetadata(props: { params: Promise<{ city: string }
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: ogTitle,
       description,
     },
     alternates: {

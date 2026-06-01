@@ -38,9 +38,13 @@ export default function ShowroomPage() {
               Our Showroom & Gallery
             </Heading>
             <p className="mt-3 text-base sm:text-lg text-ink/70 leading-relaxed font-elegant">
-              Explore our collection of custom kitchens, cabinetry, and built-ins
-              crafted for homeowners throughout St. Louis. Browse by category to see
-              our finished projects.
+              Explore our portfolio of custom cabinetry and woodworking, handcrafted
+              in our St. Louis–area shop since 1985. Browse finished kitchens, bedroom
+              built-ins, entertainment centers, and bookcases — from full kitchen
+              remodels to cabinet refacing — completed for homeowners across
+              Chesterfield, Wildwood, Clayton, Kirkwood, and the greater St. Louis
+              area. Every project is designed for the home it lives in and built by
+              hand from solid wood. Use the categories below to see the work up close.
             </p>
           </div>
         </Container>

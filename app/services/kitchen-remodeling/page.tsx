@@ -17,12 +17,12 @@ import { ServiceCityGrid } from '@/components/services/ServiceCityGrid';
 import { ServiceCTA } from '@/components/services/ServiceCTA';
 
 export const metadata: Metadata = {
-  title: 'Kitchen Remodeling & Custom Cabinets in St. Louis',
+  title: 'Kitchen Remodeling in St. Louis, MO',
   description:
     'Kitchen remodeling and custom cabinetry in St. Louis, Clayton, Chesterfield, and Wildwood. Full-scope kitchen design and handcrafted solid-wood cabinets built in our local shop since 1985. Free in-home consultation.',
   alternates: { canonical: '/services/kitchen-remodeling' },
   openGraph: {
-    title: 'Kitchen Remodeling & Custom Cabinets in St. Louis | Professional Wood Interiors',
+    title: 'Kitchen Remodeling in St. Louis, MO | Professional Wood Interiors',
     description:
       'Kitchen remodeling and custom cabinetry in St. Louis. Full-scope kitchen design and handcrafted solid-wood cabinets built in our local shop since 1985.',
     type: 'website',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kitchen Remodeling & Custom Cabinets in St. Louis',
+    title: 'Kitchen Remodeling in St. Louis, MO',
     description:
       'Kitchen remodeling and custom cabinetry in St. Louis. Full-scope kitchen design and handcrafted solid-wood cabinets built in our local shop since 1985.',
   },

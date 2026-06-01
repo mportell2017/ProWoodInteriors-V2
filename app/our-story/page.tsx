@@ -7,14 +7,14 @@ import { ButtonLink } from "@/components/ui/Button";
 import { generateLocalBusinessSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Our Story — 40+ Years of Custom Cabinetry in St. Louis",
+  title: "Our Story — Custom Cabinetry Since 1985",
   description:
     "Family-owned custom cabinetry in the St. Louis area since 1985. Meet Professional Wood Interiors — built by hand in our local shop for Chesterfield, Wildwood, Clayton, and surrounding homeowners.",
   alternates: {
     canonical: "/our-story",
   },
   openGraph: {
-    title: "Our Story — 40+ Years of Custom Cabinetry in St. Louis",
+    title: "Our Story — Custom Cabinetry Since 1985",
     description:
       "Family-owned custom cabinetry in the St. Louis area since 1985. Built by hand in our local shop.",
     type: "website",
@@ -40,7 +40,7 @@ export default function OurStoryPage() {
       {/* Hero Section */}
       <Section className="pt-24 pb-16">
         <div className="max-w-4xl mx-auto text-center">
-          <Heading eyebrow="Our Story" accent="italic">
+          <Heading as="h1" eyebrow="Our Story" accent="italic">
             About Professional Wood Interiors
           </Heading>
           <p className="mt-8 text-xl text-ink/70 leading-relaxed font-elegant">
