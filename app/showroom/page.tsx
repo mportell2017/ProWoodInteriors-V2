@@ -113,6 +113,83 @@ export default function ShowroomPage() {
         </Container>
       </Section>
 
+      {/* Editorial content — what's in the gallery, by category. Gives the
+          index page real substance (and internal links) beyond the card grid. */}
+      <Section tone="cream" className="py-14">
+        <Container>
+          <div className="max-w-3xl mx-auto">
+            <Heading
+              as="h2"
+              eyebrow="Four Decades of Built-In Work"
+              showDivider={false}
+              className="mb-6 [&_h2]:text-2xl [&_h2]:sm:text-3xl"
+            >
+              What You&apos;ll Find in Our Gallery
+            </Heading>
+
+            <div className="space-y-6 text-ink/80 leading-relaxed">
+              <p>
+                Our showroom gallery is a record of real projects we&apos;ve
+                designed, built, and installed for St. Louis homeowners since
+                1985 — not stock photography or catalog renderings. Each project
+                below was finished by hand in our Maryland Heights shop, from the
+                first measurement to the final coat of finish, so what you see is
+                what we actually deliver.
+              </p>
+              <p>
+                Our{' '}
+                <Link
+                  href="/showroom/kitchens"
+                  className="text-oxblood underline underline-offset-2 hover:text-brass transition-colors"
+                >
+                  kitchens
+                </Link>{' '}
+                range from full{' '}
+                <Link
+                  href="/services/kitchen-remodeling"
+                  className="text-oxblood underline underline-offset-2 hover:text-brass transition-colors"
+                >
+                  kitchen remodels
+                </Link>{' '}
+                to{' '}
+                <Link
+                  href="/services/cabinet-refacing"
+                  className="text-oxblood underline underline-offset-2 hover:text-brass transition-colors"
+                >
+                  cabinet refacing
+                </Link>
+                , where we keep the existing cabinet boxes and rebuild the look
+                with new doors, drawer fronts, and matching veneer. You&apos;ll
+                also see two-tone islands, custom storage, and the kind of details
+                — soft-close hardware, integrated panels, hand-fit trim — that set
+                custom work apart from off-the-shelf cabinetry.
+              </p>
+              <p>
+                Beyond the kitchen, the gallery covers bedroom built-ins and
+                wardrobes,{' '}
+                <Link
+                  href="/services/entertainment-centers"
+                  className="text-oxblood underline underline-offset-2 hover:text-brass transition-colors"
+                >
+                  entertainment centers
+                </Link>{' '}
+                built around your media and room dimensions, and floor-to-ceiling{' '}
+                <Link
+                  href="/services/custom-bookcases"
+                  className="text-oxblood underline underline-offset-2 hover:text-brass transition-colors"
+                >
+                  custom bookcases
+                </Link>
+                . We build for homes throughout the greater St. Louis area,
+                including Chesterfield, Wildwood, Clayton, Kirkwood, Ballwin, and
+                Creve Coeur. If a piece in the gallery is close to what you have in
+                mind, it makes an ideal starting point for your own project.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
       {/* CTA Section */}
       <Section tone="walnut" className="mt-16">
         <Container>

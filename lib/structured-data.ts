@@ -196,33 +196,6 @@ export function generateReviewListSchema(
 }
 
 /**
- * Generate product schema for project pages
- * Helps with rich snippets in search results
- */
-export function generateProductSchema(
-  projectName: string,
-  images: string[],
-  category: string
-) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: projectName,
-    description: `Custom ${category.toLowerCase()} project by ${BUSINESS_NAME}`,
-    image: images.map((src) => `${SITE_URL}${src}`),
-    brand: {
-      '@type': 'Brand',
-      name: BUSINESS_NAME,
-    },
-    offers: {
-      '@type': 'Offer',
-      availability: 'https://schema.org/InStock',
-      priceCurrency: 'USD',
-    },
-  };
-}
-
-/**
  * Generate FAQPage schema from a list of Q&A pairs.
  * Helps eligible FAQs surface as rich results on search.
  */

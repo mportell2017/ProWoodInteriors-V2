@@ -358,10 +358,9 @@ default favors the bare apex, so re-adding/re-importing the domain can undo it. 
 Located in `lib/structured-data.ts`. All schemas pull NAP from `lib/business.ts` — never hardcode address/phone here.
 
 - `generateBreadcrumbSchema()` — BreadcrumbList for nav trails
-- `generateImageGallerySchema()` — ImageGallery for showroom pages
+- `generateImageGallerySchema()` — ImageGallery for showroom category **and** individual project pages. Project pages are completed custom builds, not purchasable products, so they use ImageGallery — **not** `Product`. (A `Product`/`Offer` with no `price` is invalid markup that Google ignores, and we never publish pricing — see the no-pricing rule.)
 - `generateLocalBusinessSchema()` — LocalBusiness with real address (12031 Wesford Dr, Maryland Heights, MO 63043), `areaServed` = Chesterfield/Wildwood/Clayton. Used on homepage, /our-story, /contact-us, /services, /reviews.
 - `generateServiceSchema()` — Service for the 4 service pages
-- `generateProductSchema()` — Product for individual showroom projects
 - `generateLocalServiceSchema()` — ProfessionalService for city landing pages
 - `generateServiceLocationSchema()` — Service schema for `/locations/[city]/[service]` pages
 - `generateFAQSchema()` — FAQPage for rich results (used on each service page AND service-location pages)
@@ -417,6 +416,8 @@ import { SoftCTA } from '@/components/homepage/SoftCTA';
 ### Known Issues / Cleanup Candidates
 - Page `<title>` tags duplicate "Professional Wood Interiors" on service-location pages (appears once in the per-page metaTitle and again as a site-wide template suffix). Cosmetic; one-line fix in either the page metadata or the root layout.
 - 25 components still use `interface X` declarations where the project convention prefers `type X = …`. Maintain-mode observation — modernize during the next pass over each file.
+- **SEMrush "Low text-to-HTML ratio" warning (~49 pages) is deliberately not pursued site-wide.** Text-to-HTML ratio is **not a Google ranking factor** (Google has said so directly; SEMrush files it as a medium "Warning," not an error). Our ratio is structurally low (~3–7%) because of things that are either good for SEO or framework-inherent: Next.js inlines a large duplicate RSC hydration payload (`self.__next_f.push(...)`) into the HTML, our several JSON-LD blocks per page count as HTML not text, and the editorial design inlines decorative SVGs. Chasing the metric itself is low/no ROI. The *only* legitimate slice — pages where a low ratio coincides with genuinely thin content (the showroom index + project pages) — was addressed with real descriptive copy and cross-links, which also helps actual SEO. Don't try to "fix" the 49-page number.
+- `/showroom` (hardcoded phone `tel:3144379988` / `(314) 437-9988` in the CTA) still bypasses `CallButton`/`lib/business.ts`. Pre-existing; swap to `CallButton` on the next pass.
 
 ### Recent foundational changes (2026-05-22)
 Track for context if you're picking this up cold:
@@ -429,6 +430,13 @@ Track for context if you're picking this up cold:
 - Dynamic OG images at `app/locations/[city]/opengraph-image.tsx` and `app/locations/[city]/[service]/opengraph-image.tsx`.
 - FAQ schema now emitted on all 4 service pages (FAQ content lives in `lib/service-faqs.ts`).
 - `ServiceAreaLinks` component cross-links service pages → city + service-location pages.
+
+### Recent changes (2026-06-01)
+SEMrush Site Audit cleanup (project `prowoodinteriors.com`, snapshot showed 14 errors / 50 warnings / 10 notices, all traceable to the prior commit that first made the kitchen project pages crawlable):
+- **Killed all 14 structured-data errors (issue 45).** The 7 `/showroom/kitchens/*` project pages emitted `Product` schema with an `Offer` that had no `price` → invalid, and double-counted as `Product` + `MerchantListing`. `generateProductSchema()` was **deleted** from `lib/structured-data.ts` and removed from `app/showroom/[category]/[project]/page.tsx`; those pages now rely solely on the existing `generateImageGallerySchema()` (honest — they're image portfolios, not SKUs; and pricing is never published). No price was added.
+- **Fixed "only one internal link" on the 7 project pages (issue 213).** Each project page now renders a "More {Category} We've Built" section cross-linking every sibling project (so each page earns N−1 inbound links) plus a contextual link to its service hub via a new `CATEGORY_SERVICE` map in the page.
+- **Raised content on the thin showroom pages (issue 117 + the legit slice of 112).** `/showroom` (was 197 words) gained a substantive "What You'll Find in Our Gallery" editorial section with internal links to category + service pages; project pages gained the related-projects copy above.
+- **Deliberately did NOT chase the 49-page "low text-to-HTML ratio" warning** — it's not a Google ranking factor. See the Known Issues note for the rationale.
 
 ### Recent changes (2026-05-27)
 - **Kitchen service URL renamed for SEO:** `/services/custom-kitchen-cabinetry` → **`/services/kitchen-remodeling`**. The old slug targeted a ~720/mo term while the page already markets full-scope kitchen remodeling (confirmed: ProWood does full remodels incl. plumbing/electrical); the new slug matches the head term (33,100/mo, SEMRUSH US) and unifies the hub page with the existing city `/locations/[city]/kitchen-remodeling` pages. A permanent 301 was added in `next.config.js` (the project's first `redirects()`), and the slug + display label ("Kitchen Remodeling") were updated across `lib/nav-data.ts`, `components/Footer.tsx`, `app/services/page.tsx`, `components/homepage/ServiceShowcase.tsx`, `app/sitemap.ts`, `lib/structured-data.ts`, the internal strategy dashboard, and `marketing/google-business-profile.md`.
@@ -451,5 +459,5 @@ Track for context if you're picking this up cold:
 
 ---
 
-**Last Updated**: 2026-05-27
+**Last Updated**: 2026-06-01
 **Maintained by**: Claude Code
