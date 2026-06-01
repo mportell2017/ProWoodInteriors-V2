@@ -182,7 +182,7 @@ export default async function ServiceLocationPage(
           <Container>
             <div className="text-center mb-12">
               <Heading as="h2" eyebrow="Recent Projects" showDivider>
-                {entry.service} Work in the St. Louis Area
+                {entry.service} Work in {entry.city}
               </Heading>
               <p className="mt-5 text-lg text-ink/70 font-elegant max-w-2xl mx-auto">
                 A selection of {entry.service.toLowerCase()} projects we&apos;ve
