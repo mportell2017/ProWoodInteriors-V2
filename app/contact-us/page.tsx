@@ -3,7 +3,7 @@ import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Heading';
 import { Container } from '@/components/ui/Container';
 import { SoftCTA } from '@/components/homepage/SoftCTA';
-import { ADDRESS, PHONE_DISPLAY, PHONE_TEL } from '@/lib/business';
+import { ADDRESS, EMAIL_PRIMARY, PHONE_DISPLAY, PHONE_TEL } from '@/lib/business';
 import { generateLocalBusinessSchema } from '@/lib/structured-data';
 
 export const metadata: Metadata = {
@@ -59,9 +59,9 @@ export default function ContactPage() {
         </svg>
       ),
       title: 'Email Us',
-      description: 'info@prowoodinteriors.com',
+      description: EMAIL_PRIMARY,
       actionLabel: 'Send Email',
-      actionHref: 'mailto:info@prowoodinteriors.com',
+      actionHref: `mailto:${EMAIL_PRIMARY}`,
     },
     {
       icon: (
